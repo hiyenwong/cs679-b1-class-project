@@ -1,5 +1,5 @@
-#summary One-sentence summary of this page.
 #labels Installation,Phase-Support,Phase-Requirements
+#How to set up Apache, MySQL, PHP on your system.
 
 = How to set up your environment =
 
