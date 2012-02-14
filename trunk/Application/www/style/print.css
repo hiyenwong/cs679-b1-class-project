@@ -1,0 +1,19 @@
+#titlebar {
+  display: none;
+}
+
+#menuwrapper {
+  display: none;
+}
+
+#footer {
+  display: none;
+}
+
+#content {
+  padding-left: 0;
+}
+
+#toolbar {
+  display: none;
+}
