@@ -8,11 +8,11 @@ DROP TABLE IF EXISTS mapping;
 
 DROP TABLE IF EXISTS user_preference;
 
-DROP TABLE IF EXISTS transaction;
-
 DROP TABLE IF EXISTS user_budget;
 
 DROP TABLE IF EXISTS category;
+
+DROP TABLE IF EXISTS transaction;
 
 DROP TABLE IF EXISTS user;
 
@@ -26,7 +26,6 @@ password VARCHAR(255) NOT NULL,
 active BOOLEAN NOT NULL DEFAULT 1,
 created_date TIMESTAMP NOT NULL,
 last_login_date TIMESTAMP NOT NULL,
-something INT(11),
 PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
@@ -43,12 +42,15 @@ CREATE TABLE IF NOT EXISTS mapping
 id INT(11) NOT NULL AUTO_INCREMENT UNIQUE,
 name VARCHAR(50) NOT NULL,
 user_id INT(11),
+starting_row INT(11),
 PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS mapping_detail
 (
-mapping_id INT(11) NOT NULL
+mapping_id INT(11) NOT NULL,
+column_name INT(11) NOT NULL,
+csv_column_number INT(11) NOT NULL
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS preference_type
@@ -76,7 +78,7 @@ PRIMARY KEY (id)
 CREATE TABLE IF NOT EXISTS transaction
 (
 user_id INT(11) NOT NULL,
-name VARCHAR(255),
+name VARCHAR(255) NOT NULL,
 custom_name VARCHAR(255),
 amount DECIMAL(10,2) NOT NULL DEFAULT 0,
 transaction_date DATETIME NOT NULL,
@@ -110,8 +112,6 @@ ALTER TABLE category ADD FOREIGN KEY user_id_idxfk_3 (user_id) REFERENCES user (
 
 ALTER TABLE transaction ADD FOREIGN KEY user_id_idxfk_4 (user_id) REFERENCES user (id);
 
-ALTER TABLE transaction ADD FOREIGN KEY category_id_idxfk (category_id) REFERENCES category (id);
-
 ALTER TABLE user_budget ADD FOREIGN KEY user_id_idxfk_5 (user_id) REFERENCES user (id);
 
-ALTER TABLE user_budget ADD FOREIGN KEY category_id_idxfk_1 (category_id) REFERENCES category (id);
+ALTER TABLE user_budget ADD FOREIGN KEY category_id_idxfk (category_id) REFERENCES category (id);
