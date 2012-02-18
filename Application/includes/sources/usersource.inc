@@ -36,7 +36,6 @@ class UserSource implements Source {
 		if ($this->readStatement == null) {
 			$sql = "SELECT user.id,
 						user.username,
-						user.password,
 						user.active,
 						user.created_date,
 						user.last_login_date,
