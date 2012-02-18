@@ -18,7 +18,7 @@ class User extends View implements Comparable {
 	protected $id;
 	
 	private $username;
-	private $password;
+	private $password = false;
 	private $active;
 	private $createDate;
 	private $lastLoginDate;
@@ -54,10 +54,6 @@ class User extends View implements Comparable {
 	
 	public function getUsername() {
 		return $this->username;
-	}
-	
-	public function getPassword() {
-		return $this->password;
 	}
 	
 	public function getActive() {
@@ -187,7 +183,6 @@ class User extends View implements Comparable {
 		$values = $userSource->read (array ('ID' => $this->id));
 		
 		$this->username = $values['username'];
-		$this->password = $values['password'];
 		$this->active = $values['active'];
 		$this->createDate = $values['create_date'];
 		$this->lastLoginDate = $values['last_login_date'];
