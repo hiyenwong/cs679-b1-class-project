@@ -12,7 +12,7 @@ include_once 'sources/userrolesource.inc';
 
 class User extends View implements Comparable {
 
-	private static $HASH_KEY = 'yewrigeiwugusbdfkakjdhlqwhgeliqhbwdjlhvasjkhdfjqhwgeljhqweblkhgqwjehgqwljheg';
+	private static $HASH_KEY = 'shajs,ddobjbqkwj6he8qjwasdpckeb[';
 
 	private $key;
 	protected $id;
