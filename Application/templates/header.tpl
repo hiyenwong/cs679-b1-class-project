@@ -1,5 +1,7 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
 <head>
+	<meta charset="utf-8"></meta>
 	<title>Simplefunctions.com Applications - {$title}</title>
 	<style type="text/css" media="all">
 		@import url("{$style_url}/ibudget.css");
@@ -20,8 +22,8 @@
 	<link rel="stylesheet" type="text/css" href="{$style_url}/modalbox.css" />
 
 
-	<script type="text/javascript" src="{$js_url}/prototype.js"></script>
-	<script type="text/javascript" src="{$js_url}/scriptaculous.js?load=effects"></script>
+	<script type="text/javascript" src="{$js_url}/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="{$js_url}/jquery.flow.1.0.js"></script>
 	<script type="text/javascript" src="{$js_url}/builder.js"></script>
 	<script type="text/javascript" src="{$js_url}/controls.js"></script>
 	<script type="text/javascript" src="{$js_url}/behavior.js"></script>
@@ -35,14 +37,11 @@
 
 </head>
 
-<body>
-	<div id="top_section">
-		<img src="{$image_url}/ring1_small.png" />
-	</div>
+<body {if $secondary} id="secondary" {/if}>
+	<div class="wrap">
 	
-	<div id="mary_churk"><img src="{$image_url}/mary_churk.png" /></div>
-
-	<div id="bodycontent">
+	
+	
 
 
 
