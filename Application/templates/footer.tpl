@@ -16,21 +16,5 @@
 			</div>
 		</div>
 	</div>
-	
-	<script type="text/javascript">
-$(document).ready(function(){
-
-	$("#myController").jFlow({
-		slides: "#mySlides",
-		width: "495px",
-		height: "255px",
-		duration: 400
-	});
-});
-
-$(document).ready(function(){
-			$(".lightbox").lightbox();
-		});
-</script>
 </body>
 </html>
