@@ -25,16 +25,18 @@
                     <!-- begin slider -->
                     <div class="slider-wrap">
                         <div class="slider">
-                        	<div id="jFlowSlide" style="position: relative; width: 495px; height: 255px; overflow: hidden;"><div id="mySlides" style="position: relative; width: 1485px; height: 255px; overflow: hidden; margin-left: -495px;">
+                        	<div id="jFlowSlide" style="position: relative; width: 495px; height: 255px; overflow: hidden;">
+                        	<div id="mySlides" style="position: relative; width: 1485px; height: 255px; overflow: hidden; margin-left: -495px;">
                                 <!-- slider 1 -->
-                                <div class="jFlowSlideContainer" style="position: relative; width: 495px; height: 255px; float: left;"><div><img alt="slide1" src="images/logowindow.jpg"></div></div>
+                                <div class="jFlowSlideContainer"><img alt="slide1" src="../www/images/excel_apps.jpg"></div>
                                 
                                 <!-- slider 2 -->
-                                <div class="jFlowSlideContainer" style="position: relative; width: 495px; height: 255px; float: left;"><div><img alt="slide2" src="images/logowindow2.jpg"></div></div>	
+                                <div class="jFlowSlideContainer"><img alt="slide2" src="../www/images/economic_growth.jpg"></div>	
                                 
                                 <!-- slider 3 -->
-                                <div class="jFlowSlideContainer" style="position: relative; width: 495px; height: 255px; float: left;"><div><img alt="slide3" src="images/logowindow3.jpg"></div></div>
-                            </div></div>
+                                <div class="jFlowSlideContainer"><img alt="slide3" src="../www/images/family_budget.jpg"></div>
+                            </div>
+                            </div>
                     	</div>
                     </div><!-- end slider wrap -->
                     
@@ -57,13 +59,9 @@
                       <div class="slider_nav_left">
                           <div id="myController">
                               <span class="jFlowControl">1</span>
-                              <span class="jFlowControl jFlowSelected">2</span>
+                              <span class="jFlowControl">2</span>
                               <span class="jFlowControl">3</span>
                           </div>
-                      </div>
-                      <div class="slider_nav_right">
-                      	<span class="jFlowPrev"><img alt="slide-left" src="images/slide_left.png"></span>
-                        <span class="jFlowNext"><img alt="slide-left" src="images/slide_right.png"></span>
                       </div>
                   </div><!-- end slider navigation-->
               
@@ -129,5 +127,16 @@
             <div style="clear: both;">&nbsp;</div>
         </div>
         <div class="push"></div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#myController").jFlow({
+		slides: "#mySlides",
+		width: "495px",
+		height: "255px",
+		duration: 400
+	});
+});
+</script>
 
 {include file='footer.tpl'}
