@@ -105,58 +105,68 @@ class UserSource implements Source {
 			throw new Exception("Missing required parameter number of attempts");
 		}
 		
+		if (!sizeof($args)) {
+			throw new Exception ('Missing all parameters.');
+		}
+		
+		$sql = "INSERT INTO user " . MySqlDB::getInsertCondition($args);
+		$this->db->execSql($sql, $args);
+		
+		if ($this->lastInsertIdStatement == null) {
+			$sql = "SELECT LAST_INSERT_ID() AS id";
+			$this->lastInsertIdStatement = $this->db->getStatement($sql);
+		}
+		
+		$results = $this->db->execStatement($this->lastInsertIdStatement);
+		return $results[0]['id'];
+		
+		$args = array(new DbParam('user_profile.user_id', ':user_id', $params['USER_ID'], PDO::PARAM_INT));
+		
 		if (array_key_exists('FIRST_NAME', $params)) {
-			$args[] = new DbParam('user.first_name', ':first_name', $params['FIRST_NAME'], PDO::PARAM_STR);
+			$args[] = new DbParam('user_profile.first_name', ':first_name', $params['FIRST_NAME'], PDO::PARAM_STR);
 		} else {
 			throw new Exception("Missing required parameter first name");
 		}
 		
 		if (array_key_exists('LAST_NAME', $params)) {
-			$args[] = new DbParam('user.last_name', ':last_name', $params['LAST_NAME'], PDO::PARAM_STR);
+			$args[] = new DbParam('user_profile.last_name', ':last_name', $params['LAST_NAME'], PDO::PARAM_STR);
 		} else {
 			throw new Exception("Missing required parameter last name");
 		}
 		
 		if (array_key_exists('EMAIL', $params)) {
-			$args[] = new DbParam('user.email', ':email', $params['EMAIL'], PDO::PARAM_STR);
+			$args[] = new DbParam('user_profile.email', ':email', $params['EMAIL'], PDO::PARAM_STR);
 		} else {
 			throw new Exception("Missing required parameter email");
 		}
 		
 		if (array_key_exists('ADDRESS', $params)) {
-			$args[] = new DbParam('user.address', ':address', $params['ADDRESS'], PDO::PARAM_STR);
+			$args[] = new DbParam('user_profile.address', ':address', $params['ADDRESS'], PDO::PARAM_STR);
 		}
 		
 		if (array_key_exists('CITY', $params)) {
-			$args[] = new DbParam('user.city', ':city', $params['CITY'], PDO::PARAM_STR);
+			$args[] = new DbParam('user_profile.city', ':city', $params['CITY'], PDO::PARAM_STR);
 		}
 		
 		if (array_key_exists('ZIP', $params)) {
-			$args[] = new DbParam('user.zip', ':zip', $params['ZIP'], PDO::PARAM_STR);
+			$args[] = new DbParam('user_profile.zip', ':zip', $params['ZIP'], PDO::PARAM_STR);
 		}
 		
 		if (array_key_exists('STATE', $params)) {
-			$args[] = new DbParam('user.state', ':state', $params['STATE'], PDO::PARAM_STR);
+			$args[] = new DbParam('user_profile.state', ':state', $params['STATE'], PDO::PARAM_STR);
 		}
 		
 		if (array_key_exists('COUNTRY', $params)) {
-			$args[] = new DbParam('user.country', ':country', $params['COUNTRY'], PDO::PARAM_STR);
+			$args[] = new DbParam('user_profile.country', ':country', $params['COUNTRY'], PDO::PARAM_STR);
 		}
-
+		
 		if (!sizeof($args)) {
 			throw new Exception ('Missing all parameters.');
 		}
-
-		$sql = "INSERT INTO user " . MySqlDB::getInsertCondition($args);
+		
+		$sql = "INSERT INTO user_profile " . MySqlDB::getInsertCondition($args);
 		$this->db->execSql($sql, $args);
-
-		if ($this->lastInsertIdStatement == null) {
-			$sql = "SELECT LAST_INSERT_ID() AS id";
-			$this->lastInsertIdStatement = $this->db->getStatement($sql);
-		}
-
-		$results = $this->db->execStatement($this->lastInsertIdStatement);
-		return $results[0]['id'];
+		
 	}
 
 	public function update (Array $params) {
@@ -193,43 +203,55 @@ class UserSource implements Source {
 			$args[] = new DbParam('user.number_of_attempts', ':number_of_attempts', $params['NUMBER_OF_ATTEMPTS'], PDO::PARAM_INT);
 		}
 		
+		if (sizeof($args)) {
+			$sql = "UPDATE user
+						SET " . MySqlDB::getSelectConditions($args, ', ') . "
+						WHERE user.id = :id";
+			$args[] = new DbParam('user.id', ':id', $params['ID'], PDO::PARAM_INT);
+		
+			$this->db->execSql($sql, $args);
+		}
+		
+		
+		$args = array();
+		
 		if (array_key_exists('FIRST_NAME', $params) && $original['first_name'] != $params['FIRST_NAME']) {
-			$args[] = new DbParam('user.first_name', ':first_name', $params['FIRST_NAME'], PDO::PARAM_STR);
+			$args[] = new DbParam('user_profile.first_name', ':first_name', $params['FIRST_NAME'], PDO::PARAM_STR);
 		}
 		
 		if (array_key_exists('LAST_NAME', $params) && $original['last_name'] != $params['LAST_NAME']) {
-			$args[] = new DbParam('user.last_name', ':last_name', $params['LAST_NAME'], PDO::PARAM_STR);
+			$args[] = new DbParam('user_profile.last_name', ':last_name', $params['LAST_NAME'], PDO::PARAM_STR);
 		}
 		
 		if (array_key_exists('EMAIL', $params) && $original['email'] != $params['EMAIL']) {
-			$args[] = new DbParam('user.email', ':email', $params['EMAIL'], PDO::PARAM_STR);
+			$args[] = new DbParam('user_profile.email', ':email', $params['EMAIL'], PDO::PARAM_STR);
 		}
 		
 		if (array_key_exists('ADDRESS', $params) && $original['address'] != $params['ADDRESS']) {
-			$args[] = new DbParam('user.address', ':address', $params['ADDRESS'], PDO::PARAM_STR);
+			$args[] = new DbParam('user_profile.address', ':address', $params['ADDRESS'], PDO::PARAM_STR);
 		}
 		
 		if (array_key_exists('CITY', $params) && $original['city'] != $params['CITY']) {
-			$args[] = new DbParam('user.city', ':city', $params['CITY'], PDO::PARAM_STR);
+			$args[] = new DbParam('user_profile.city', ':city', $params['CITY'], PDO::PARAM_STR);
 		}
 		
 		if (array_key_exists('ZIP', $params) && $original['zip'] != $params['ZIP']) {
-			$args[] = new DbParam('user.zip', ':zip', $params['ZIP'], PDO::PARAM_STR);
+			$args[] = new DbParam('user_profile.zip', ':zip', $params['ZIP'], PDO::PARAM_STR);
 		}
 		
 		if (array_key_exists('STATE', $params) && $original['state'] != $params['STATE']) {
-			$args[] = new DbParam('user.state', ':state', $params['STATE'], PDO::PARAM_STR);
+			$args[] = new DbParam('user_profile.state', ':state', $params['STATE'], PDO::PARAM_STR);
 		}
 		
 		if (array_key_exists('COUNTRY', $params) && $original['country'] != $params['COUNTRY']) {
-			$args[] = new DbParam('user.country', ':country', $params['COUNTRY'], PDO::PARAM_STR);
+			$args[] = new DbParam('user_profile.country', ':country', $params['COUNTRY'], PDO::PARAM_STR);
 		}
 
 		if (sizeof($args)) {
-			$sql = "UPDATE user
+			$sql = "UPDATE user_profile
 					SET " . MySqlDB::getSelectConditions($args, ', ') . "
-					WHERE user.id = :id";
-			$args[] = new DbParam('user.id', ':id', $params['ID'], PDO::PARAM_INT);
+					WHERE user_profile.user_id = :user_id";
+			$args[] = new DbParam('user_profile.user_id', ':user_id', $params['ID'], PDO::PARAM_INT);
 
 			$this->db->execSql($sql, $args);
 		}
