@@ -3,12 +3,13 @@
  * $Id: user.inc,v 1.3 2010/06/09 14:59:10 cyl2478 Exp $
  */
 
-include_once 'view.inc';
-include_once 'role.inc';
-include_once 'comparable.inc';
-include_once 'keys/userkey.inc';
-include_once 'sources/usersource.inc';
-include_once 'sources/userrolesource.inc';
+require_once 'view.inc';
+require_once 'phone.inc';
+require_once 'mapping.inc';
+require_once 'comparable.inc';
+require_once 'keys/userkey.inc';
+require_once 'sources/usersource.inc';
+require_once 'sources/phonesource.inc';
 
 class User extends View implements Comparable {
 
@@ -31,6 +32,9 @@ class User extends View implements Comparable {
 	private $zip;
 	private $state;
 	private $country;
+	
+	private $phones;
+	private $mappings;
 
 	public function __construct (UserKey $key) {
 		$this->key = $key;
@@ -42,6 +46,8 @@ class User extends View implements Comparable {
 		} else {
 			$this->id = $key->getId();
 		}
+		
+		$this->phones = array();
 	}
 
 	public function getKey () {
@@ -176,6 +182,77 @@ class User extends View implements Comparable {
 		$this->country = $country;
 	}
 	
+	
+	/********
+	 * Phones
+	 ********/
+	public function addPhone(Phone $phone) {
+		if (!$this->hasPhone($phone)) {
+			$this->phones[] = $phone;
+		}
+	}
+	
+	public function hasPhone(Phone $phone) {
+		foreach ($this->phones as $p) {
+			if ($phone->equals($p)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public function removePhone(Phone $phone) {
+		foreach ($this->phones as $key => $p) {
+			if ($phone->equals($p)) {
+				unset($this->phones[$key]);
+			}
+		}
+	}
+	
+	public function getPhones() {
+		return $this->phones;
+	}
+	
+	public function purgePhones() {
+		$this->phones = array();
+	}
+	
+	
+	
+	/*********
+	* Mappings
+	**********/
+	public function addMapping(Mapping $mapping) {
+		if (!$this->hasMapping($mapping)) {
+			$this->mappings[] = $mapping;
+		}
+	}
+	
+	public function hasMapping(Mapping $mapping) {
+		foreach ($this->mappings as $m) {
+			if ($mapping->equals($m)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public function removeMapping(Mapping $mapping) {
+		foreach ($this->mappings as $key => $m) {
+			if ($mapping->equals($m)) {
+				unset($this->mappings[$key]);
+			}
+		}
+	}
+	
+	public function getMappings() {
+		return $this->mappings;
+	}
+	
+	public function purgeMappings() {
+		$this->mappings = array();
+	}
+	
 
 
 	public function read () {
@@ -196,6 +273,14 @@ class User extends View implements Comparable {
 		$this->state = $values['state'];
 		$this->country = $values['country'];
 		
+		$phoneSource = PhoneSource::getSource();
+		foreach ($phoneSource->getOptions(array('USER_ID' => $this->id)) as $row) {
+			$this->phones[] = new Phone($this, $row['number'], $row['text_able'], $row['is_primary']);
+		}
+		
+		foreach (Mapping::getOptions(array('USER_ID' => $this->id)) AS $row) {
+			$this->mappings[] = Factory::getView(new MappingKey($row['id']));
+		}
 	}
 
 	protected function insert () {
@@ -278,6 +363,15 @@ class User extends View implements Comparable {
 
 		$this->id = $userSource->insert ($params);
 
+		$phoneSource = PhoneSource::getSource();
+		foreach ($this->phones as $phone) {
+			$phoneSource->insert(array(
+					'USER_ID' => $this->id,
+					'PHONE' => $phone->getNumber(),
+					'TEXT_ABLE' => $phone->isTextable(),
+					'IS_PRIMARY' => $phone->isPrimary()));
+		}
+		
 	}
 
 	protected function update () {
@@ -341,6 +435,16 @@ class User extends View implements Comparable {
 		}
 
 		$source->update ($params);
+		
+		$phoneSource = PhoneSource::getSource();
+		$phoneSource->delete(array('USER_ID' => $this->id));
+		foreach ($this->phones as $phone) {
+			$phoneSource->insert(array(
+							'USER_ID' => $this->id,
+							'PHONE' => $phone->getNumber(),
+							'TEXT_ABLE' => $phone->isTextable(),
+							'IS_PRIMARY' => $phone->isPrimary()));
+		}
 	}
 
 	protected function delete () {
@@ -349,7 +453,13 @@ class User extends View implements Comparable {
 
 	public function preWrite () {}
 
-	public function postWrite () {}
+	public function postWrite () {
+		if (!$this->deleteRequested()) {
+			foreach ($this->mappings as $mapping) {
+				$mapping->write();
+			}
+		}
+	}
 
 	/*********************************************************************************/
 
