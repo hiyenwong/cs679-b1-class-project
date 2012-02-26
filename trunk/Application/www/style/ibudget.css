@@ -22,10 +22,18 @@ p {
 	margin-top: 0;
 }
 
-h1 {
+form p {
+	padding-top: 10px;	
+}
+
+h1, legend {
 	font-size: 20px;
 	color: #0C356A;
 	margin: 0 0 10px 0;
+}
+
+legend {
+	padding: 0 10px;	
 }
 
 h2 {
@@ -78,6 +86,30 @@ blockquote {
 	margin:0 0 0 2.5em;
 	padding-left:1em;
 	padding-right: 1em;
+}
+
+label {
+	display: inline-block;
+	width: 100px;
+	font-size: 14px;	
+}
+
+fieldset {
+	width: 350px;	
+	text-align: center;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+fieldset#register {
+	width: 400px;	
+	margin: 0 auto;
+	padding: 20px;
+}
+
+fieldset#register label {
+	width: 150px;	
+	text-align: left;
 }
 
 .sub_box_text h2 {
@@ -445,6 +477,7 @@ blockquote {
 #main_content_left_secondary {
 	width: 720px;
 	float: left;
+	text-align: center;
 }
 
 #main_content_right {
@@ -928,7 +961,7 @@ a.button:hover {
 }
 
 select, input, button, textarea, button {
-	font: 90% arial, helvetica, clean, sans-serif;
+	/*font: 90% arial, helvetica, clean, sans-serif;*/
 }
 
 table {
@@ -950,9 +983,32 @@ th, td {
 	color: #CDBB98;
 }
 
-input[type="text"], input[type="button"], input[type="submit"], textarea {
+input[type="text"], input[type="button"], input[type="submit"], input[type="password"], textarea {
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	padding: 4px 5px;	
+}
+
+input[type="text"], input[type="password"] {
+	width: 200px;
+	height: 20px;
+	font-size: 12px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+	border: 1px solid #D0D0D0;
+	box-shadow: 0 1px 2px #D0D0D0 inset;
+}
+
+input[type="submit"] {
+	margin-left: 266px;
+	font-size: 13px;
+}
+
+input[type="submit"]:hover {
+	cursor: pointer;	
+	border: 1px solid #D0D0D0;
+	box-shadow: 0 1px 2px #D0D0D0 inset;
 }
 
 pre, code, kbd, samp, tt {
@@ -962,7 +1018,7 @@ pre, code, kbd, samp, tt {
 }
 
 input, select, select.MB_focusable {
-	background-color: #F2F9FF;
+	background-color: #F9F9F9;
 	border: 1px solid #F2E0E2;
 }
 

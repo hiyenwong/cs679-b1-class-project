@@ -3,6 +3,6 @@
 	
 	$smarty = new MySmarty($SMARTY_CONFIG);
 	
-	$smarty->display('about.tpl');
+	$smarty->display('register.tpl');
 	
 ?>
