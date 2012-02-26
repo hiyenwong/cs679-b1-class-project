@@ -9,10 +9,10 @@
 	       		<div id="navs_center">
 	         		<ul>
 	             		<li><a href="index.php">Home</a></li>
-	        	    	<li><a href="about.php" class="current">About</a></li>
-	              	  	<li><a href="contact.php">Contact</a></li>          	    	
+	        	    	<li><a href="about.php">About</a></li>
+	               	  	<li><a href="contact.php">Contact</a></li>     
 	               	  	<li><a href="login.php">Log In</a></li>     
-	                	<li><a href="register.php">Register</a></li>     
+	                	<li><a href="register.php" class="current">Register</a></li>     
 	       			</ul>
 	       		</div>
 	   			<div id="navs_right"> </div>
@@ -22,7 +22,7 @@
 	  	<div id="header_lower">	   
 		 	<div id="header_sub_secondary"> 
 		    	<div id="header_sub_text_secondary">
-		    		<p>About us</p>           
+		    		<p>Registration</p>           
 		  		</div>
 		   	</div>
 		    <div id="header_sub_secondary_right">
@@ -31,7 +31,7 @@
 		</div><!-- end header lower-->
 	</div><!-- end header -->
 </div>
-		
+
 <div id="page{if !$homepage}_secondary{/if}"><!-- start page content -->
           
 	<div id="main_content">
@@ -49,20 +49,15 @@
    		</div>
 
 		<div id="main_content_left_secondary">
-       		<h1>A bit about our company</h1>
-        	<h5>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin sed odio et ante adipiscing lobortis. Quisque eleifend, arcu a dictum varius, risus neque venenatis arcu, a semper massa mi eget ipsum. </h5>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin sed odio et ante adipiscing lobortis. Quisque eleifend, arcu a dictum varius, risus neque venenatis arcu, a semper massa mi eget ipsum. Proin sed odio et ante adipiscing lobortis. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin sed odio et ante adipiscing lobortis. Quisque eleifend, arcu a dictum varius, risus neque venenatis arcu, a semper massa mi eget ipsum. Proin sed odio et ante adipiscing lobortis.</p>
-          	<p>Quisque eleifend, arcu a dictum varius, risus neque venenatis arcu, a semper massa mi eget ipsum. Proin sed odio et ante adipiscing lobortis. Proin sed odio et ante adipiscing lobortis. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin sed odio et ante adipiscing lobortis.</p>
-          
-          	<div class="page_column">
-           		<h4>Sub-Column Text</h4>
-            	<p><img width="100" height="100" class="img" alt="compass" src="images/compass.png">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin sed odio et ante adipiscing lobortis. Quisque eleifend, arcu a dictum varius, <a href="#">Read More...</a></p>
-          	</div>
-          
-          	<div class="page_column">
-            	<h4>Sub-Column Text</h4>
-            	<p><img width="100" height="100" class="img" alt="parcel" src="images/parcel.png">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin sed odio et ante adipiscing lobortis. Quisque eleifend, arcu a dictum varius, <a href="#">Read More...</a></p>
-          	</div>
+       		<fieldset id="register">
+	       		<legend>Create an account</legend>
+	        	<form action="register.php" method="POST">
+	        		<p><label for="username">Username: </label><input type="text" name="username" id="username"></p>
+	        		<p><label for="password">Password: </label><input type="password" name="password" id="password"></p>
+	        		<p><label for="password_repeat">Confirm Password: </label><input type="password" name="password_repeat" id="password_repeat"></p>
+	        		<p><input type="submit" name="submit" value="Register"></p>
+	        	</form>
+        	</fieldset>
                     
 		</div><!-- end main content left  -->
       		<!-- end main content right  -->

@@ -10,7 +10,9 @@
 					<div id="footer_r">
 						<a href="index.php">Home</a> | 
 						<a href="about.php">About Us</a> | 
-						<a href="contact.php">Contact</a>
+						<a href="contact.php">Contact</a> |
+						<a href="login.php">Log In</a> |
+						<a href="register.php">Register</a> 		
 					</div>
 				</div>
 			</div>

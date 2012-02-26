@@ -21,7 +21,6 @@
 	<link rel="shortcut icon" href="{$image_url}/favicon.png">
 	<link rel="stylesheet" type="text/css" href="{$style_url}/modalbox.css" />
 
-
 	<script type="text/javascript" src="{$js_url}/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="{$js_url}/jquery.flow.1.0.js"></script>
 	<script type="text/javascript" src="{$js_url}/builder.js"></script>
@@ -37,8 +36,9 @@
 
 </head>
 
-<body {if $secondary} id="secondary" {/if}>
+<body {if !$homepage} id="secondary" {/if}>
 	<div class="wrap">
+	
 	
 	
 	

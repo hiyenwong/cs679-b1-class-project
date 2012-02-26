@@ -1,10 +1,9 @@
 {include file='header.tpl'}
-
 		<div id="header_wrap">
 			<div id="header"><!-- begin header -->
 				<div id="header_upper">
 						
-					<div style="cursor:pointer;" onclick="location.href='index.html';" id="header_logo"></div>
+					<div style="cursor:pointer;" onclick="location.href='index.php';" id="header_logo"></div>
 						
 					<div id="navs"><!-- begin navigations -->
 						<div id="navs_left"></div>
