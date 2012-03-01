@@ -654,6 +654,17 @@ class User extends View implements Comparable {
 		return ($this->getId () == $other->getId ());
 	}
 
+	public function __toString () {
+		return $this->lastName . ', ' . $this->firstName . ' (' . $this->username . ')';
+	}
+
+	public function generateNewPassword() {
+		$password = self::encryptPassword($this->randomPasswordGenerator(10));
+		$this->setPassword($password);
+		return $password;
+	}
+
+
 	public static function getOptions (Array $params = array()) {
 		$userSource = UserSource::getSource ();
 		$users = array();
@@ -694,8 +705,13 @@ class User extends View implements Comparable {
 		}
 	}
 
-	public function __toString () {
-		return $this->lastName . ', ' . $this->firstName . ' (' . $this->username . ')';
+	/**
+	 * Check the Database and see if username is taken by an ACTIVE user
+	 * return true/false
+	 */
+	public static function isUsernameTaken($username) {
+		$userSource = UserSource::getSource();
+		return $userSource->isUsernameTaken(array('USERNAME' => $username));
 	}
 
 	private static function encryptPassword($input) {
@@ -703,6 +719,16 @@ class User extends View implements Comparable {
 		$iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
 
 		return bin2hex(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, self::$HASH_KEY, $input, MCRYPT_MODE_ECB, $iv));
+	}
+
+	private function randomPasswordGenerator($length) {
+		$random= "";
+		srand((double)microtime()*1000000);
+		$char_list = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+";
+		for($i = 0; $i < $length; $i++) {
+			$random .= substr($char_list,(rand()%(strlen($char_list))), 1);
+		}
+		return $random;
 	}
 }
 

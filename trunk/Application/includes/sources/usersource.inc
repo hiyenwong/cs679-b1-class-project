@@ -318,8 +318,8 @@ class UserSource extends CommonSource implements Source {
 			}
 
 			$sql = "SELECT DISTINCT user.id, user.username
-							FROM user
-							WHERE " . MySqlDB::getSelectConditions($args, ' AND ');
+					FROM user
+					WHERE " . MySqlDB::getSelectConditions($args, ' AND ');
 
 			$results = $this->db->execSql($sql, $args);
 			if (sizeof($results) === 0) {
@@ -338,6 +338,20 @@ class UserSource extends CommonSource implements Source {
 		}
 	}
 
+	public function isUsernameTaken(Array $params = array()) {
+		$args = array(new DbParam('user.active', ':active', true, PDO::PARAM_BOOL));
+		if (array_key_exists('USERNAME', $params)) {
+			$args[] = new DbParam('user.username', ':username', $params['USERNAME'], PDO::PARAM_STR);
+		} else {
+			throw new Exception("Missing required parameter username");
+		}
+
+		$sql = "SELECT DISTINCT user.id, user.username
+				FROM user
+				WHERE " . MySqlDB::getSelectConditions($args, ' AND ');
+		$results = $this->db->execSql($sql, $args);
+		return (sizeof($results) !== 0);
+	}
 
 }
 ?>
