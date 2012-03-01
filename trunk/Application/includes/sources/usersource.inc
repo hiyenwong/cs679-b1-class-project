@@ -4,6 +4,7 @@ require_once 'source.inc';
 require_once 'date.inc';
 require_once 'userdoesnotexistexception.inc';
 require_once 'toomanyfailedloginexception.inc';
+require_once 'accessdeniedexception.inc';
 require_once 'sources/commonsource.php';
 
 class UserSource extends CommonSource implements Source {
@@ -295,7 +296,7 @@ class UserSource extends CommonSource implements Source {
 		if (sizeof($results) === 0) {
 			throw new UserDoesNotExistException('User ' . $params['USERNAME'] . ' does not exist');
 		} else if (sizeof($results) > 1) {
-			throw new Exception("Multiple users with username: " . $params['USERNAME']. ' was found');
+			throw new Exception('Username and password provided yield inconsistent information, please contact site admin for help.');
 		} else {
 			// 5 failed login and you'll be put into a 10 minute time out.
 			$numberOfAttempts = 0;
@@ -325,9 +326,9 @@ class UserSource extends CommonSource implements Source {
 				// User failed login, Log the time, and increment failed login
 				$sql = "UPDATE user SET last_login_date = NOW(), number_of_attempts = " . ($numberOfAttempts+1);
 				$this->db->execSql($sql, $args);
-				return false;
+				throw new AccessDeniedException('Username and password does not match');
 			} else if (sizeof($results) > 1) {
-				throw new Exception("Multiple users with username: " . $params['USERNAME']. ' was found');
+				throw new Exception('Username and password provided yield inconsistent information, please contact site admin for help.');
 			} else {
 				// User failed login, Log the time, and clear failed login
 				$sql = "UPDATE user SET last_login_date = NOW(), number_of_attempts = 0";
