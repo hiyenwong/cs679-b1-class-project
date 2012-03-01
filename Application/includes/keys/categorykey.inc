@@ -1,6 +1,6 @@
 <?php
 
-include_once 'key.inc';
+require_once 'key.inc';
 
 class CategoryKey extends Key {
 

@@ -1,4 +1,5 @@
 <?php
+
 abstract class View {
   private $modified;
   private $state;
@@ -15,7 +16,7 @@ abstract class View {
   }
 
   protected function markModified () {
-    $this->modified = true;    
+    $this->modified = true;
   }
 
   protected function markNew () {
@@ -40,7 +41,7 @@ abstract class View {
   abstract public function read ();
   abstract protected function insert ();
   abstract protected function update ();
-  abstract protected function delete (); 
+  abstract protected function delete ();
 
   abstract protected function preWrite ();
   abstract protected function postWrite ();
@@ -52,29 +53,29 @@ abstract class View {
 
       $this->preWrite ();
 
-      if ($this->isModified ()) {      
-	
+      if ($this->isModified ()) {
+
 	switch ($this->state) {
 	case self::$STATE_DELETE:
 	  $this->delete ();
 	  break;
-	  
+
 	case self::$STATE_INSERT:
 	  $this->insert ();
 	  break;
-	  
+
 	case self::$STATE_UPDATE:
 	  $this->update ();
 	  break;
 	}
-      } 
-      
-      $this->postWrite (); 
-   
+      }
+
+      $this->postWrite ();
+
       array_pop (self::$stack);
-   
+
       $this->modified = false;
-      $this->state = self::$STATE_UPDATE;    
+      $this->state = self::$STATE_UPDATE;
     }
   }
 }

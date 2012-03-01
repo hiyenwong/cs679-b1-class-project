@@ -1,5 +1,6 @@
 <?php
-include_once 'comparable.inc';
+
+require_once 'comparable.inc';
 
 define ('MAX_SIZE', 1024);
 
@@ -105,7 +106,7 @@ class Date implements Comparable {
 	public function format ($format) {
 		return strftime ($format, $this->time);
 	}
-	
+
 	public function getSimpleDate() {
 		return $this->format(self::$SIMPLE_YEAR_MONTH_DAY);
 	}
@@ -144,7 +145,7 @@ class Date implements Comparable {
 
 		return strftime ($format);
 	}
-	
+
 	public static function guessDateOrNew($date) {
 		$temp = self::guessDate($date);
 		if ($temp == null) {

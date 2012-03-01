@@ -12,7 +12,7 @@ class Access {
 	public function __construct () {
 		session_start();
 	}
-	
+
 	public function authenticate($username = null, $password = null) {
 		if ($username == null) {
 			// Assume logged in and use session data to authenticate
@@ -26,7 +26,7 @@ class Access {
 				} else {
 					$this->forwardLogin();
 				}
-				
+
 			} else {
 				$this->forwardLogin();
 			}
@@ -43,12 +43,12 @@ class Access {
 			}
 		}
 	}
-	
+
 	private function forwardLogin() {
 		global $LOGIN_URL;
-		
+
 		$url = $LOGIN_URL . "?ref=" . base64_encode ($_SERVER ['REQUEST_URI']);
-		
+
 		if (headers_sent ()) {
 			trigger_error ('Please <a href="' . $url . '">Login</a> before continuing.', E_USER_ERROR);
 		} else {

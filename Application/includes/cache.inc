@@ -1,6 +1,7 @@
 <?php
-include_once 'key.inc';
-include_once 'view.inc';
+
+require_once 'key.inc';
+require_once 'view.inc';
 
 class Cache {
 

@@ -1,22 +1,20 @@
 <?php
-include_once 'source.inc';
 
-class ActivitySource implements Source {
+require_once 'source.inc';
+require_once 'sources/commonsource.php';
+
+class ActivitySource extends CommonSource implements Source {
 
 	private static $instance = null;
 
-	private $db;
-	private $readStatement;
-
 	private function __construct () {
-		$this->db = new MySqlDB();
-		$this->readStatement = null;
+		parent::__construct();
 	}
 
 	public static function getSource () {
 
 		if (self::$instance == null) {
-			self::$instance = new UserSource();
+			self::$instance = new ActivitySource();
 		}
 
 		return self::$instance;
@@ -61,7 +59,7 @@ class ActivitySource implements Source {
 	public function insert(Array $params) {
 
 		$args = array();
-		
+
 		if (array_key_exists('USER_ID', $params)) {
 			$args[] = new DbParam('activity.user_id', ':user_id', $params['USER_ID'], PDO::PARAM_INT);
 		} else {
@@ -77,7 +75,7 @@ class ActivitySource implements Source {
 		if (array_key_exists('CUSTOM_NAME', $params)) {
 			$args[] = new DbParam('activity.custom_name', ':custom_name', $params['CUSTOM_NAME'], PDO::PARAM_STR);
 		}
-		
+
 		if (array_key_exists('AMOUNT', $params)) {
 			$args[] = new DbParam('activity.amount', ':amount', $params['AMOUNT'], PDO::PARAM_INT);
 		} else {
@@ -89,11 +87,11 @@ class ActivitySource implements Source {
 		} else {
 			throw new Exception("Missing required parameter transaction date");
 		}
-		
+
 		if (array_key_exists('CATEGORY_ID', $params)) {
 			$args[] = new DbParam('activity.category_id', ':category_id', $params['CATEGORY_ID'], PDO::PARAM_INT);
 		}
-		
+
 		if (array_key_exists('COMMENT', $params)) {
 			$args[] = new DbParam('activity.comment', ':comment', $params['COMMENT'], PDO::PARAM_STR);
 		}
@@ -105,49 +103,43 @@ class ActivitySource implements Source {
 		$sql = "INSERT INTO activity " . MySqlDB::getInsertCondition($args);
 		$this->db->execSql($sql, $args);
 
-		if ($this->lastInsertIdStatement == null) {
-			$sql = "SELECT LAST_INSERT_ID() AS id";
-			$this->lastInsertIdStatement = $this->db->getStatement($sql);
-		}
-
-		$results = $this->db->execStatement($this->lastInsertIdStatement);
-		return $results[0]['id'];
+		return $this->getLastInsertedId();
 	}
 
 	public function update (Array $params) {
 
 		if (!array_key_exists ('ID', $params)) {
-			throw new Exception ('Missing required parameter user ID.');
+			throw new Exception ('Missing required parameter ID.');
 		}
 
 		$original = $this->read ($params);
 
 		$args = array();
-		
+
 		if (array_key_exists('USER_ID', $params) && $original['user_id'] != $params['USER_ID']) {
 			$args[] = new DbParam('activity.user_id', ':user_id', $params['USER_ID'], PDO::PARAM_INT);
 		}
-		
+
 		if (array_key_exists('NAME', $params) && $original['name'] != $params['NAME']) {
 			$args[] = new DbParam('activity.name', ':name', $params['NAME'], PDO::PARAM_STR);
 		}
-		
+
 		if (array_key_exists('CUSTOM_NAME', $params) && $original['custom_name'] != $params['CUSTOM_NAME']) {
 			$args[] = new DbParam('activity.custom_name', ':custom_name', $params['CUSTOM_NAME'], PDO::PARAM_STR);
 		}
-		
+
 		if (array_key_exists('AMOUNT', $params) && $original['amount'] != $params['AMOUNT']) {
 			$args[] = new DbParam('activity.amount', ':amount', $params['AMOUNT'], PDO::PARAM_INT);
 		}
-		
+
 		if (array_key_exists('TRANSACTION_DATE', $params) && $original['transaction_date'] != $params['TRANSACTION_DATE']) {
 			$args[] = new DbParam('activity.transaction_date', ':transaction_date', $params['TRANSACTION_DATE'], PDO::PARAM_STR);
 		}
-		
+
 		if (array_key_exists('CATEGORY_ID', $params) && $original['category_id'] != $params['CATEGORY_ID']) {
 			$args[] = new DbParam('activity.category_id', ':category_id', $params['CATEGORY_ID'], PDO::PARAM_INT);
 		}
-		
+
 		if (array_key_exists('COMMENT', $params) && $original['comment'] != $params['COMMENT']) {
 			$args[] = new DbParam('activity.comment', ':comment', $params['COMMENT'], PDO::PARAM_STR);
 		}
@@ -164,64 +156,45 @@ class ActivitySource implements Source {
 
 	public function delete (Array $params) {
 		if (!array_key_exists ('ID', $params)) {
-			throw new Exception ('Missing required parameter name ID.');
+			throw new Exception ('Missing required parameter ID.');
 		}
 
-		$args = array(new DbParam('activity.id', ':id', $params['ID'], PDO::PARAM_INT));
-
-		if ($this->selectCountStatement == null) {
-			$sql = "SELECT COUNT(*) AS count FROM activity WHERE " . MySqlDB::getSelectConditions($args, ' AND ');
-			$this->selectCountStatement = $this->db->getStatement($sql);
-		}
-
-		$result = $this->db->execStatement($this->selectCountStatement, $args);
-		$count = $result[0]['count'];
-
-		if ($count) {
-			if ($this->deleteStatement == null) {
-				$sql = "DELETE FROM activity WHERE " . MySqlDB::getSelectConditions($args, ' AND ');
-				$this->deleteStatement = $this->db->getStatement($sql);
-			}
-
-			$this->db->execStatement($this->deleteStatement, $args);
-		}
-
-		return $count;
+		return $this->deleteFromTableById('activity', $params['ID']);
 	}
 
 	/******************** Custom Operations ********************/
 	public function getOptions(Array $params = array()) {
 		$args = array();
-		
+
 		if (array_key_exists('USER_ID', $params)) {
 			$args[] = new DbParam('activity.user_id', ':user_id', $params['USER_ID'], PDO::PARAM_INT);
 		} else {
 			throw new Exception("Missing required parameter user id");
 		}
-		
+
 		if (array_key_exists('NAME', $params)) {
 			$args[] = new DbParam('activity.name', ':name', $params['NAME'], PDO::PARAM_STR);
 		}
-		
+
 		if (array_key_exists('CUSTOM_NAME', $params)) {
 			$args[] = new DbParam('activity.custom_name', ':custom_name', $params['CUSTOM_NAME'], PDO::PARAM_STR);
 		}
-		
+
 		if (array_key_exists('TRANSACTION_DATE', $params)) {
 			$args[] = new DbParam('activity.transaction_date', ':transaction_date', $params['TRANSACTION_DATE'], PDO::PARAM_STR);
 		}
-		
+
 		$sql = "SELECT DISTINCT
 					activity.id,
 					IF (activity.custom_name IS NOT NULL, activity.custom_name, activity.name) AS name,
-					activity.transaction
+					activity.transaction_date
 				FROM activity
 				WHERE " . MySqlDB::getSelectConditions($args, ' AND ') . "
 				ORDER BY activity.transaction_date DESC";
-		
+
 		return $this->db->execSql($sql, $args);
-		
+
 	}
-	
+
 }
 ?>
