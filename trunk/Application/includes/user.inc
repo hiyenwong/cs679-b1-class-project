@@ -668,15 +668,21 @@ class User extends View implements Comparable {
 		return $users;
 	}
 
+	/**
+	 * Boolean function that authenticate users, if false is returned, throw a new AccessDeniedException
+	 * @param unknown_type $username
+	 * @param unknown_type $password
+	 */
 	public static function checkAuthentication($username, $password) {
-		$userSource = UserSource::getSource();
-		$results = $userSource->authenticate(array('USERNAME' => $username, 'PASSWORD' => self::encryptPassword($password)));
-		if (sizeof($results) === 0) {
-			throw new AccessDeniedException('Username and password does not match any record');
-		} else if (sizeof($results) > 1) {
-			throw new AccessDeniedException('Username and password provided yield inconsistent information, please contact site admin for help.');
-		} else {
-			return true;
+		try {
+			$userSource = UserSource::getSource();
+			return $userSource->authenticate(array('USERNAME' => $username, 'PASSWORD' => self::encryptPassword($password)));
+		} catch (TooManyFailedLoginException $e) {
+			return false;
+		} catch (UserDoesNotExistException $e) {
+			return false;
+		} catch (Exception $e) {
+			return false;
 		}
 	}
 
