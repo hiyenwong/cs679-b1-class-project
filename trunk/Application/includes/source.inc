@@ -1,4 +1,5 @@
 <?php
+
 interface Source {
 
   public function read (Array $params);

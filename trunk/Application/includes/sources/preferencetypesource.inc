@@ -3,7 +3,7 @@
 require_once 'source.inc';
 require_once 'sources/commonsource.php';
 
-class CategorySource extends CommonSource implements Source {
+class PreferenceTypeSource extends CommonSource implements Source {
 
 	private static $instance = null;
 
@@ -14,7 +14,7 @@ class CategorySource extends CommonSource implements Source {
 	public static function getSource () {
 
 		if (self::$instance == null) {
-			self::$instance = new CategorySource();
+			self::$instance = new PreferenceTypeSource();
 		}
 
 		return self::$instance;
@@ -28,15 +28,13 @@ class CategorySource extends CommonSource implements Source {
 		if (!array_key_exists ('ID', $params)) {
 			throw new Exception ('Insufficient read parameters provided.');
 		} else {
-			$args[] = new DbParam('category.id', ':id', $params['ID'], PDO::PARAM_INT);
+			$args[] = new DbParam('preference_type.id', ':id', $params['ID'], PDO::PARAM_INT);
 		}
 
 		if ($this->readStatement == null) {
-			$sql = "SELECT category.id,
-						category.name,
-						category.user_id,
-						category.active
-					FROM category
+			$sql = "SELECT preference_type.id,
+						preference_type.name
+					FROM preference_type
 					WHERE " . MySqlDB::getSelectConditions($args, MySqlDB::$CONDITION_AND);
 
 			$this->readStatement = $this->db->getStatement($sql);
@@ -57,24 +55,12 @@ class CategorySource extends CommonSource implements Source {
 		$args = array();
 
 		if (array_key_exists('NAME', $params)) {
-			$args[] = new DbParam('category.name', ':name', $params['NAME'], PDO::PARAM_STR);
+			$args[] = new DbParam('preference_type.name', ':name', $params['NAME'], PDO::PARAM_STR);
 		} else {
 			throw new Exception("Missing required parameter name");
 		}
 
-		if (array_key_exists('USER_ID', $params)) {
-			$args[] = new DbParam('category.user_id', ':user_id', $params['USER_ID'], PDO::PARAM_INT);
-		}
-
-		if (array_key_exists('ACTIVE', $params)) {
-			$args[] = new DbParam('category.active', ':active', $params['ACTIVE'], PDO::PARAM_BOOL);
-		}
-
-		if (!sizeof($args)) {
-			throw new Exception ('Missing all parameters.');
-		}
-
-		$sql = "INSERT INTO category " . MySqlDB::getInsertCondition($args);
+		$sql = "INSERT INTO preference_type " . MySqlDB::getInsertCondition($args);
 		$this->db->execSql($sql, $args);
 
 		return $this->getLastInsertedId();
@@ -91,22 +77,14 @@ class CategorySource extends CommonSource implements Source {
 		$args = array();
 
 		if (array_key_exists('NAME', $params) && $original['name'] != $params['NAME']) {
-			$args[] = new DbParam('category.name', ':name', $params['NAME'], PDO::PARAM_STR);
-		}
-
-		if (array_key_exists('USER_ID', $params) && $original['user_id'] != $params['USER_ID']) {
-			$args[] = new DbParam('category.user_id', ':user_id', $params['USER_ID'], PDO::PARAM_INT);
-		}
-
-		if (array_key_exists('ACTIVE', $params) && $original['active'] != $params['ACTIVE']) {
-			$args[] = new DbParam('category.active', ':active', $params['ACTIVE'], PDO::PARAM_BOOL);
+			$args[] = new DbParam('preference_type.name', ':name', $params['NAME'], PDO::PARAM_STR);
 		}
 
 		if (sizeof($args)) {
-			$sql = "UPDATE category
+			$sql = "UPDATE preference_type
 					SET " . MySqlDB::getSelectConditions($args, ', ') . "
-					WHERE category.id = :id";
-			$args[] = new DbParam('category.id', ':id', $params['ID'], PDO::PARAM_INT);
+					WHERE preference_type.id = :id";
+			$args[] = new DbParam('preference_type.id', ':id', $params['ID'], PDO::PARAM_INT);
 
 			$this->db->execSql($sql, $args);
 		}
@@ -117,7 +95,7 @@ class CategorySource extends CommonSource implements Source {
 			throw new Exception ('Missing required parameter ID.');
 		}
 
-		return $this->deleteFromTableById('category', $params['ID']);
+		return $this->deleteFromTableById('preference_type', $params['ID']);
 	}
 
 	/******************** Custom Operations ********************/
@@ -125,20 +103,15 @@ class CategorySource extends CommonSource implements Source {
 		$args = array();
 
 		if (array_key_exists('NAME', $params)) {
-			$args[] = new DbParam('category.name', ':name', $params['NAME'], PDO::PARAM_STR);
-		}
-
-		if (array_key_exists('USER_ID', $params)) {
-			$args[] = new DbParam('category.user_id', ':user_id', $params['USER_ID'], PDO::PARAM_INT);
+			$args[] = new DbParam('preference_type.name', ':name', $params['NAME'], PDO::PARAM_STR);
 		}
 
 		$sql = "SELECT DISTINCT
-					category.id,
-					category.name
-				FROM category
-				WHERE " . (array_key_exists('USER_ID', $params) ? MySqlDB::getSelectConditions($args, ' AND ') :
-								(sizeof($args) > 0 ? MySqlDB::getSelectConditions($args, ' AND ') . " AND " : "") . "category.user_id IS NULL") . "
-				ORDER BY category.name ASC";
+					preference_type.id,
+					preference_type.name
+				FROM preference_type
+				" . (sizeof($args) > 0 ? 'WHERE ' . MySqlDB::getSelectConditions($args, ' AND ') : "") . "
+				ORDER BY preference_type.name ASC";
 
 		return $this->db->execSql($sql, $args);
 

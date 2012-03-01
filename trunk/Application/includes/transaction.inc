@@ -1,6 +1,7 @@
 <?php
-include_once 'database.inc';
-include_once 'cache.inc';
+
+require_once 'database.inc';
+require_once 'cache.inc';
 
 class Transaction {
 

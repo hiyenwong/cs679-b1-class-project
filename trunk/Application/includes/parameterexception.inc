@@ -1,4 +1,5 @@
 <?php
+
 class ParameterException extends Exception {
 
 	public function __construct ($message, $code = 0) {

@@ -1,4 +1,5 @@
 <?php
+
 interface Displayable extends Iterator {
 
   public function getId ();
@@ -10,7 +11,7 @@ interface Displayable extends Iterator {
   public function getHeaderCount ();
 
   public function getRows ();
-  
+
   public function setSize ($size);
 
   public function setHeaders (Array $headers);

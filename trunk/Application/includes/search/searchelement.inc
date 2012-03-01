@@ -1,5 +1,6 @@
 <?php
-include 'tooltip.inc';
+
+require_once 'tooltip.inc';
 
 class SearchElement {
 

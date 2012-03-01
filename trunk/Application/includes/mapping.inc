@@ -1,7 +1,4 @@
 <?php
-/**
- * $Id: user.inc,v 1.3 2010/06/09 14:59:10 cyl2478 Exp $
- */
 
 require_once 'user.inc';
 require_once 'mappingdetail.inc';
@@ -15,7 +12,7 @@ class Mapping extends View implements Comparable {
 
 	private $key;
 	protected $id;
-	
+
 	private $name;
 	private $user;
 	private $startingRow;
@@ -41,26 +38,26 @@ class Mapping extends View implements Comparable {
 	public function getId () {
 		return $this->id;
 	}
-	
+
 	public function getName() {
 		return $this->name;
 	}
-	
+
 	public function getUser() {
 		return $this->user;
 	}
-	
+
 	public function getStartingRow() {
 		return $this->startingRow;
 	}
-	
-	
+
+
 
 	public function setName($name) {
 		$this->markModified();
 		$this->name = $name;
 	}
-	
+
 	public function setUser(User $user) {
 		$this->markModified();
 		$this->user = $user;
@@ -71,9 +68,9 @@ class Mapping extends View implements Comparable {
 		$this->startingRow = $startingRow;
 	}
 
-	
-	
-	
+
+
+
 	/*****************
 	 * Mapping Details
 	 *****************/
@@ -82,7 +79,7 @@ class Mapping extends View implements Comparable {
 			$this->mappingDetails[] = $detail;
 		}
 	}
-	
+
 	public function hasMappingDetail(MappingDetail $detail) {
 		foreach ($this->mappingDetails as $d) {
 			if ($detail->equals($d)) {
@@ -91,7 +88,7 @@ class Mapping extends View implements Comparable {
 		}
 		return false;
 	}
-	
+
 	public function removeMappingDetail(MappingDetail $detail) {
 		foreach ($this->mappingDetails as $key => $d) {
 			if ($detail->equals($d)) {
@@ -99,25 +96,25 @@ class Mapping extends View implements Comparable {
 			}
 		}
 	}
-	
+
 	public function getMappingDetails() {
 		return $this->mappingDetails;
 	}
-	
+
 	public function purgeMappingDetails() {
 		$this->mappingDetails = array();
 	}
-	
+
 
 
 	public function read () {
 		$mappingSource = MappingSource::getSource();
 		$values = $mappingSource->read (array ('ID' => $this->id));
-		
+
 		$this->name = $values['name'];
-		$this->user = Factory::getView(new UserKey($values['user_id']));
+		$this->user = $values['user_id'] ? Factory::getView(new UserKey($values['user_id'])) : null;
 		$this->startingRow = $values['starting_row'];
-		
+
 		$mappingDetailSource = MappingDetailSource::getSource();
 		foreach ($mappingDetailSource->getOptions(array('MAPPING_ID' => $this->id)) as $row) {
 			$this->mappingDetails[] = new MappingDetail($this, $row['column_name'], $row['csv_column_number']);
@@ -125,7 +122,6 @@ class Mapping extends View implements Comparable {
 	}
 
 	protected function insert () {
-		$mappingSource = MappingSource::getSource();
 		$params = array();
 
 		if ($this->name) {
@@ -133,7 +129,7 @@ class Mapping extends View implements Comparable {
 		} else {
 			throw new Exception ('User requires a userid.');
 		}
-		
+
 		if ($this->user) {
 			$params['USER_ID'] = $this->user->getId();
 		}
@@ -142,6 +138,7 @@ class Mapping extends View implements Comparable {
 			$params['STARTING_ROW'] = $this->startingRow;
 		}
 
+		$mappingSource = MappingSource::getSource();
 		$this->id = $mappingSource->insert ($params);
 
 		$mappingDetailSource = MappingDetailSource::getSource();
@@ -151,27 +148,27 @@ class Mapping extends View implements Comparable {
 					'COLUMN_NAME' => $detail->getColumnName(),
 					'CSV_COLUMN_NUMBER' => $detail->getCsvColumnNumber()));
 		}
-		
+
 	}
 
 	protected function update () {
-		$mappingSource = MappingSource::getSource();
 		$params = array ();
-		
+
 		if ($this->name) {
 			$params ['NAME'] = $this->name;
 		}
-		
+
 		if ($this->user) {
 			$params['USER_ID'] = $this->user->getId();
 		}
-		
+
 		if ($this->startingRow) {
 			$params['STARTING_ROW'] = $this->startingRow;
 		}
-		
+
+		$mappingSource = MappingSource::getSource();
 		$mappingSource->update ($params);
-		
+
 		$mappingDetailSource = MappingDetailSource::getSource();
 		$mappingDetailSource->delete(array('MAPPING_ID' => $this->id));
 		foreach ($this->mappingDetails as $detail) {
@@ -180,18 +177,24 @@ class Mapping extends View implements Comparable {
 							'COLUMN_NAME' => $detail->getColumnName(),
 							'CSV_COLUMN_NUMBER' => $detail->getCsvColumnNumber()));
 		}
-		
+
 	}
 
 	protected function delete () {
 		$mappingDetailSource = MappingDetailSource::getSource();
 		$mappingDetailSource->delete(array('MAPPING_ID' => $this->id));
-		
+
 		$mappingSource = MappingSource::getSource();
 		$mappingSource->delete(array('ID' => $this->id));
 	}
 
-	public function preWrite () {}
+	public function preWrite () {
+		if (!$this->deleteRequested()) {
+			if ($this->user) {
+				$this->user->write();
+			}
+		}
+	}
 
 	public function postWrite () {}
 

@@ -1,6 +1,7 @@
 <?php
-include_once 'key.inc';
-include_once 'cache.inc';
+
+require_once 'key.inc';
+require_once 'cache.inc';
 
 function __autoload ($name) {
 	include_once strtolower ($name) . '.inc';

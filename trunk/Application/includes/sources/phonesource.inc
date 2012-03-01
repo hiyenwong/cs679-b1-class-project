@@ -1,22 +1,20 @@
 <?php
-include_once 'source.inc';
 
-class PhoneSource implements Source {
+require_once 'source.inc';
+require_once 'sources/commonsource.php';
+
+class PhoneSource extends CommonSource implements Source {
 
 	private static $instance = null;
 
-	private $db;
-	private $readStatement;
-
 	private function __construct () {
-		$this->db = new MySqlDB();
-		$this->readStatement = null;
+		parent::__construct();
 	}
 
 	public static function getSource () {
 
 		if (self::$instance == null) {
-			self::$instance = new UserSource();
+			self::$instance = new PhoneSource();
 		}
 
 		return self::$instance;
@@ -31,7 +29,7 @@ class PhoneSource implements Source {
 	public function insert(Array $params) {
 
 		$args = array();
-		
+
 		if (array_key_exists('USER_ID', $params)) {
 			$args[] = new DbParam('phone.user_id', ':user_id', $params['USER_ID'], PDO::PARAM_INT);
 		} else {
@@ -43,13 +41,13 @@ class PhoneSource implements Source {
 		} else {
 			throw new Exception("Missing required parameter phone");
 		}
-		
+
 		if (array_key_exists('TEXT_ABLE', $params)) {
 			$args[] = new DbParam('phone.text_able', ':text_able', $params['TEXT_ABLE'], PDO::PARAM_BOOL);
 		} else {
 			throw new Exception("Missing required parameter Textable");
 		}
-		
+
 		if (array_key_exists('IS_PRIMARY', $params)) {
 			$args[] = new DbParam('phone.primary', ':primary', $params['IS_PRIMARY'], PDO::PARAM_BOOL);
 		} else {
@@ -63,13 +61,7 @@ class PhoneSource implements Source {
 		$sql = "INSERT INTO phone " . MySqlDB::getInsertCondition($args);
 		$this->db->execSql($sql, $args);
 
-		if ($this->lastInsertIdStatement == null) {
-			$sql = "SELECT LAST_INSERT_ID() AS id";
-			$this->lastInsertIdStatement = $this->db->getStatement($sql);
-		}
-
-		$results = $this->db->execStatement($this->lastInsertIdStatement);
-		return $results[0]['id'];
+		return $this->getLastInsertedId();
 	}
 
 	public function update (Array $params) {
@@ -78,59 +70,40 @@ class PhoneSource implements Source {
 
 	public function delete (Array $params) {
 		if (!array_key_exists ('USER_ID', $params)) {
-			throw new Exception ('Missing required parameter user ID.');
+			throw new Exception ('Missing required parameter ID.');
 		}
 
-		$args = array(new DbParam('phone.user_id', ':user_id', $params['USER_ID'], PDO::PARAM_INT));
-
-		if ($this->selectCountStatement == null) {
-			$sql = "SELECT COUNT(*) AS count FROM phone WHERE " . MySqlDB::getSelectConditions($args, ' AND ');
-			$this->selectCountStatement = $this->db->getStatement($sql);
-		}
-
-		$result = $this->db->execStatement($this->selectCountStatement, $args);
-		$count = $result[0]['count'];
-
-		if ($count) {
-			if ($this->deleteStatement == null) {
-				$sql = "DELETE FROM phone WHERE " . MySqlDB::getSelectConditions($args, ' AND ');
-				$this->deleteStatement = $this->db->getStatement($sql);
-			}
-
-			$this->db->execStatement($this->deleteStatement, $args);
-		}
-
-		return $count;
+		return $this->deleteFromTableById('phone', $params['ID']);
 	}
 
 	/******************** Custom Operations ********************/
 	public function getOptions(Array $params = array()) {
 		$args = array();
-		
+
 		if (array_key_exists('USER_ID', $params)) {
 			$args[] = new DbParam('phone.user_id', ':user_id', $params['USER_ID'], PDO::PARAM_INT);
 		}
-		
+
 		if (array_key_exists('TEXT_ABLE', $params)) {
 			$args[] = new DbParam('phone.text_able', ':text_able', $params['TEXT_ABLE'], PDO::PARAM_BOOL);
 		}
-		
+
 		if (array_key_exists('IS_PRIMARY', $params)) {
 			$args[] = new DbParam('phone.is_primary', ':is_primary', $params['IS_PRIMARY'], PDO::PARAM_BOOL);
 		}
-		
+
 		$sql = "SELECT DISTINCT
 					phone.phone,
 					phone.text_able,
 					phone.is_primary
 				FROM phone
-				WHERE " . (array_key_exists('USER_ID', $params) ? MySqlDB::getSelectConditions($args, ' AND ') : 
+				WHERE " . (array_key_exists('USER_ID', $params) ? MySqlDB::getSelectConditions($args, ' AND ') :
 								(sizeof($args) > 0 ? MySqlDB::getSelectConditions($args, ' AND ') . " AND " : "") . "phone.user_id IS NULL") . "
 				ORDER BY phone.name ASC";
-		
+
 		return $this->db->execSql($sql, $args);
-		
+
 	}
-	
+
 }
 ?>

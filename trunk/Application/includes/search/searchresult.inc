@@ -1,8 +1,9 @@
 <?php
-include_once 'search/displayable.inc';
-include_once 'search/exportable.inc';
-include_once 'search/searchelement.inc';
-include_once 'date.inc';
+
+require_once 'search/displayable.inc';
+require_once 'search/exportable.inc';
+require_once 'search/searchelement.inc';
+require_once 'date.inc';
 
 define ('PAGE_SIZE', 25);
 
