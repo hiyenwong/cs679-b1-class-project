@@ -7,6 +7,9 @@ require_once 'mapping.inc';
 require_once 'budget.inc';
 require_once 'preferencetype.inc';
 require_once 'comparable.inc';
+require_once 'accessdeniedexception.inc';
+require_once 'toomanyfailedloginexception.inc';
+require_once 'userdoesnotexistexception.inc';
 require_once 'keys/userkey.inc';
 require_once 'sources/usersource.inc';
 require_once 'sources/phonesource.inc';
@@ -669,17 +672,22 @@ class User extends View implements Comparable {
 	}
 
 	/**
-	 * Boolean function that authenticate users, if false is returned, throw a new AccessDeniedException
+	 * Boolean function that checks user, please if false is returned, throw a new AccessDeniedException
+	 * Enter description here ...
 	 * @param unknown_type $username
 	 * @param unknown_type $password
+	 * @throws AccessDeniedException
 	 */
 	public static function checkAuthentication($username, $password) {
 		try {
 			$userSource = UserSource::getSource();
-			return $userSource->authenticate(array('USERNAME' => $username, 'PASSWORD' => self::encryptPassword($password)));
+			$userSource->authenticate(array('USERNAME' => $username, 'PASSWORD' => self::encryptPassword($password)));
+			return true;
 		} catch (TooManyFailedLoginException $e) {
 			return false;
 		} catch (UserDoesNotExistException $e) {
+			return false;
+		} catch (AccessDeniedException $e) {
 			return false;
 		} catch (Exception $e) {
 			return false;
