@@ -1,6 +1,9 @@
 <?php
 
 require_once 'source.inc';
+require_once 'date.inc';
+require_once 'userdoesnotexistexception.inc';
+require_once 'toomanyfailedloginexception.inc';
 require_once 'sources/commonsource.php';
 
 class UserSource extends CommonSource implements Source {
@@ -277,24 +280,61 @@ class UserSource extends CommonSource implements Source {
 	}
 
 	public function authenticate(Array $params = array()) {
-		$args = array();
+		$args = array(new DbParam('user.active', ':active', true, PDO::PARAM_BOOL));
 		if (array_key_exists('USERNAME', $params)) {
 			$args[] = new DbParam('user.username', ':username', $params['USERNAME'], PDO::PARAM_STR);
 		} else {
 			throw new Exception("Missing required parameter username");
 		}
 
-		if (array_key_exists('PASSWORD', $params)) {
-			$args[] = new DbParam('user.password', ':password', $params['PASSWORD'], PDO::PARAM_STR);
-		} else {
-			throw new Exception("Missing required parameter password");
-		}
-
-		$sql = "SELECT DISTINCT user.id, user.username
+		$sql = "SELECT last_login_date, number_of_attempts
 				FROM user
 				WHERE " . MySqlDB::getSelectConditions($args, ' AND ');
 
-		return $this->db->execSql($sql, $args);
+		$results = $this->db->execSql($sql, $args);
+		if (sizeof($results) === 0) {
+			throw new UserDoesNotExistException('User ' . $params['USERNAME'] . ' does not exist');
+		} else if (sizeof($results) > 1) {
+			throw new Exception("Multiple users with username: " . $params['USERNAME']. ' was found');
+		} else {
+			// 5 failed login and you'll be put into a 10 minute time out.
+			$numberOfAttempts = 0;
+			foreach ($results as $row) {
+				$numberOfAttempts = $row['number_of_attempts'];
+				$lastLogin = new Date($row['last_login_date']);
+				$tenMinsAgo = new Date(strtotime("-10 minutes"));
+
+				if ($lastLogin > $tenMinsAgo && $numberOfAttempts > 5) {
+					throw new TooManyFailedLoginException("User had attempted too many failed login within last 10 minutes. Please come back in 10 minutes");
+				}
+				break;
+			}
+
+			if (array_key_exists('PASSWORD', $params)) {
+				$args[] = new DbParam('user.password', ':password', $params['PASSWORD'], PDO::PARAM_STR);
+			} else {
+				throw new Exception("Missing required parameter password");
+			}
+
+			$sql = "SELECT DISTINCT user.id, user.username
+							FROM user
+							WHERE " . MySqlDB::getSelectConditions($args, ' AND ');
+
+			$results = $this->db->execSql($sql, $args);
+			if (sizeof($results) === 0) {
+				// User failed login, Log the time, and increment failed login
+				$sql = "UPDATE user SET last_login_date = NOW(), number_of_attempts = " . ($numberOfAttempts+1);
+				$this->db->execSql($sql, $args);
+				return false;
+			} else if (sizeof($results) > 1) {
+				throw new Exception("Multiple users with username: " . $params['USERNAME']. ' was found');
+			} else {
+				// User failed login, Log the time, and clear failed login
+				$sql = "UPDATE user SET last_login_date = NOW(), number_of_attempts = 0";
+				$this->db->execSql($sql, $args);
+				return true;
+			}
+		}
 	}
 
 
