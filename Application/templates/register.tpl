@@ -35,19 +35,6 @@
 <div id="page{if !$homepage}_secondary{/if}"><!-- start page content -->
           
 	<div id="main_content">
-		<div id="left_navigation">
-    		<ul id="nav">
-        		<li class="active"><img style="vertical-align:middle" alt="profile" src="images/Profile.png"><a href="#">Active Page</a>
-            		<h2>Sub message can go here if you have one </h2>
-            	</li>    	
-        	    <li><img style="vertical-align:middle" alt="Pie Chart" src="images/Pie Chart.png"><a href="#">Sub Page 2</a>
-            		<h2>Sub message can go here if you have one </h2>
-            	</li>
-          	 	<li><img style="vertical-align:middle" alt="Pie Chart" src="images/Modify.png"><a href="#">Sub Page Small</a></li>
-           	 	<li><img style="vertical-align:middle" alt="Pie Chart" src="images/Email.png"><a href="#">Sub Page Small</a></li>
-      		</ul>
-   		</div>
-
 		<div id="main_content_left_secondary">
        		<fieldset id="register">
 	       		<legend>Create an account</legend>
