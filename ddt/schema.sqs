@@ -139,7 +139,7 @@
             <uid><![CDATA[994CF559-5588-43E9-8814-270DE8D30ED1]]></uid>
         </SQLField>
         <SQLField>
-            <name><![CDATA[email_adress]]></name>
+            <name><![CDATA[email]]></name>
             <type><![CDATA[VARCHAR(255)]]></type>
             <notNull>1</notNull>
             <didChangeNameDuringValidation><![CDATA[0]]></didChangeNameDuringValidation>
