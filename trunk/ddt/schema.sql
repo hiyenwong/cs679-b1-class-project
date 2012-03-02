@@ -16,6 +16,8 @@ DROP TABLE IF EXISTS user_budget;
 
 DROP TABLE IF EXISTS category;
 
+DROP TABLE IF EXISTS contact;
+
 DROP TABLE IF EXISTS user;
 
 DROP TABLE IF EXISTS preference_type;
@@ -113,6 +115,16 @@ column_name VARCHAR(255) NOT NULL,
 csv_column_number INT(11) NOT NULL
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS contact
+(
+id INT(11) NOT NULL AUTO_INCREMENT,
+user_id INT(11),
+email_adress VARCHAR(255) NOT NULL,
+date_submitted TIMESTAMP NOT NULL,
+content TEXT NOT NULL,
+PRIMARY KEY (id)
+);
+
 CREATE INDEX user_username_idx ON user(username);
 ALTER TABLE mapping ADD FOREIGN KEY user_id_idxfk (user_id) REFERENCES user (id);
 
@@ -137,3 +149,5 @@ ALTER TABLE user_budget ADD FOREIGN KEY user_id_idxfk_6 (user_id) REFERENCES use
 ALTER TABLE user_budget ADD FOREIGN KEY category_id_idxfk_1 (category_id) REFERENCES category (id);
 
 ALTER TABLE mapping_detail ADD FOREIGN KEY mapping_id_idxfk (mapping_id) REFERENCES mapping (id);
+
+ALTER TABLE contact ADD FOREIGN KEY user_id_idxfk_7 (user_id) REFERENCES user (id);
