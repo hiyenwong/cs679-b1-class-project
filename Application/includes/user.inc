@@ -692,7 +692,7 @@ class User extends View implements Comparable {
 	public static function checkAuthentication($username, $password) {
 		try {
 			$userSource = UserSource::getSource();
-			$userSource->authenticate(array('USERNAME' => $username, 'PASSWORD' => self::encryptPassword($password)));
+			$userSource->authenticate(array('USERNAME' => $username, 'PASSWORD' => ($isPasswordEncrypted ? $password : self::encryptPassword($password))));
 			return true;
 		} catch (TooManyFailedLoginException $e) {
 			return false;
