@@ -10,8 +10,8 @@
 	         		<ul>
 	             		<li><a href="index.php">Home</a></li>
 	        	    	<li><a href="about.php">About</a></li>
-	        	    	<li><a href="contact.php">Contact</a></li>
-	               	  	<li><a href="login.php" class="current">Log In</a></li>     
+	               	  	<li><a href="contact.php">Contact</a></li>     
+	               	  	<li><a href="login.php">Log In</a></li>     
 	                	<li><a href="register.php">Register</a></li>     
 	       			</ul>
 	       		</div>
@@ -22,7 +22,7 @@
 	  	<div id="header_lower">	   
 		 	<div id="header_sub_secondary"> 
 		    	<div id="header_sub_text_secondary">
-		    		<p>Log In</p>           
+		    		<p>Registration</p>           
 		  		</div>
 		   	</div>
 		    <div id="header_sub_secondary_right">
@@ -36,17 +36,13 @@
           
 	<div id="main_content">
 		<div id="main_content_left_secondary">
-       		<fieldset>
-	       		<legend>Log In to iBudget</legend>
-	        	<form action="login.php" method="POST">
-	        		<p><label for="username">Username: </label><input type="text" name="username" id="username"></p>
-	        		<p><label for="password">Password: </label><input type="password" name="password" id="password"></p>
-	        		<a href="forgot_password.php" style="margin-left:180px">Forgot your password?</a>
-	        		<p><input type="submit" name="submit" value="Log In"></p>
+       		<fieldset id="forgot_password">
+	       		<legend>Reset password</legend>
+	        	<form action="forgot_password.php" method="POST">
+	        		<p><label for="email">Email: </label><input type="text" name="email" id="email"></p>
+	        		<p><input type="submit" name="submit" value="Submit"></p>
 	        	</form>
         	</fieldset>
-        	
-        	<p class="center">Don't have an account yet? Create one <a href="register.php">here</a></p>
                     
 		</div><!-- end main content left  -->
       		<!-- end main content right  -->

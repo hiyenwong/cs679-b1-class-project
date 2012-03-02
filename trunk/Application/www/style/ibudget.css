@@ -126,6 +126,15 @@ fieldset#register label {
 	margin: 0 auto -61px;
 }
 
+
+#secondary .no_left_menu {
+	background: url(../images/bgr.png) no-repeat 56px 222px;
+}
+
+.no_left_menu #main_content {
+	background: url(../images/bgr.png) no-repeat scroll -96px 0 transparent
+}
+	
 .footer, .push {
      height: 61px;
 }
@@ -382,7 +391,7 @@ fieldset#register label {
 #page_secondary {
 	width: 960px;
 	margin: 0 auto;
-	padding: 35px 0 30px 40px;
+	padding: 35px 0 30px 0;
 	background-image: url(../images/left_bg.jpg);
 	background-repeat: no-repeat;
 	height: 100%;
@@ -476,8 +485,11 @@ fieldset#register label {
 
 #main_content_left_secondary {
 	width: 720px;
-	float: left;
-	text-align: center;
+	float: right;
+}
+
+.center {
+	text-align:center;	
 }
 
 #main_content_right {
@@ -960,10 +972,6 @@ a.button:hover {
 	width:auto;
 }
 
-select, input, button, textarea, button {
-	/*font: 90% arial, helvetica, clean, sans-serif;*/
-}
-
 table {
 	margin: 10px;
 	font-size: inherit;
@@ -983,19 +991,19 @@ th, td {
 	color: #CDBB98;
 }
 
-input[type="text"], input[type="button"], input[type="submit"], input[type="password"], textarea {
+input[type="text"], input[type="button"], input[type="submit"], input[type="password"], input[type="email"], textarea {
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	padding: 4px 5px;	
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="email"] {
 	width: 200px;
 	height: 20px;
 	font-size: 12px;
 }
 
-input[type="text"]:focus, input[type="password"]:focus {
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
 	border: 1px solid #D0D0D0;
 	box-shadow: 0 1px 2px #D0D0D0 inset;
 }
