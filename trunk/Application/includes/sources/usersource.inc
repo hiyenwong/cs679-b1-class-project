@@ -44,7 +44,6 @@ class UserSource extends CommonSource implements Source {
 						user.number_of_attempts,
 						user_profile.first_name,
 						user_profile.last_name,
-						user_profile.email,
 						user_profile.address,
 						user_profile.city,
 						user_profile.zip,
@@ -130,12 +129,6 @@ class UserSource extends CommonSource implements Source {
 			throw new Exception("Missing required parameter last name");
 		}
 
-		if (array_key_exists('EMAIL', $params)) {
-			$args[] = new DbParam('user_profile.email', ':email', $params['EMAIL'], PDO::PARAM_STR);
-		} else {
-			throw new Exception("Missing required parameter email");
-		}
-
 		if (array_key_exists('ADDRESS', $params)) {
 			$args[] = new DbParam('user_profile.address', ':address', $params['ADDRESS'], PDO::PARAM_STR);
 		}
@@ -218,10 +211,6 @@ class UserSource extends CommonSource implements Source {
 
 		if (array_key_exists('LAST_NAME', $params) && $original['last_name'] != $params['LAST_NAME']) {
 			$args[] = new DbParam('user_profile.last_name', ':last_name', $params['LAST_NAME'], PDO::PARAM_STR);
-		}
-
-		if (array_key_exists('EMAIL', $params) && $original['email'] != $params['EMAIL']) {
-			$args[] = new DbParam('user_profile.email', ':email', $params['EMAIL'], PDO::PARAM_STR);
 		}
 
 		if (array_key_exists('ADDRESS', $params) && $original['address'] != $params['ADDRESS']) {
