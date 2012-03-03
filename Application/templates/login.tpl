@@ -2,8 +2,8 @@
 <div id="header_wrap{if !$homepage}_secondary{/if}">
 	<div id="header{if $secondary}_secondary{/if}"><!-- begin header -->
 		<div id="header_upper">
-	  		<div style="cursor:pointer;" onclick="location.href='index.php';" id="header_logo"></div>
-	     
+			<div id="header_logo"></div>
+				     
 	     	<div id="navs"><!-- begin navigations -->
 	       		<div id="navs_left"></div>
 	       		<div id="navs_center">
