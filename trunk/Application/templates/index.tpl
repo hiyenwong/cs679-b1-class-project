@@ -3,7 +3,7 @@
 			<div id="header"><!-- begin header -->
 				<div id="header_upper">
 						
-					<div style="cursor:pointer;" onclick="location.href='index.php';" id="header_logo"></div>
+					<div id="header_logo"></div>
 						
 					<div id="navs"><!-- begin navigations -->
 						<div id="navs_left"></div>

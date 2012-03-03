@@ -170,16 +170,16 @@ fieldset#register label {
 	width: 280px;
 	float: left;
 	height: 95px;
-	background: url(../images/logo.png) no-repeat bottom right;
 }
 
+/*
 #header_logo_alt {
 	width: 280px;
 	float: left;
 	height: 95px;
 	background: url(../images/logo_small.png) no-repeat bottom right;
 }
-
+*/
 #header_lower {
 	width: 980px;
 	float: left;
@@ -484,7 +484,7 @@ fieldset#register label {
 }
 
 #main_content_left_secondary {
-	width: 720px;
+	width: 700px;
 	float: right;
 }
 
@@ -642,7 +642,7 @@ a.button:hover {
 #left_navigation {
 	float: left;
 	width: 184px;
-	margin-right: 35px;
+	margin-left: 40px;
 }
 
 #left_navigation ul {
@@ -708,7 +708,7 @@ a.button:hover {
 
 .page_column {
 	float: left;
-	width: 305px;
+	width: 300px;
 	margin-right: 20px;
 	background-image: url(../images/column_bg.gif);
 	background-repeat: repeat-x;
