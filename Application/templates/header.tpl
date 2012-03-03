@@ -19,20 +19,11 @@
 	</script>
 
 	<link rel="shortcut icon" href="{$image_url}/favicon.png">
-	<link rel="stylesheet" type="text/css" href="{$style_url}/modalbox.css" />
 
 	<script type="text/javascript" src="{$js_url}/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="{$js_url}/jquery.flow.1.0.js"></script>
-	<script type="text/javascript" src="{$js_url}/builder.js"></script>
-	<script type="text/javascript" src="{$js_url}/controls.js"></script>
-	<script type="text/javascript" src="{$js_url}/behavior.js"></script>
-	<script type="text/javascript" src="{$js_url}/wedding.js"></script>
-	<script type="text/javascript" src="{$js_url}/tooltip.js"></script>
-	<script type="text/javascript" src="{$js_url}/modalbox.js"></script>
-	<script type="text/javascript" src="{$js_url}/sortable.js"></script>
+	<script type="text/javascript" src="{$js_url}/ibudget.js"></script>
 	<script type="text/javascript" src="{$js_url}/Base64.js"></script>
-	<script type="text/javascript" src="{$js_url}/dropdown.js"></script>
-	<script type="text/javascript" src="{$js_url}/validation.js"></script>
 
 </head>
 
