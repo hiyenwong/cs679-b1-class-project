@@ -97,10 +97,6 @@ class User extends View implements Comparable {
 		return $this->lastName;
 	}
 
-	public function getEmail() {
-		return $this->email;
-	}
-
 	public function getAddress() {
 		return $this->address;
 	}
@@ -161,11 +157,6 @@ class User extends View implements Comparable {
 	public function setLastName($lastName) {
 		$this->markModified();
 		$this->lastName = $lastName;
-	}
-
-	public function setEmail($email) {
-		$this->markModified();
-		$this->email = $email;
 	}
 
 	public function setAddress($address) {
@@ -405,7 +396,6 @@ class User extends View implements Comparable {
 		$this->numberOfAttempts = $values['number_of_attempts'];
 		$this->firstName = $values['first_name'];
 		$this->lastName = $values['last_name'];
-		$this->email = $values['email'];
 		$this->address = $values['address'];
 		$this->city = $values['city'];
 		$this->zip = $values['zip'];
@@ -488,12 +478,6 @@ class User extends View implements Comparable {
 			throw new Exception('User requires a last name');
 		}
 
-		if ($this->email) {
-			$params['EMAIL'] = $this->email;
-		} else {
-			throw new Exception('User requires a email');
-		}
-
 		if ($this->address) {
 			$params['ADDRESS'] = $this->address;
 		}
@@ -566,10 +550,6 @@ class User extends View implements Comparable {
 
 		if ($this->lastName) {
 			$params['LAST_NAME'] = $this->lastName;
-		}
-
-		if ($this->email) {
-			$params['EMAIL'] = $this->email;
 		}
 
 		if ($this->address) {
@@ -651,7 +631,7 @@ class User extends View implements Comparable {
 			throw new Exception ('Object is not a ' . __CLASS__ . '.');
 		}
 
-		return ($this->getId () == $other->getId ());
+		return ($this->getUsername() == $other->getUsername());
 	}
 
 	public function __toString () {
