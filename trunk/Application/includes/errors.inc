@@ -14,8 +14,6 @@ error_reporting (($old_error_reporting) | (E_USER_ERROR | E_USER_WARNING | E_USE
  */
 function admin_error_handler ($error_level, $error_message, $error_file, $error_line) {
 	global $smarty;
-	$menu = navmenu::getMainNavMenu();
-	$smarty->assign ('menu', $menu);
 
 	global $old_error_reporting;
 
@@ -69,8 +67,6 @@ function admin_error_handler ($error_level, $error_message, $error_file, $error_
 
 function admin_exception_handler ($exception) {
 	global $smarty;
-	$menu = navmenu::getMainNavMenu();
-	$smarty->assign ('menu', $menu);
 	$smarty->assign ('exception', $exception);
 	$smarty->display ('exception.tpl');
 

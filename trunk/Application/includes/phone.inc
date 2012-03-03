@@ -1,6 +1,7 @@
 <?php
 
 require_once 'user.inc';
+require_once 'comparable.inc';
 
 class Phone implements Comparable {
 

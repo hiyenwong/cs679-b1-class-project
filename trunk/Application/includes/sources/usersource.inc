@@ -5,6 +5,7 @@ require_once 'date.inc';
 require_once 'userdoesnotexistexception.inc';
 require_once 'toomanyfailedloginexception.inc';
 require_once 'accessdeniedexception.inc';
+require_once 'noresultexception.inc';
 require_once 'sources/commonsource.php';
 
 class UserSource extends CommonSource implements Source {
@@ -12,7 +13,11 @@ class UserSource extends CommonSource implements Source {
 	private static $instance = null;
 
 	private function __construct () {
-		parent::__construct();
+		$this->db = new MySqlDB();
+		$this->readStatement = null;
+		$this->lastInsertIdStatement = null;
+		$this->selectCountStatement = null;
+		$this->deleteStatement = null;
 	}
 
 	public static function getSource () {
@@ -58,7 +63,7 @@ class UserSource extends CommonSource implements Source {
 
 		$results = $this->db->execStatement($this->readStatement, $args);
 		if (sizeof($results) == 0) {
-			throw new Exception("No Result were found for ID: " . $params['ID']);
+			throw new NoResultException("No Result were found for ID: " . $params['ID']);
 		} else if (sizeof($results) > 1) {
 			throw new Exception(sizeof($results) . " Results were found for ID: " . $params['ID']);
 		} else {
