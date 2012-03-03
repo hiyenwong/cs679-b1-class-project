@@ -1,6 +1,7 @@
 <?php
 
 require_once 'source.inc';
+require_once 'noresultexception.inc';
 require_once 'sources/commonsource.php';
 
 class ContactSource extends CommonSource implements Source {
@@ -8,7 +9,11 @@ class ContactSource extends CommonSource implements Source {
 	private static $instance = null;
 
 	private function __construct () {
-		parent::__construct();
+		$this->db = new MySqlDB();
+		$this->readStatement = null;
+		$this->lastInsertIdStatement = null;
+		$this->selectCountStatement = null;
+		$this->deleteStatement = null;
 	}
 
 	public static function getSource () {
@@ -45,7 +50,7 @@ class ContactSource extends CommonSource implements Source {
 
 		$results = $this->db->execStatement($this->readStatement, $args);
 		if (sizeof($results) == 0) {
-			throw new Exception("No Result were found for ID: " . $params['ID']);
+			throw new NoResultException("No Result were found for ID: " . $params['ID']);
 		} else if (sizeof($results) > 1) {
 			throw new Exception(sizeof($results) . " Results were found for ID: " . $params['ID']);
 		} else {

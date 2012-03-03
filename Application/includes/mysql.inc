@@ -1,6 +1,7 @@
 <?php
 
 require_once 'errors.inc';
+require_once 'dbparam.inc';
 
 class MySqlDB {
 

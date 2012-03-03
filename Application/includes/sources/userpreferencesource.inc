@@ -8,7 +8,11 @@ class UserPreferenceSource extends CommonSource implements Source {
 	private static $instance = null;
 
 	private function __construct () {
-		parent::__construct();
+		$this->db = new MySqlDB();
+		$this->readStatement = null;
+		$this->lastInsertIdStatement = null;
+		$this->selectCountStatement = null;
+		$this->deleteStatement = null;
 	}
 
 	public static function getSource () {

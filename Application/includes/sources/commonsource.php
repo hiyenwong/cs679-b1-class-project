@@ -1,4 +1,5 @@
 <?php
+require_once 'mysql.inc';
 
 class CommonSource {
 
@@ -8,13 +9,7 @@ class CommonSource {
 	protected $selectCountStatement;
 	protected $deleteStatement;
 
-	protected function __construct () {
-		$this->db = new MySqlDB();
-		$this->readStatement = null;
-		$this->lastInsertIdStatement = null;
-		$this->selectCountStatement = null;
-		$this->deleteStatement = null;
-	}
+	private function __construct () {}
 
 	/**
 	 * Query the database and get the id of the last insert statement
