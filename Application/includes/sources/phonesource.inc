@@ -74,10 +74,10 @@ class PhoneSource extends CommonSource implements Source {
 
 	public function delete (Array $params) {
 		if (!array_key_exists ('USER_ID', $params)) {
-			throw new Exception ('Missing required parameter ID.');
+			throw new Exception ('Missing required parameter user id.');
 		}
 
-		return $this->deleteFromTableById('phone', $params['ID']);
+		return $this->deleteFromTableById('phone', $params['USER_ID'], 'user_id');
 	}
 
 	/******************** Custom Operations ********************/

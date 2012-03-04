@@ -55,7 +55,7 @@ class UserSource extends CommonSource implements Source {
 						user_profile.state,
 						user_profile.country
 					FROM user
-					JOIN user_profile ON user_profile.user_id = user.id
+					LEFT JOIN user_profile ON user_profile.user_id = user.id
 					WHERE " . MySqlDB::getSelectConditions($args, MySqlDB::$CONDITION_AND);
 
 			$this->readStatement = $this->db->getStatement($sql);

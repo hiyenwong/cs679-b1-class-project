@@ -30,12 +30,12 @@ class CommonSource {
 	 * @param unknown_type $id
 	 * @throws Exception Missing required ID
 	 */
-	public function deleteFromTableById($table, $id) {
+	public function deleteFromTableById($table, $id, $id_column = false) {
 		if (!$id) {
 			throw new Exception ('Missing required parameter ID.');
 		}
 
-		$args = array(new DbParam($table.'.id', ':id', $id, PDO::PARAM_INT));
+		$args = array(new DbParam($table.($id_column ? '.'.$id_column : '.id'), ($id_column ? ':'.$id_column : ':id'), $id, PDO::PARAM_INT));
 
 		if ($this->selectCountStatement == null) {
 			$sql = "SELECT COUNT(*) AS count FROM ' . $table . ' WHERE " . MySqlDB::getSelectConditions($args, ' AND ');
