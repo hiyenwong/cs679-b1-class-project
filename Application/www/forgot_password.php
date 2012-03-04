@@ -11,8 +11,6 @@ if (!empty($_POST)){
 	try {
 		$results = User::getUserByUserName($email);
 		
-		echo "<PRE>CHURK: User::getUserByUserName" . print_r ($results, true) . "</PRE>";
-
 		if (sizeof($results) > 1) {
 			// This is an error where we have more than 1 user with the same email, should never happen
 			$err_message = 'Internal Error occurred, please email administrator for further assistance.';
@@ -49,7 +47,6 @@ BODY;
 			mail($to, $subject, $message);
 		}
 	} catch (Exception $e) {
-		echo "<PRE>" . $e->getMessage() . "\n" . $e->getTraceAsString() . "\n" . print_r ($e, true) . "</PRE>";
 		if ($transaction && !$transaction->isComplete()) {
 			$transaction->rollBack();
 		}
