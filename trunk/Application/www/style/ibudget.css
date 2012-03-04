@@ -112,6 +112,18 @@ fieldset#register label {
 	text-align: left;
 }
 
+fieldset p.error {
+	padding-left: 30px;	
+}
+
+fieldset#forgot_password input[type="submit"] {
+	margin-left: 252px;
+}
+
+fieldset#forgot_password p{
+	padding-top: 3px;	
+}
+	
 .sub_box_text h2 {
 	font-size: 16px;
 	color: #0C356A;
@@ -1230,4 +1242,9 @@ table#guests td {
 	width: 495px; 
 	height: 255px; 
 	float: left;
+}
+
+.error {
+	font-style: italic;
+	color: red;
 }
