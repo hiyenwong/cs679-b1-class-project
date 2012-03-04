@@ -22,11 +22,11 @@
 	  	<div id="header_lower">	   
 		 	<div id="header_sub_secondary"> 
 		    	<div id="header_sub_text_secondary">
-		    		<p>Registration</p>           
+		    		<p>Reset password</p>           
 		  		</div>
 		   	</div>
 		    <div id="header_sub_secondary_right">
-		      Intro message here
+		      Reset it here
 		    </div>                            
 		</div><!-- end header lower-->
 	</div><!-- end header -->
@@ -39,7 +39,8 @@
        		<fieldset id="forgot_password">
 	       		<legend>Reset password</legend>
 	        	<form action="forgot_password.php" method="POST">
-	        		<p><label for="email">Email: </label><input type="text" name="email" id="email"></p>
+	        		<p class="error">&nbsp;{if $err_message}{$err_message}{/if}</p>
+	        		<p><label for="email">Email: </label><input type="email" name="email" id="email"></p>
 	        		<p><input type="submit" name="submit" value="Submit"></p>
 	        	</form>
         	</fieldset>
@@ -51,5 +52,18 @@
           
 </div>
 <div class="push"></div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("input[type=submit]").click(function(e){
+		if ($("#email").val() == ''){
+			$("p.error").html('Please enter your email');
+			e.preventDefault();
+			$("#email").focus();
+		}
+	})
+});
+
+</script>
 
 {include file='footer.tpl'}

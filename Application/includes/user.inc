@@ -647,13 +647,18 @@ class User extends View implements Comparable {
 
 	public static function getOptions (Array $params = array()) {
 		$userSource = UserSource::getSource ();
-		$users = array();
+		$users = array();print_r($userSource->getOptions($params) ); exit;
 		foreach ($userSource->getOptions($params) as $row) {
 			$users[$row['id']] = $row['username'];
 		}
 		return $users;
 	}
 
+	public static function getUserByUserName (Array $params = array()) {
+		$userSource = UserSource::getSource ();
+		return $userSource->getOptions($params);
+	}
+	
 	public static function getUsers(Array $params = array()) {
 		$users = array();
 		foreach (self::getOptions($params) as $key => $val) {
