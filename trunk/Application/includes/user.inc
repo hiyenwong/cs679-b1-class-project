@@ -654,9 +654,9 @@ class User extends View implements Comparable {
 		return $users;
 	}
 
-	public static function getUserByUserName (Array $params = array()) {
+	public static function getUserByUserName ($username) {
 		$userSource = UserSource::getSource ();
-		return $userSource->getOptions($params);
+		return $userSource->getOptions(array('USERNAME' => $username));
 	}
 	
 	public static function getUsers(Array $params = array()) {
