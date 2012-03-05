@@ -1,7 +1,7 @@
 <?php
 
 require_once 'source.inc';
-require_once 'sources/commonsource.php';
+require_once 'sources/commonsource.inc';
 
 class MappingDetailSource extends CommonSource implements Source {
 

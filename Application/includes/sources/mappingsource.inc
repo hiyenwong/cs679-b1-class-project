@@ -2,7 +2,7 @@
 
 require_once 'source.inc';
 require_once 'noresultexception.inc';
-require_once 'sources/commonsource.php';
+require_once 'sources/commonsource.inc';
 
 class MappingSource extends CommonSource implements Source {
 
