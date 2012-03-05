@@ -50,18 +50,29 @@
 
 		<div id="main_content_left_secondary">
        		<h1>A bit about our company</h1>
-        	<h5>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin sed odio et ante adipiscing lobortis. Quisque eleifend, arcu a dictum varius, risus neque venenatis arcu, a semper massa mi eget ipsum. </h5>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin sed odio et ante adipiscing lobortis. Quisque eleifend, arcu a dictum varius, risus neque venenatis arcu, a semper massa mi eget ipsum. Proin sed odio et ante adipiscing lobortis. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin sed odio et ante adipiscing lobortis. Quisque eleifend, arcu a dictum varius, risus neque venenatis arcu, a semper massa mi eget ipsum. Proin sed odio et ante adipiscing lobortis.</p>
-          	<p>Quisque eleifend, arcu a dictum varius, risus neque venenatis arcu, a semper massa mi eget ipsum. Proin sed odio et ante adipiscing lobortis. Proin sed odio et ante adipiscing lobortis. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin sed odio et ante adipiscing lobortis.</p>
+        	<h5>Our company specializes in software projects that are handled from conception to maintenance. Our office is based in Boston, Massachusetts. </h5>
+			<br><br>
+			<p>Our goals</p>
+			<ul><li>Create applications that are in best concordance with the client's needs.</li>
+				<li>Have a collaborative approach with partners and clients.</li>
+				<li>Create a comfortable atmosphere for our employees to work in.</li></ul>
+			
+          	<p>Our values</p>
+			<ul><li>Team spirit: working together to achieve our goals.</li>
+				<li>Communication with the client and inside the project team.</li>
+				<li>Commitment from the beginning to the end of every project.</li></ul>
           
           	<div class="page_column">
-           		<h4>Sub-Column Text</h4>
-            	<p><img width="100" height="100" class="img" alt="compass" src="images/compass.png">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin sed odio et ante adipiscing lobortis. Quisque eleifend, arcu a dictum varius, <a href="#">Read More...</a></p>
+           		<h4>About the team</h4>
+            	<p><img width="100" height="100" class="img" alt="compass" src="images/compass.png">
+            	 Our team for the iBudget project is composed of 6 people with all different backgrounds and responsibilities
+            	 like project leader, quality leader, implementation leader etc...</p>
+            	 <a href="#">Read More...</a></p>
           	</div>
           
           	<div class="page_column">
-            	<h4>Sub-Column Text</h4>
-            	<p><img width="100" height="100" class="img" alt="parcel" src="images/parcel.png">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin sed odio et ante adipiscing lobortis. Quisque eleifend, arcu a dictum varius, <a href="#">Read More...</a></p>
+            	<h4>About the project</h4>
+            	<p><img width="100" height="100" class="img" alt="parcel" src="images/parcel.png">The iBudget project is a web application that enables you to manage your financial expenses. You can personalize all your uploaded statements by putting them in any category you have created. That way, you can see the evolution of your finances the way you think is best. <a href="#">Read More...</a></p>
           	</div>
                     
 		</div><!-- end main content left  -->
