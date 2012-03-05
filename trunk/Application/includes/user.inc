@@ -430,10 +430,10 @@ class User extends View implements Comparable {
 	protected function insert () {
 		$params = array();
 
-		if ($this->id) {
-			$params ['USERNAME'] = $this->id;
+		if ($this->username) {
+			$params ['USERNAME'] = $this->username;
 		} else {
-			throw new Exception ('User requires a userid.');
+			throw new Exception ('User requires a username.');
 		}
 
 		if ($this->password) {
