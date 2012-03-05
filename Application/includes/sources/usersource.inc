@@ -297,7 +297,7 @@ class UserSource extends CommonSource implements Source {
 			foreach ($results as $row) {
 				$numberOfAttempts = $row['number_of_attempts'];
 				$lastLogin = new Date($row['last_login_date']);
-				$tenMinsAgo = new Date(strtotime("-10 minutes"));
+				$tenMinsAgo = new Date(date('Y-m-d h:i:s', strtotime('-10 minutes')));
 
 				if ($lastLogin > $tenMinsAgo && $numberOfAttempts > 5) {
 					throw new TooManyFailedLoginException("User had attempted too many failed login within last 10 minutes. Please come back in 10 minutes");
@@ -318,14 +318,14 @@ class UserSource extends CommonSource implements Source {
 			$results = $this->db->execSql($sql, $args);
 			if (sizeof($results) === 0) {
 				// User failed login, Log the time, and increment failed login
-				$sql = "UPDATE user SET last_login_date = NOW(), number_of_attempts = " . ($numberOfAttempts+1);
+				$sql = "UPDATE user SET last_login_date = NOW(), number_of_attempts = " . ($numberOfAttempts+1) . " WHERE username = " . $params['USERNAME'];
 				$this->db->execSql($sql, $args);
 				throw new AccessDeniedException('Username and password does not match');
 			} else if (sizeof($results) > 1) {
 				throw new Exception('Username and password provided yield inconsistent information, please contact site admin for help.');
 			} else {
 				// User failed login, Log the time, and clear failed login
-				$sql = "UPDATE user SET last_login_date = NOW(), number_of_attempts = 0";
+				$sql = "UPDATE user SET last_login_date = NOW(), number_of_attempts = 0 WHERE username = " . $params['USERNAME'];
 				$this->db->execSql($sql, $args);
 				return true;
 			}

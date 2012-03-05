@@ -28,7 +28,6 @@ if (!empty($_POST)){
   			}
   			
   			$new_password_hash = $user->generateNewPassword();
-  			
   			$transaction->commit();
   			
   			$to = $user->getUsername();
@@ -38,13 +37,13 @@ Hey, we heard you forgot your iBudget password.
 
 Use the following link within the next 24 hours to reset your password:
 
-<a href="http://localhost/cs673/cs679-b1-class-project/application/www/reset_password/{$to}/{$new_password_hash}">http://localhost/cs673/cs679-b1-class-project/application/www/reset_password/{$to}/{$new_password_hash}</a>
+<a href="http://localhost/cs673/cs679-b1-class-project/application/www/reset_password.php?username={$to}&pid={$new_password_hash}">http://localhost/cs673/cs679-b1-class-project/application/www/reset_password.php?username={$to}&pid={$new_password_hash}</a>
 
 Thanks,
 The iBudget Team
 BODY;
-			//echo $message; exit;
-			mail($to, $subject, $message);
+			echo $message; exit;
+			//mail($to, $subject, $message);
 		}
 	} catch (Exception $e) {
 		if ($transaction && !$transaction->isComplete()) {
