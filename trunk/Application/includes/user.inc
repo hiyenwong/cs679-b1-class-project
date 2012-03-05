@@ -124,9 +124,9 @@ class User extends View implements Comparable {
 		$this->username = $username;
 	}
 
-	public function setPassword($password) {
+	public function setPassword($password, $isEncrypted = true) {
 		$this->markModified();
-		$this->password = self::encryptPassword($password);
+		$this->password = ($isEncrypted) ? $password : self::encryptPassword($password);
 	}
 
 	public function setActive($active) {
@@ -647,7 +647,7 @@ class User extends View implements Comparable {
 
 	public static function getOptions (Array $params = array()) {
 		$userSource = UserSource::getSource ();
-		$users = array();print_r($userSource->getOptions($params) ); exit;
+		$users = array();
 		foreach ($userSource->getOptions($params) as $row) {
 			$users[$row['id']] = $row['username'];
 		}
@@ -674,7 +674,7 @@ class User extends View implements Comparable {
 	 * @param unknown_type $password
 	 * @throws AccessDeniedException
 	 */
-	public static function checkAuthentication($username, $password) {
+	public static function checkAuthentication($username, $password, $isPasswordEncrypted=false) {
 		try {
 			$userSource = UserSource::getSource();
 			$userSource->authenticate(array('USERNAME' => $username, 'PASSWORD' => ($isPasswordEncrypted ? $password : self::encryptPassword($password))));
