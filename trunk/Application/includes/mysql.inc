@@ -29,7 +29,7 @@ class MySqlDB {
 		return $this->CONNECTION->prepare($sql);
 	}
 
-	public function execSql(String $sql, Array $params = null) {
+	public function execSql($sql, Array $params = null) {
 		$statement = $this->getStatement($sql);
 		return $this->execStatement($statement, $params);
 	}

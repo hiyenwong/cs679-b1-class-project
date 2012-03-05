@@ -25,7 +25,7 @@ class User extends View implements Comparable {
 	private $username;
 	private $password = false;
 	private $active;
-	private $createDate;
+	private $createdDate;
 	private $lastLoginDate;
 	private $numberOfAttempts;
 	private $firstName;
@@ -77,8 +77,8 @@ class User extends View implements Comparable {
 		return $this->active;
 	}
 
-	public function getCreateDate() {
-		return $this->createDate;
+	public function getCreatedDate() {
+		return $this->createdDate;
 	}
 
 	public function getLastLoginDate() {
@@ -124,7 +124,7 @@ class User extends View implements Comparable {
 		$this->username = $username;
 	}
 
-	public function setPassword($password, $isEncrypted = true) {
+	public function setPassword($password, $isEncrypted = false) {
 		$this->markModified();
 		$this->password = ($isEncrypted) ? $password : self::encryptPassword($password);
 	}
@@ -134,9 +134,9 @@ class User extends View implements Comparable {
 		$this->active = $active;
 	}
 
-	public function setCreateDate($createDate) {
+	public function setCreatedDate($createdDate) {
 		$this->markModified();
-		$this->createDate = $createDate;
+		$this->createdDate = $createdDate;
 	}
 
 	public function setLastLoginDate($lastLoginDate) {
@@ -391,7 +391,7 @@ class User extends View implements Comparable {
 
 		$this->username = $values['username'];
 		$this->active = $values['active'];
-		$this->createDate = $values['create_date'];
+		$this->createdDate = $values['created_date'];
 		$this->lastLoginDate = $values['last_login_date'];
 		$this->numberOfAttempts = $values['number_of_attempts'];
 		$this->firstName = $values['first_name'];
@@ -448,8 +448,8 @@ class User extends View implements Comparable {
 			throw new Exception('User requires an active');
 		}
 
-		if ($this->createDate) {
-			$params['CREATE_DATE'] = $this->createDate;
+		if ($this->createdDate) {
+			$params['CREATED_DATE'] = $this->createdDate;
 		} else {
 			throw new Exception('User requires a create date');
 		}
@@ -532,8 +532,8 @@ class User extends View implements Comparable {
 			$params['ACTIVE'] = $this->active;
 		}
 
-		if ($this->createDate) {
-			$params['CREATE_DATE'] = $this->createDate;
+		if ($this->createdDate) {
+			$params['CREATED_DATE'] = $this->createdDate;
 		}
 
 		if ($this->lastLoginDate) {

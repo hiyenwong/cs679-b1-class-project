@@ -93,10 +93,10 @@ class UserSource extends CommonSource implements Source {
 			throw new Exception("Missing required parameter active");
 		}
 
-		if (array_key_exists('CREATE_DATE', $params)) {
-			$args[] = new DbParam('user.create_date', ':create_date', $params['CREATE_DATE'], PDO::PARAM_STR);
+		if (array_key_exists('CREATED_DATE', $params)) {
+			$args[] = new DbParam('user.created_date', ':created_date', $params['CREATED_DATE'], PDO::PARAM_STR);
 		} else {
-			throw new Exception("Missing required parameter create date");
+			throw new Exception("Missing required parameter created date");
 		}
 
 		if (array_key_exists('LAST_LOGIN_DATE', $params)) {
@@ -186,8 +186,8 @@ class UserSource extends CommonSource implements Source {
 			$args[] = new DbParam('user.active', ':active', $params['ACTIVE'], PDO::PARAM_BOOL);
 		}
 
-		if (array_key_exists('CREATE_DATE', $params) && $original['create_date'] != $params['CREATE_DATE']) {
-			$args[] = new DbParam('user.create_date', ':create_date', $params['CREATE_DATE'], PDO::PARAM_STR);
+		if (array_key_exists('CREATED_DATE', $params) && $original['created_date'] != $params['CREATED_DATE']) {
+			$args[] = new DbParam('user.created_date', ':created_date', $params['CREATED_DATE'], PDO::PARAM_STR);
 		}
 
 		if (array_key_exists('LAST_LOGIN_DATE', $params) && $original['last_login_date'] != $params['LAST_LOGIN_DATE']) {
