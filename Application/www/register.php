@@ -1,6 +1,7 @@
 <?php
 	require_once '../includes/config.inc';
 	require_once 'user.inc';
+	require_once 'date.inc';
     require_once 'factory.inc';
     require_once 'view.inc';
     require_once 'transaction.inc';
@@ -11,37 +12,34 @@
 	
         $username = htmlentities($_POST['username']);
 	    $password = htmlentities($_POST['password']);
-	    $passwordRepeat = htmlentities($_POST['passwordRepeat']);
+	    $firstname = 'Churk';
+	    $lastname = 'Leung';
+	    $passwordRepeat = htmlentities($_POST['password_repeat']);
 	   
 	    if ($passwordRepeat !== $password) {
 	       //TODO: error
 	    }
-	    
-	    //if (User::isUsernameTaken($username)) {
-	       //TODO: error
-	    //}
 	
         $t = new Transaction(new MySqlDB());
         $t->start();
         
 		$user = Factory::createView(new UserKey());
 			    
-        $date = new DateTime();
+        $date = new Date();
         
 	    $user->setUsername($username);
 	    $user->setPassword($password);
 	    $user->setActive(true);
-	    $user->setCreateDate($date->getTimestamp());
+	    $user->setCreatedDate($date->getTimestamp());
 	    $user->setLastLoginDate($date->getTimestamp());
 	    $user->setNumberOfAttempts(1);
-	    $user->setFirstName('jon');
-        $user->setLastName('reimels');
+	    $user->setFirstName($firstname);
+        $user->setLastName($lastname);
    
-
 	    $t->commit();
 
 	} catch (Exception $e) {
-	    print_r($e);
+	    echo "<PRE>" . $e->getMessage() . "\n" . $e->getTraceAsString() . "\n" . print_r ($e, true) . "</PRE>";
 		echo 'Internal Error occurred, please email administrator for further assistance.';
 	}
 
