@@ -6,7 +6,7 @@ require_once 'userdoesnotexistexception.inc';
 require_once 'toomanyfailedloginexception.inc';
 require_once 'accessdeniedexception.inc';
 require_once 'noresultexception.inc';
-require_once 'sources/commonsource.php';
+require_once 'sources/commonsource.inc';
 
 class UserSource extends CommonSource implements Source {
 

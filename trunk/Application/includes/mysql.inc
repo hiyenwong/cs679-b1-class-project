@@ -36,8 +36,10 @@ class MySqlDB {
 
 	public function execStatement(PDOStatement $statement, Array $params = null) {
 		try {
-			foreach ($params as $p) {
-				$statement->bindParam($p->getId(), $p->getValue(), $p->getType());
+			if ($params !== null) {
+				foreach ($params as $p) {
+					$statement->bindParam($p->getId(), $p->getValue(), $p->getType());
+				}
 			}
 
 			$statement->execute();
