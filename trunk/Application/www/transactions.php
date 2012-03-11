@@ -1,5 +1,5 @@
 <?php
-	require_once '../Application/includes/config.inc';
+	require_once '../includes/config.inc';
 	
 	$smarty = new MySmarty($SMARTY_CONFIG);
 	
