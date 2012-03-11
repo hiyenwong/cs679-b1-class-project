@@ -13,9 +13,9 @@ function validateFields(fields) {
 		}
 		
 		// Field does not exist, but why fail its? its a programmer's error, not user. Let controller handles it
-		if ($F(fields[i].fieldId) == null) {
-			continue;
-		}
+		//if ($F(fields[i].fieldId) == null) {
+		//	continue;
+		//}
 		
 		if (fields[i] instanceof Field) {
 			if ($F(fields[i].fieldId).strip() == '') {
