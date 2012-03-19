@@ -3,7 +3,7 @@
 	$GLOBALS["_start_time"] = microtime (true);
 	date_default_timezone_set('America/New_York');
 
-	$DBHOST					= "churkl.no-ip.com";
+	$DBHOST					= "localhost";
 	$DBNAME					= "ibudget";
 	$DBUSER					= "ibudget";
 	$DBPASSWD				= "ibudget";
@@ -11,7 +11,7 @@
 	$VERSION = 				"TEST";
 	$DISABLE_EMAIL = 		true;
 
-	$INSTALL_DIR = 			"/home1/complexf/src/iBudget/Application";
+	$INSTALL_DIR = 			"/Users/Jonathan/Sites/iBudget";
 	$ATTACHMENT_ROOT = 		$INSTALL_DIR . "/attachment";
 	$INCLUDE_PATH = 		$INSTALL_DIR . "/includes";
 	$TEMPLATE_DIR = 		$INSTALL_DIR . "/templates";
@@ -19,12 +19,12 @@
 	$CACHE_DIR = 			$INSTALL_DIR . "/cache";
 	$SMARTY_DIR = 			$INSTALL_DIR . "/smarty";
 
-	$BASE_URL = 			"";
+	$BASE_URL = 			"/~Jonathan/iBudget/www";
 	$IMAGE_URL = 			$BASE_URL . "/images";
 	$STYLE_URL = 			$BASE_URL . "/style";
 	$JS_URL	= 				$BASE_URL . "/js";
-	$LOGIN_URL = 			$BASE_URL . '/admin/login.php';
-	$LOGOUT_URL = 			$BASE_URL . '/admin/logout.php';
+	$LOGIN_URL = 			$BASE_URL . '/login.php';
+	$LOGOUT_URL = 			$BASE_URL . '/logout.php';
 	$CHANGE_PASSWORD_URL = 	$BASE_URL . '/admin/changepw.php';
 	$RESET_PASSWORD_URL	= 	$BASE_URL . '/admin/resetpw.php';
 	$ACCESS_DENIED_URL = 	$BASE_URL . '/admin/denied.php';
