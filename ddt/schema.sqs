@@ -6,7 +6,7 @@
         <tableType><![CDATA[InnoDB]]></tableType>
         <location>
             <x>788.000000</x>
-            <y>226.000000</y>
+            <y>167.000000</y>
         </location>
         <size>
             <width>226.000000</width>
@@ -169,12 +169,12 @@
         <schema><![CDATA[]]></schema>
         <tableType><![CDATA[InnoDB]]></tableType>
         <location>
-            <x>787.000000</x>
-            <y>342.000000</y>
+            <x>771.000000</x>
+            <y>294.000000</y>
         </location>
         <size>
             <width>257.000000</width>
-            <height>180.000000</height>
+            <height>220.000000</height>
         </size>
         <SQLField>
             <name><![CDATA[id]]></name>
@@ -247,6 +247,20 @@
             <type><![CDATA[VARCHAR(255)]]></type>
             <didChangeNameDuringValidation><![CDATA[0]]></didChangeNameDuringValidation>
             <uid><![CDATA[4E070D6B-A18A-4E2B-B97D-355804D46EF1]]></uid>
+        </SQLField>
+        <SQLField>
+            <name><![CDATA[import_number]]></name>
+            <type><![CDATA[INT(11)]]></type>
+            <notNull>1</notNull>
+            <didChangeNameDuringValidation><![CDATA[0]]></didChangeNameDuringValidation>
+            <uid><![CDATA[5757AF3F-E1F8-4183-BBA9-D297113B80A3]]></uid>
+        </SQLField>
+        <SQLField>
+            <name><![CDATA[import_time]]></name>
+            <type><![CDATA[TIMESTAMP]]></type>
+            <notNull>1</notNull>
+            <didChangeNameDuringValidation><![CDATA[0]]></didChangeNameDuringValidation>
+            <uid><![CDATA[4CA2AAFD-B078-4B29-B666-06FD153AF973]]></uid>
         </SQLField>
         <didChangeNameDuringValidation><![CDATA[0]]></didChangeNameDuringValidation>
         <temporaryOriginalName><![CDATA[transaction]]></temporaryOriginalName>
@@ -818,7 +832,7 @@ U2l6ZT1mZn2hgWQCgRgDhoaG
         <pageBoundariesVisible><![CDATA[0]]></pageBoundariesVisible>
         <PageGridVisible><![CDATA[0]]></PageGridVisible>
         <snapToGrid><![CDATA[0]]></snapToGrid>
-        <SourceSplitViewState><![CDATA[2 361.316 1069.68]]></SourceSplitViewState>
+        <SourceSplitViewState><![CDATA[2 361.317 1069.68]]></SourceSplitViewState>
         <uid><![CDATA[F31A7126-ACAD-4454-BAEF-05377BC48C84]]></uid>
         <windowHeight><![CDATA[811.000000]]></windowHeight>
         <windowLocationX><![CDATA[0.000000]]></windowLocationX>
