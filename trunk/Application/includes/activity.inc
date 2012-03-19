@@ -21,6 +21,8 @@ class Activity extends View implements Comparable {
 	private $amount;
 	private $transactionDate;
 	private $comment;
+	private $importNumber;
+	private $importTime;
 
 	public function __construct (ActivityKey $key) {
 		$this->key = $key;
@@ -69,6 +71,14 @@ class Activity extends View implements Comparable {
 	public function getComment() {
 		return $this->comment;
 	}
+	
+	public function getImportNumber() {
+		return $this->importNumber;
+	}
+	
+	public function getImportTime() {
+		return $this->importTime;
+	}
 
 
 
@@ -106,6 +116,16 @@ class Activity extends View implements Comparable {
 		$this->markModified();
 		$this->comment = $comment;
 	}
+	
+	public function setImportNumber($importNumber) {
+		$this->markModified();
+		$this->importNumber = $importNumber;
+	}
+	
+	public function setImportTime(Date $importTime) {
+		$this->markModified();
+		$this->importTime = $importTime;
+	}
 
 
 
@@ -120,12 +140,14 @@ class Activity extends View implements Comparable {
 		$this->amount = $values['amount'];
 		$this->transactionDate = new Date($values['transaction_date']);
 		$this->comment = $values['comment'];
+		$this->importNumber = $values['import_number'];
+		$this->importTime = new Date($values['import_time']);
 
 	}
 
 	protected function insert () {
 		$params = array();
-
+		
 		if ($this->user) {
 			$params['USER_ID'] = $this->user->getId();
 		} else {
@@ -156,6 +178,18 @@ class Activity extends View implements Comparable {
 
 		if ($this->comment) {
 			$params ['COMMENT'] = $this->comment;
+		}
+		
+		if ($this->importNumber) {
+			$params['IMPORT_NUMBER'] = $this->importNumber;
+		} else {
+			throw new Exception("Missing required parameter import number.");
+		}
+		
+		if ($this->importTime) {
+			$params['IMPORT_TIME'] = $this->importTime->getTimestamp();
+		} else {
+			throw new Exception("Missing required parameter import time.");
 		}
 
 		$source = ActivitySource::getSource();

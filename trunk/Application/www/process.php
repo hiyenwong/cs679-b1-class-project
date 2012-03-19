@@ -35,6 +35,9 @@ try {
 		
 		$mapping = Factory::getView(new MappingKey($mapping_key));
 		
+		$importNumber = rand(10000000000, 99999999999);
+		$importTime = new Date();
+		
 		$tmpname = $_FILES['csv_file']['tmp_name'];
 		if (($handle = fopen($tmpname, "r")) !== FALSE) {
 			$row = 0;
@@ -46,6 +49,8 @@ try {
 				}
 
 				$activity = Factory::createView(new ActivityKey());
+				$activity->setImportNumber($importNumber);
+				$activity->setImportTime($importTime);
 				$activity->setUser($user);
 				foreach ($mapping->getMappingDetails() as $map) {
 					switch ($map->getColumnName()) {
@@ -53,7 +58,10 @@ try {
 							$activity->setTransactionDate(new Date($data[$map->getCsvColumnNumber()]));
 							break;
 						case MappingDetail::$MAPPING_AMOUNT:
-							$activity->setAmount($data[$map->getCsvColumnNumber()]);
+							// We may have Credit / Debit Column, so at one time there is one column have value one doesn't
+							if (trim($data[$map->getCsvColumnNumber()])) {
+								$activity->setAmount(trim($data[$map->getCsvColumnNumber()]));
+							}
 							break;
 						case MappingDetail::$MAPPING_NAME:
 							$activity->setName($data[$map->getCsvColumnNumber()]);

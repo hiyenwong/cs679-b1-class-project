@@ -44,7 +44,9 @@ class ActivitySource extends CommonSource implements Source {
 						activity.amount,
 						activity.transaction_date,
 						activity.category_id,
-						activity.comment
+						activity.comment,
+						activity.import_number,
+						activity.import_time
 					FROM activity
 					WHERE " . MySqlDB::getSelectConditions($args, MySqlDB::$CONDITION_AND);
 
@@ -99,6 +101,18 @@ class ActivitySource extends CommonSource implements Source {
 
 		if (array_key_exists('COMMENT', $params)) {
 			$args[] = new DbParam('activity.comment', ':comment', $params['COMMENT'], PDO::PARAM_STR);
+		}
+		
+		if (array_key_exists('IMPORT_NUMBER', $params)) {
+			$args[] = new DbParam('activity.import_number', ':import_number', $params['IMPORT_NUMBER'], PDO::PARAM_INT);
+		} else {
+			throw new Exception("Mising required parameter import number");
+		}
+		
+		if (array_key_exists('IMPORT_TIME', $params)) {
+			$args[] = new DbParam('activity.import_time', ':import_time', $params['IMPORT_TIME'], PDO::PARAM_STR);
+		} else {
+			throw new Exception("Mising required parameter import time");
 		}
 
 		if (!sizeof($args)) {
@@ -187,6 +201,14 @@ class ActivitySource extends CommonSource implements Source {
 
 		if (array_key_exists('TRANSACTION_DATE', $params)) {
 			$args[] = new DbParam('activity.transaction_date', ':transaction_date', $params['TRANSACTION_DATE'], PDO::PARAM_STR);
+		}
+		
+		if (array_key_exists('IMPORT_NUMBER', $params)) {
+			$args[] = new DbParam('activity.import_number', ':import_number', $params['IMPORT_NUMBER'], PDO::PARAM_INT);
+		}
+		
+		if (array_key_exists('IMPORT_TIME', $params)) {
+			$args[] = new DbParam('activity.import_time', ':import_time', $params['IMPORT_TIME'], PDO::PARAM_STR);
 		}
 
 		$sql = "SELECT DISTINCT
