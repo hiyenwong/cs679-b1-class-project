@@ -4,6 +4,7 @@ require_once 'user.inc';
 require_once 'category.inc';
 require_once 'view.inc';
 require_once 'factory.inc';
+require_once 'date.inc';
 require_once 'comparable.inc';
 require_once 'keys/activitykey.inc';
 require_once 'sources/activitysource.inc';
@@ -148,7 +149,7 @@ class Activity extends View implements Comparable {
 		$params ['AMOUNT'] = $this->amount ? $this->amount : 0;
 
 		if ($this->transactionDate) {
-			$params ['TRANSACTION_DATE'] = $this->transactionDate;
+			$params ['TRANSACTION_DATE'] = $this->transactionDate->getTimestamp();
 		} else {
 			throw new Exception("Missing required parameter transaction date");
 		}
@@ -184,7 +185,7 @@ class Activity extends View implements Comparable {
 		$params ['AMOUNT'] = $this->amount ? $this->amount : 0;
 
 		if ($this->transactionDate) {
-			$params ['TRANSACTION_DATE'] = $this->transactionDate;
+			$params ['TRANSACTION_DATE'] = $this->transactionDate->getTimestamp();
 		}
 
 		if ($this->comment) {
