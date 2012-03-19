@@ -5,6 +5,7 @@ require_once 'category.inc';
 require_once 'view.inc';
 require_once 'factory.inc';
 require_once 'comparable.inc';
+require_once 'keys/budgetkey.inc';
 require_once 'sources/budgetsource.inc';
 
 class Budget extends View implements Comparable {

@@ -4,6 +4,7 @@ require_once 'user.inc';
 require_once 'view.inc';
 require_once 'factory.inc';
 require_once 'comparable.inc';
+require_once 'keys/contactkey.inc';
 require_once 'sources/contactsource.inc';
 
 class Contact extends View implements Comparable {

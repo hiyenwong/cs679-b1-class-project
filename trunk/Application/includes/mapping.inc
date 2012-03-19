@@ -5,6 +5,7 @@ require_once 'mappingdetail.inc';
 require_once 'view.inc';
 require_once 'factory.inc';
 require_once 'comparable.inc';
+require_once 'keys/mappingkey.inc';
 require_once 'sources/mappingsource.inc';
 require_once 'sources/mappingdetailsource.inc';
 

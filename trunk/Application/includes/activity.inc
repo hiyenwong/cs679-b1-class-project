@@ -5,6 +5,7 @@ require_once 'category.inc';
 require_once 'view.inc';
 require_once 'factory.inc';
 require_once 'comparable.inc';
+require_once 'keys/activitykey.inc';
 require_once 'sources/activitysource.inc';
 
 class Activity extends View implements Comparable {

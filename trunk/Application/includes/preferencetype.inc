@@ -3,6 +3,7 @@
 require_once 'view.inc';
 require_once 'factory.inc';
 require_once 'comparable.inc';
+require_once 'keys/preferencetypekey.inc';
 require_once 'sources/preferencetypesource.inc';
 
 class PreferenceType extends View implements Comparable {
