@@ -103,7 +103,7 @@ class PhoneSource extends CommonSource implements Source {
 				FROM phone
 				WHERE " . (array_key_exists('USER_ID', $params) ? MySqlDB::getSelectConditions($args, ' AND ') :
 								(sizeof($args) > 0 ? MySqlDB::getSelectConditions($args, ' AND ') . " AND " : "") . "phone.user_id IS NULL") . "
-				ORDER BY phone.name ASC";
+				ORDER BY phone.phone ASC";
 
 		return $this->db->execSql($sql, $args);
 

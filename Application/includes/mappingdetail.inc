@@ -6,6 +6,10 @@ class MappingDetail implements Comparable {
 	private $columnName;
 	private $csvColumnNumber;
 	
+	public static $MAPPING_TRANSACTION_DATE = 'TRANSACTION_DATE';
+	public static $MAPPING_AMOUNT = 'AMOUNT';
+	public static $MAPPING_NAME = 'NAME';
+	
 	public function __construct (Mapping $mapping, $columnName, $csvColumnNumber) {
 		$this->mapping = $mapping;
 		$this->columnName = $columnName;
