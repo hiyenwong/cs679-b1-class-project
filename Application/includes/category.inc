@@ -4,6 +4,7 @@ require_once 'user.inc';
 require_once 'view.inc';
 require_once 'factory.inc';
 require_once 'comparable.inc';
+require_once 'keys/categorykey.inc';
 require_once 'sources/categorysource.inc';
 
 class Category extends View implements Comparable {
