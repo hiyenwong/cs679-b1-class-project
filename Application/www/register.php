@@ -65,7 +65,7 @@
            
         	    $t->commit();
 
-                header( 'Location: userpage.php' ) ;
+                header( 'Location: userpage.php' );
     	    	return;
     	    }
     

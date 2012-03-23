@@ -9,8 +9,14 @@ $smarty = new MySmarty($SMARTY_CONFIG);
 
 if (!empty($_POST)){
 	
+	if (!preg_match("/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9\s]).{8,})/", $_POST['new_password'])) {
+		$smarty->assign('err_message', 'Password Invalid! Must be at least 8 characters and have one lowercase, one uppercase, one number, and one special character.');
+        $smarty->display('reset_password.tpl');
+	}
+	
 	if ($_POST['new_password'] != $_POST['verify_new_password']) {
 		$err_message = 'The two passwords must match';
+		//header ("Location: " . $requestedUrl);
 		$smarty->assign('err_message', $err_message);
 		$smarty->display('reset_password.tpl');
 	} 
@@ -33,19 +39,22 @@ if (!empty($_POST)){
   			}		
 			$new_password = $user->setPassword($_POST['new_password'], false);	
 			$transaction->commit();
+		 	header( 'Location: userpage.php' );
+			exit();
 		}
 		
 	} catch (Exception $e) {
 		//handle exception
 	}
 	
-	$smarty->display('reset_password.tpl');
+	//$smarty->display('reset_password.tpl');
 } else {
 	$username = $_GET['username'];
 	$pid = $_GET['pid'];
 		
 	$smarty->assign('username', $username);
 	$smarty->assign('pid', $pid);
+	$smarty->assign('form_action', $_SERVER['REQUEST_URI']);
 	$smarty->display('reset_password.tpl');	
 }
 

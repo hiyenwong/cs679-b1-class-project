@@ -39,7 +39,8 @@ class Access {
 				$this->user = $username;
 				return true;
 			} else {
-				$this->forwardLogin();
+				return false;
+				//$this->forwardLogin();
 			}
 		}
 	}
