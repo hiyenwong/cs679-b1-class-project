@@ -26,7 +26,7 @@
 		  		</div>
 		   	</div>
 		    <div id="header_sub_secondary_right">
-		      Intro message here
+		      Log in and start managing your budget
 		    </div>                            
 		</div><!-- end header lower-->
 	</div><!-- end header -->
