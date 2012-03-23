@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div id="header_sub_secondary_right">
-                Intro message here
+               Creating an account is fast, easy and free
             </div>                            
         </div><!-- end header lower-->
     </div><!-- end header -->

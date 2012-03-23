@@ -26,7 +26,7 @@
 		  		</div>
 		   	</div>
 		    <div id="header_sub_secondary_right">
-		      Intro message here
+		      Who we are and the mission of iBudget
 		    </div>                            
 		</div><!-- end header lower-->
 	</div><!-- end header -->
