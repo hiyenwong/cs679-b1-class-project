@@ -6,7 +6,7 @@
     $submitted = isset($_REQUEST['submitted']);
     $username = isset($_REQUEST['username']) ? htmlentities($_REQUEST['username']) : false;
     $password = isset($_REQUEST['password']) ? htmlentities($_REQUEST['password']) : false;
-    
+
     $smarty = new MySmarty($SMARTY_CONFIG);
     
     if ($submitted) { 

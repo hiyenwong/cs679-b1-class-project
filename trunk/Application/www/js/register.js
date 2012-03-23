@@ -59,7 +59,7 @@ $(document).ready(function () {
 
 var isValidPassword = function () {
     if (!$("#password").val().match(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9\s]).{8,})/)) {
-        $("#password").parent("p").find(".error").html("<br />Password Invalid! Must be 8 characters and have one lowercase, one uppercase, one number, and one special character.");
+        $("#password").parent("p").find(".error").html("<br />Password Invalid! Must be at least 8 characters and have one lowercase, one uppercase, one number, and one special character.");
         return false;
     } else {
         $("#password").parent("p").find(".error").html("");

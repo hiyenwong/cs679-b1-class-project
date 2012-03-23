@@ -38,7 +38,7 @@
 		<div id="main_content_left_secondary">
        		<fieldset id="forgot_password">
 	       		<legend>Reset password</legend>
-	        	<form action="reset_password.php" method="POST">
+	        	<form action="{$form_action}" method="POST">
 	        		<p class="error">&nbsp;{if $err_message}{$err_message}{/if}</p>
 	        		<input type="hidden" name="username" value="{$username}">
 					<input type="hidden" name="pid" value="{$pid}">

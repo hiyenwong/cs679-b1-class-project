@@ -75,9 +75,10 @@
 				<!-- sub box 1 -->
 				<div class="sub_box">
 					<div class="sub_box_text">
-						<img width="40" height="40" class="sub_box_image" style="vertical-align:middle" alt="briefcase" src="{$image_url}/speed.png"><h2>Speed</h2>
-						<p>List here the benefits of feature1. </p>
-						<p><a href="#">Read more <img width="20" height="20" style="vertical-align:top" alt="" src="{$image_url}/arrow_right.png"></a></p>
+						<img width="40" height="40" class="sub_box_image" style="vertical-align:middle" alt="briefcase" src="{$image_url}/speed.png"><h2>Make your life easier</h2>
+						<p><img width="20" height="20" style="vertical-align:top" alt="" src="{$image_url}/arrow_right.png"> At iBudget, we believe money is for living. So we make everything
+						simple and streamlined. Sign up takes less than five minutes. Then iBudget automatically pulls all your financial information into
+						one place, so you can finally get the entire picture.</p>
 					</div>
 				</div>
 				
@@ -85,17 +86,19 @@
 				<div class="sub_box">
 					<div class="sub_box_text">
 						<img width="40" height="40" class="sub_box_image" style="vertical-align:middle" alt="display" src="{$image_url}/shield.png"><h2>Information Safety</h2>
-						<p>List here the benefits of feature2 </p>
-						<p><a href="#">Read more <img width="20" height="20" style="vertical-align:top" alt="" src="{$image_url}/arrow_right.png"></a></p>
+						<p><img width="20" height="20" style="vertical-align:top" alt="" src="{$image_url}/arrow_right.png"> iBudget values the privacy of its clients and ensures it is always secure. That's because we use 
+						128-bit SSL encryption-the same security that banks use-and all data is protected and validated.
+						 Plus, since iBudget is read-only, no money can be moved in or out of any account. </p>
 					</div>
 				</div>
 				
 				<!-- sub box 3 -->
 				<div class="sub_box_right">
 					<div class="sub_box_text">
-						<img width="40" height="40" class="sub_box_image" style="vertical-align:middle" alt="rolodex" src="{$image_url}/danger.png"><h2>Growth</h2>
-						<p>List here the benefits of feature3 </p>
-						<p><a href="#">Read more <img width="20" height="20" style="vertical-align:top" alt="" src="{$image_url}/arrow_right.png"></a></p>
+						<img width="40" height="40" class="sub_box_image" style="vertical-align:middle" alt="rolodex" src="{$image_url}/danger.png"><h2>Reach your goals</h2>
+						<p><img width="20" height="20" style="vertical-align:top" alt="" src="{$image_url}/arrow_right.png"> iBudget helps you reach your goals:
+						set a budget and create a plan to reach your personal financial goals. You can track your progress online or stay up-to-date
+						 with monthly emails. And we'll help you achieve your goals faster with helpful free advice and next steps.</p>
 					</div>
 				</div>
 			</div><!-- end sub boxes  -->
