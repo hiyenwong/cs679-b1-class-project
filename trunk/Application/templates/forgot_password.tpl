@@ -22,11 +22,11 @@
 	  	<div id="header_lower">	   
 		 	<div id="header_sub_secondary"> 
 		    	<div id="header_sub_text_secondary">
-		    		<p>Reset password</p>           
+		    		<p>Lost password</p>           
 		  		</div>
 		   	</div>
 		    <div id="header_sub_secondary_right">
-		      Reset it here
+		    	Forgot password? Request a new one here
 		    </div>                            
 		</div><!-- end header lower-->
 	</div><!-- end header -->
@@ -37,7 +37,7 @@
 	<div id="main_content">
 		<div id="main_content_left_secondary">
        		<fieldset id="forgot_password">
-	       		<legend>Reset password</legend>
+	       		<legend>Forgot password</legend>
 	        	<form action="forgot_password.php" method="POST">
 	        		<p class="error">&nbsp;{if $err_message}{$err_message}{/if}</p>
 	        		<p><label for="email">Email: </label><input type="email" name="email" id="email"></p>
