@@ -11,8 +11,8 @@
 						<a href="index.php">Home</a> | 
 						<a href="about.php">About Us</a> | 
 						<a href="contact.php">Contact</a> |
-						<a href="login.php">Log In</a> |
-						<a href="register.php">Register</a> 		
+						{if !$username}<a href="login.php">Log In</a> | {else} <a href="logout.php">Log Out</a> {/if}
+						{if !$username}<a href="register.php">Register</a>{/if} 		
 					</div>
 				</div>
 			</div>
