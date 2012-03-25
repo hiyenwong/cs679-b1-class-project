@@ -1,11 +1,11 @@
 <?php
 	session_start();
 	require_once '../includes/config.inc';
-	require_once '../includes/user.inc';
+	require_once 'user.inc';
 
 	$smarty = new MySmarty($SMARTY_CONFIG);
 
-	$user_temp = User::getUserByUserName($_SESSION['username']);
+	$user_temp = User::getUserByUserName($_SESSION['user']);
 	$user = UserSource::getSource();
 	$user = $user->read(array('ID'=>$user_temp[0]['id']));
 

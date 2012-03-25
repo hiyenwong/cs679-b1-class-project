@@ -9,10 +9,9 @@
 	       		<div id="navs_center">
 	         		<ul>
 	             		<li><a href="index.php">Home</a></li>
-	        	    	<li><a href="about.php" class="current">About</a></li>
+	        	    	<li><a href="about.php">About</a></li>
 	              	  	<li><a href="contact.php">Contact</a></li>          	    	
-	               	  	<li><a href="login.php">Log In</a></li>     
-	                	<li><a href="register.php">Register</a></li>     
+	               	  	<li><a href="logout.php">Log Out</a></li>     
 	       			</ul>
 	       		</div>
 	   			<div id="navs_right"> </div>
@@ -22,7 +21,7 @@
 	  	<div id="header_lower">	   
 		 	<div id="header_sub_secondary"> 
 		    	<div id="header_sub_text_secondary">
-		    		<p>Vlad's Budget</p>           
+		    		<p>{$username}'s Budget</p>           
 		  		</div>
 		   	</div>
 		    <div id="header_sub_secondary_right">

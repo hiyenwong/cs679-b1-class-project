@@ -144,7 +144,8 @@ fieldset#forgot_password p{
 }
 
 .no_left_menu #main_content {
-	background: url(../images/bgr.png) no-repeat scroll -96px 0 transparent
+	background: url(../images/bgr.png) no-repeat scroll -96px 0 transparent;
+	min-height: 350px;
 }
 	
 .footer, .push {
@@ -267,7 +268,7 @@ fieldset#forgot_password p{
 }
 
 #header_sub_text_secondary p {
-	width: 250px;
+	width: 375px;
 	font-size: 28px;
 	color: #FFF;
 	font-weight: bold;
@@ -407,6 +408,7 @@ fieldset#forgot_password p{
 	background-image: url(../images/left_bg.jpg);
 	background-repeat: no-repeat;
 	height: 100%;
+	min-height: 250px;
 }
 
 #sub_boxes {
