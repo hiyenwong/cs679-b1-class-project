@@ -5,7 +5,8 @@
     require_once 'factory.inc';
     require_once 'view.inc';
     require_once 'transaction.inc';
-    
+	require_once '../includes/access.inc';
+	
     $smarty = new MySmarty($SMARTY_CONFIG);
 	
     if (!empty($_POST)) {
@@ -64,15 +65,26 @@
                 $user->setLastName($lastname);
            
         	    $t->commit();
-
-                header( 'Location: userpage.php' );
-    	    	return;
+        	    
+                $access = new Access();
+                
+                if ($access->authenticate($username, $password)) {
+                    header ("Location: userpage.php");
+                    exit();
+                } else {
+                    throw new Exception("Unable to login after creating account.");
+                }
     	    }
-    
+    	} catch (AccessDeniedException $e) {
+            header ('HTTP/1.1 401 Access Denied');
+            echo "AccessDeniedException: " . $e->getMessage ();
+        } catch (Exception $e) {
+            header ('HTTP/1.1 500 Internal Server Error');
+            echo "Exception: " . $e->getMessage ();
     	} catch (Exception $e) {
     	    echo "<PRE>" . $e->getMessage() . "\n" . $e->getTraceAsString() . "\n" . print_r ($e, true) . "</PRE>";
     		echo 'Internal Error occurred, please email administrator for further assistance.';
-    	}
+        }
  
 	}
 	
