@@ -28,6 +28,7 @@ if (!empty($_POST)){
   			}
   			
   			$new_password_hash = $user->generateNewPassword();
+  			$user->setPassword($new_password_hash, true);
   			$transaction->commit();
   			
   			$to = $user->getUsername();

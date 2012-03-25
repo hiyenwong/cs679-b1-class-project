@@ -16,17 +16,15 @@ if (!empty($_POST)){
 	
 	if ($_POST['new_password'] != $_POST['verify_new_password']) {
 		$err_message = 'The two passwords must match';
-		//header ("Location: " . $requestedUrl);
 		$smarty->assign('err_message', $err_message);
 		$smarty->display('reset_password.tpl');
 	} 
 	
-	//additional checks that the password is at least 8 chars etc
 	try {
 		$username = $_POST['username'];
 		$pid = $_POST['pid'];
-	
 		$result = User::checkAuthentication($username, $pid, true);
+	
 		if ($result) {
 			$transaction = new Transaction(new MySqlDB());
   			$transaction->start();
@@ -37,8 +35,10 @@ if (!empty($_POST)){
   				$user = Factory::getView(new UserKey($row['id']));
   				break;
   			}		
-			$new_password = $user->setPassword($_POST['new_password'], false);	
+			$user->setPassword($_POST['new_password'], false);	
 			$transaction->commit();
+			session_start();
+			$_SESSION['username'] = $username;
 		 	header( 'Location: userpage.php' );
 			exit();
 		}
