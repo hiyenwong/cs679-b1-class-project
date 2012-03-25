@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8"></meta>
+	<meta charset="utf-8">
 	<title>Simplefunctions.com Applications - {$title}</title>
 	<style type="text/css" media="all">
 		@import url("{$style_url}/ibudget.css");
@@ -18,7 +18,7 @@
 		var style_url 	= "{$style_url}";
 	</script>
 
-	<link rel="shortcut icon" href="{$image_url}/favicon.png">
+	<link rel="shortcut icon" href="{$image_url}favicon.png">
 
 	<script type="text/javascript" src="{$js_url}/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="{$js_url}/jquery.flow.1.0.js"></script>
