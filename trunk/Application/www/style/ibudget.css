@@ -759,7 +759,7 @@ a.button:hover {
 .button {
 	background: url(../images/button_bg.jpg) repeat-x;
 	padding: 4px 20px;
-	color: #FF;
+	color: #FFF;
 	text-decoration: none;
 	border: 1px solid #32312f;
 	font-size: 10px;
@@ -989,7 +989,7 @@ a.button:hover {
 table {
 	margin: 10px;
 	font-size: inherit;
-	font: 100%;
+	/*font: 100%;*/
 	width: inherit;
 }
 
@@ -1157,7 +1157,7 @@ a.button, input.button, input.deleteButton {
 	cursor: pointer;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-	box-shadow: 10px 10px 5px #black;
+	box-shadow: 10px 10px 5px black;
 }
 
 input:disabled {
@@ -1177,7 +1177,7 @@ input.disabledButton {
 	cursor: default;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-	box-shadow: 10px 10px 5px #black;
+	box-shadow: 10px 10px 5px black;
 }
 
 input.deleteButton {
