@@ -1,11 +1,11 @@
 <?php
 	require_once '../includes/config.inc';
-	require_once '../includes/user.inc';
-	require_once '../includes/date.inc';
-    require_once '../includes/factory.inc';
-    require_once '../includes/view.inc';
-	require_once '../includes/transaction.inc';
-    require_once '../includes/contact.inc';
+	require_once 'user.inc';
+	require_once 'date.inc';
+    require_once 'factory.inc';
+    require_once 'view.inc';
+	require_once 'transaction.inc';
+    require_once 'contact.inc';
     
     $smarty = new MySmarty($SMARTY_CONFIG);
 	
@@ -61,15 +61,12 @@
 				
 				// check to see if user's email exists in database
 				if (!$u) {
-					$results = User::getOptions(array('USERNAME'=>$email));
+					$results = User::getUserByUserName($email);
 					foreach ($results as $id => $val) {
 						$u = Factory::getView(new UserKey($id));
 						break;
 					}
 				}
-				//if (empty($u)) {
-					//$u = Factory::createView(new UserKey());
-				//}
 			
 				$contact = Factory::createView(new ContactKey());
 				if ($u) {
@@ -80,18 +77,10 @@
 				$contact->setEmail($email);
 				$contact->setContent($message);
 				$contact->setDateSubmitted($date);
-				
-				// $date = new Date();
-				// $t->setName($name);
-				//$u->setUser($u);
-				//$u->setEmail($email);
-				//$u->setDateSubmitted($date->getTimestamp());
-				//$u->setContent($message);
-		   
 				$t->commit();
 
 			} catch (Exception $e) {
-				if ($t && !$t->isCompleted()) {
+				if ($t && !$t->isComplete()) {
     				$t->rollBack();
 				}
 				echo $error;
