@@ -15,14 +15,14 @@
 		if (!empty($_POST)) {
 			try {
 				if (!empty($_POST['name'])) {
-					$name = $_POST['name'];
+					$name = htmlentities($_POST['name']);
 				}
 				else {
 					$error .= "Please enter your name. <br />";
 				}
 			
 				if (!empty($_POST['email'])) {
-					$email = $_POST['email'];
+					$email = htmlentities($_POST['email']);
 				    if (!preg_match("/^[_a-z0-9]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i", $email)){
 				  		$error .= "Please enter a valid email address. <br/>";
 					}
@@ -32,7 +32,7 @@
 				}
 			
 				if (!empty($_POST['message'])) {
-					$message = $_POST['message'];
+					$message = htmlentities($_POST['message']);
 				}
 				else {
 					$error .= "Please enter a message. <br />";
@@ -49,31 +49,44 @@
 				// inserting into table contact				
 				$t = new Transaction(new MySqlDB());
 				$t->start();
-				
+				$u = false;
 				try {
 					$u = Factory::getView(new UserKey($user_id));
 				} catch (NoResultException $e) {
 					// no user logon
+					$u = false;
 				} catch (Exception $e) {
 				  echo 'Internal Error occurred, please email administrator for further assistance.';
 				}
 				
 				// check to see if user's email exists in database
-				$results = User::getOptions(array('USERNAME'=>$email));
-				foreach ($results as $id => $val) {
-					$u = Factory::getView(new UserKey($id));
+				if (!$u) {
+					$results = User::getOptions(array('USERNAME'=>$email));
+					foreach ($results as $id => $val) {
+						$u = Factory::getView(new UserKey($id));
+						break;
+					}
 				}
-
-				if (empty($u)) {
-					$u = Factory::createView(new UserKey());
-				}
+				//if (empty($u)) {
+					//$u = Factory::createView(new UserKey());
+				//}
 			
+				$contact = Factory::createView(new ContactKey());
+				if ($u) {
+					$contact.setUser($u);
+				}
+				
 				$date = new Date();
+				$contact->setEmail($email);
+				$contact->setContent($message);
+				$contact->setDateSubmitted($date);
+				
+				// $date = new Date();
 				// $t->setName($name);
-				$u->setUser($u);
-				$u->setEmail($email);
-				$u->setDateSubmitted($date->getTimestamp());
-				$u->setContent($message);
+				//$u->setUser($u);
+				//$u->setEmail($email);
+				//$u->setDateSubmitted($date->getTimestamp());
+				//$u->setContent($message);
 		   
 				$t->commit();
 
