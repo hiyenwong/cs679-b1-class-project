@@ -287,13 +287,13 @@ fieldset#forgot_password p{
 
 #header_sub_text_secondary {
 	float: left;
-	width: 250px;
+	width: 350px;
 	margin-top: 40px;
 	color: #FFF;
 }
 
 #header_sub_text_secondary p {
-	width: 375px;
+	width: 475px;
 	font-size: 28px;
 	color: #FFF;
 	font-weight: bold;

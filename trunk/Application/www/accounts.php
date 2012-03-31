@@ -2,15 +2,23 @@
 	session_start();
 	require_once '../includes/config.inc';
 	require_once 'user.inc';
+	require_once 'access.inc';
+	require_once 'accessdeniedexception.inc';
 
-	$smarty = new MySmarty($SMARTY_CONFIG);
-
-	$user_temp = User::getUserByUserName($_SESSION['user']);
-	$user = UserSource::getSource();
-	$user = $user->read(array('ID'=>$user_temp[0]['id']));
-
-	$smarty->assign('username', $user['first_name']);
-	$smarty->assign('left_menu', true);
-	$smarty->display('accounts.tpl');
+	try {
+		$access = new Access();
+		$access->authenticate();
+		$user = $access->getUser();
+		
+		$smarty = new MySmarty($SMARTY_CONFIG);
+		$smarty->assign('user', $user);
+		$smarty->assign('left_menu', true);
+		$smarty->display('accounts.tpl');
+		
+	} catch (AccessDeniedException $e) {
+		trigger_error('Access Denied');
+	} catch (Exception $e) {
+		trigger_error('An error has occurred, please try again in a few minutes');
+	}
 	
 ?>
