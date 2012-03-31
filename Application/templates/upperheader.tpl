@@ -10,8 +10,10 @@
     	    	<li><a href="contact.php">Contact</a></li>
     	    	{if !$user}
     	    	<li><a href="login.php">Log In</a></li>
+    	    	<li><a href="register.php">Register</a></li>
     	    	{else}
     	    	<li><a href="userpage.php">Dashboard</a></li>
+    	    	<li><a href="logout.php">Log Out</a></li>
     	    	{/if}
     	    	
    			</ul>
