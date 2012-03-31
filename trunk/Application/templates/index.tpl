@@ -1,24 +1,7 @@
 {include file='header.tpl'}
 		<div id="header_wrap">
 			<div id="header"><!-- begin header -->
-				<div id="header_upper">
-						
-					<div id="header_logo"></div>
-						
-					<div id="navs"><!-- begin navigations -->
-						<div id="navs_left"></div>
-						<div id="navs_center">
-							<ul>
-								<li><a href="index.php" class="current">Home</a></li>
-								<li><a href="about.php">About</a></li>
-								<li><a href="contact.php">Contact</a></li>	 
-								<li><a href="login.php">Log In</a></li>	 
-								<li><a href="register.php">Register</a></li>	 
-							</ul>
-						</div>
-						<div id="navs_right"></div>
-					</div><!-- end navigations -->
-				</div><!-- end header upper -->
+				{include file='upperheader.tpl' user=$user}
 					
 				<div id="header_lower">	
 
