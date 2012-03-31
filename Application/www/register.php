@@ -48,8 +48,8 @@
                     return;
                 }
                     	   
-                $t = new Transaction(new MySqlDB());
-                $t->start();
+                $transaction = new Transaction(new MySqlDB());
+                $transaction->start();
                 
         		$user = Factory::createView(new UserKey());
         			    
@@ -64,7 +64,7 @@
         	    $user->setFirstName($firstname);
                 $user->setLastName($lastname);
            
-        	    $t->commit();
+        	    $transaction->commit();
         	    
                 $access = new Access();
                 
@@ -79,12 +79,12 @@
             header ('HTTP/1.1 401 Access Denied');
             echo "AccessDeniedException: " . $e->getMessage ();
         } catch (Exception $e) {
+        	if ($transaction && !$transaction->isComplete()) {
+        		$transaction->rollback();
+        	}
             header ('HTTP/1.1 500 Internal Server Error');
             echo "Exception: " . $e->getMessage ();
-    	} catch (Exception $e) {
-    	    echo "<PRE>" . $e->getMessage() . "\n" . $e->getTraceAsString() . "\n" . print_r ($e, true) . "</PRE>";
-    		echo 'Internal Error occurred, please email administrator for further assistance.';
-        }
+    	}
  
 	}
 	

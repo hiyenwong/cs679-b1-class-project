@@ -11,11 +11,9 @@ require_once 'view.inc';
 require_once 'transaction.inc';
 
 try {
-// 	$access = new Access();
-// 	$access->authenticate();
-// 	$user = $access->getUser();
-
-	$user = Factory::getView(new UserKey('3'));
+	$access = new Access();
+	$access->authenticate();
+	$user = $access->getUser();
 
 	$transaction = false;
 	
@@ -78,6 +76,8 @@ try {
 		
 	} else {
 		$smarty = new MySmarty($SMARTY_CONFIG);
+		$smarty->assign('user', $user);
+		$smarty->assign('left_menu', true);
 		$smarty->assign('mappingTypes', Mapping::getOptions());
 		$smarty->display('process.tpl');
 	}

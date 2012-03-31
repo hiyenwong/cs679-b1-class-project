@@ -10,17 +10,17 @@
 
 	$smarty = new MySmarty($SMARTY_CONFIG);
 	
+	$user = false;
+	try {
+		$access = new Access();
+		$access->authenticate(null, null, false);
+		$user = $access->getUser();
+		$smarty->assign('user', $user);
+	} catch (AccessDeniedException $e) {
+		// Don't need to do anything, This just means user is not logged in.
+	}
+	
 	if (isset($_POST['submit'])) {
-		$user = false;
-
-		try {
-			$access = new Access();
-			$access->authenticate(null, null, false);
-			$user = $access->getUser();
-		} catch (AccessDeniedException $e) {
-			// Don't need to do anything, This just means user is not logged in.
-		}
-
 		try {
 			$name = isset($_REQUEST['name']) ? htmlentities($_REQUEST['name']) : false;
 			$email = isset($_REQUEST['email']) && preg_match("/^[_a-z0-9]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i", $_REQUEST['email']) ?

@@ -44,7 +44,11 @@ if (!empty($_POST)){
 		}
 		
 	} catch (Exception $e) {
-		//handle exception
+		if ($transaction && !$transaction->isComplete()) {
+			$transaction->rollback();
+		}
+		header ('HTTP/1.1 500 Internal Server Error');
+		echo "Exception: " . $e->getMessage ();
 	}
 	
 	//$smarty->display('reset_password.tpl');
