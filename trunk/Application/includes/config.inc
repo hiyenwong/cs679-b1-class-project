@@ -11,7 +11,7 @@
 	$VERSION = 				"TEST";
 	$DISABLE_EMAIL = 		true;
 
-	$INSTALL_DIR = 			"/Users/Jonathan/Sites/iBudget";
+	$INSTALL_DIR = 			"/Users/churkleung/Documents/workspace/iBudget/Application";
 	$ATTACHMENT_ROOT = 		$INSTALL_DIR . "/attachment";
 	$INCLUDE_PATH = 		$INSTALL_DIR . "/includes";
 	$TEMPLATE_DIR = 		$INSTALL_DIR . "/templates";
@@ -19,7 +19,7 @@
 	$CACHE_DIR = 			$INSTALL_DIR . "/cache";
 	$SMARTY_DIR = 			$INSTALL_DIR . "/smarty";
 
-	$BASE_URL = 			"/~Jonathan/iBudget/www";
+	$BASE_URL = 			"/iBudget";
 	$IMAGE_URL = 			$BASE_URL . "/images";
 	$STYLE_URL = 			$BASE_URL . "/style";
 	$JS_URL	= 				$BASE_URL . "/js";

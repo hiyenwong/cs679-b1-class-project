@@ -13,7 +13,7 @@ class Access {
 		session_start();
 	}
 
-	public function authenticate($username = null, $password = null) {
+	public function authenticate($username = null, $password = null, $forward = true) {
 		if ($username == null) {
 			// Assume logged in and use session data to authenticate
 			if (array_key_exists('user', $_SESSION) && $_SESSION['user'] != '') {
@@ -24,11 +24,19 @@ class Access {
 					$this->user = $user;
 					return true;
 				} else {
-					$this->forwardLogin();
+					if ($forward) {
+						$this->forwardLogin();
+					} else {
+						throw new AccessDeniedException("access is denied");
+					}
 				}
 
 			} else {
-				$this->forwardLogin();
+				if ($forward) {
+					$this->forwardLogin();
+				} else {
+					throw new AccessDeniedException("access is denied");
+				}
 			}
 		} else {
 			if (User::checkAuthentication($username, $password)) {
@@ -80,7 +88,7 @@ class Access {
 
 		// if we have the user object setup then we're all set
 		if (isset ($this->user)) {
-			return $this->user;
+			return User::getUserByUserName($this->user);
 		}
 
 		// contact ssofs doing authc only and not allowing guest
@@ -88,7 +96,7 @@ class Access {
 		$this->authenticate ();
 
 		// at this point we will either have the user form checkSSOFS
-		return $this->user;
+		return User::getUserByUserName($this->user);
 	}
 
 
