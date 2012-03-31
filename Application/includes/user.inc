@@ -656,9 +656,13 @@ class User extends View implements Comparable {
 
 	public static function getUserByUserName ($username) {
 		$userSource = UserSource::getSource ();
-		return $userSource->getOptions(array('USERNAME' => $username));
+		foreach ($userSource->getOptions(array('USERNAME' => $username)) as $row) {
+			// Since email address are unique, this should always return 1 user id
+			return Factory::getView(new UserKey($row['id']));
+		}
+		return null;
 	}
-	
+
 	public static function getUsers(Array $params = array()) {
 		$users = array();
 		foreach (self::getOptions($params) as $key => $val) {

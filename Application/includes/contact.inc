@@ -12,6 +12,7 @@ class Contact extends View implements Comparable {
 	private $key;
 	protected $id;
 
+	private $name;
 	private $user;
 	private $email;
 	private $dateSubmitted;
@@ -37,6 +38,10 @@ class Contact extends View implements Comparable {
 		return $this->id;
 	}
 
+	public function getName() {
+		return $this->name;
+	}
+
 	public function getUser() {
 		return $this->user;
 	}
@@ -54,6 +59,11 @@ class Contact extends View implements Comparable {
 	}
 
 
+
+	public function setName($name) {
+		$this->markModified();
+		$this->name = $name;
+	}
 
 	public function setUser(User $user) {
 		$this->markModified();
@@ -81,7 +91,7 @@ class Contact extends View implements Comparable {
 		$source = ContactSource::getSource();
 		$values = $source->read (array ('ID' => $this->id));
 
-
+		$this->name = $values['name'];
 		$this->user = $values['user_id'] ? Factory::getView(new UserKey($values['user_id'])) : null;
 		$this->email = $values['email'];
 		$this->dateSubmitted = new Date($values['date_submitted']);
@@ -91,6 +101,12 @@ class Contact extends View implements Comparable {
 
 	protected function insert () {
 		$params = array();
+
+		if ($this->name) {
+			$params['NAME'] = $this->name;
+		} else {
+			throw new Exception("Contact requires a name");
+		}
 
 		if ($this->user) {
 			$params['USER_ID'] = $this->user->getId();
@@ -121,6 +137,10 @@ class Contact extends View implements Comparable {
 
 	protected function update () {
 		$params = array ();
+
+		if ($this->name) {
+			$params['NAME'] = $this->name;
+		}
 
 		if ($this->user) {
 			$params['USER_ID'] = $this->user->getId();

@@ -261,7 +261,14 @@ class UserSource extends CommonSource implements Source {
 		} else {
 			$args[] = new DbParam('user.active', ':active', true, PDO::PARAM_BOOL);
 		}
-		$args[] = new DbParam('user.username', ':username', $params['USERNAME'], PDO::PARAM_STR);
+
+		if (array_key_exists('USERNAME', $params)) {
+			$args[] = new DbParam('user.username', ':username', $params['USERNAME'], PDO::PARAM_STR);
+		}
+
+		if (array_key_exists('EMAIL', $params)) {
+			$args[] = new DbParam('user.username', ':username', $params['USERNAME'], PDO::PARAM_STR);
+		}
 
 		$sql = "SELECT DISTINCT
 					user.id,

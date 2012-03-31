@@ -1,5 +1,4 @@
 {include file='header.tpl'}
-<script type="text/javascript" src="{$js_url}/contact.js"></script>
 
 <div id="header_wrap{if !$homepage}_secondary{/if}">
 	<div id="header{if $secondary}_secondary{/if}"><!-- begin header -->
@@ -34,6 +33,7 @@
 	</div><!-- end header -->
 </div>
 
+{literal}
 <script type="text/javascript">
 $(document).ready(function(){
 	$("input[type=submit]").click(function(e){
@@ -41,21 +41,23 @@ $(document).ready(function(){
 			$("p.error").html('Please enter your name.');
 			e.preventDefault();
 			$("#name").focus();
-		}
-		else if ($("#email").val() == ''){
+		} else if ($("#email").val() == ''){
+			$("p.error").html('Please enter an email address.');
+			e.preventDefault();
+			$("#email").focus();
+		} else if (!(/^[_a-z0-9]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i.test($("#email").val()))) {
 			$("p.error").html('Please enter a valid email address.');
 			e.preventDefault();
 			$("#email").focus();
-		}
-		else if ($("#message").val() == ''){
+		} else if ($("#message").val() == ''){
 			$("p.error").html('Please enter your message.');
 			e.preventDefault();
 			$("#message").focus();
 		}
 	})
 });
-
 </script>
+{/literal}
 
 <div id="page{if !$homepage}_secondary{/if}"><!-- start page content -->
           

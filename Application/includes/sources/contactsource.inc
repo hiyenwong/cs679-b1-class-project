@@ -38,6 +38,7 @@ class ContactSource extends CommonSource implements Source {
 
 		if ($this->readStatement == null) {
 			$sql = "SELECT contact.id,
+						contact.name,
 						contact.user_id,
 						contact.email,
 						contact.date_submitted,
@@ -61,6 +62,12 @@ class ContactSource extends CommonSource implements Source {
 	public function insert(Array $params) {
 
 		$args = array();
+
+		if (array_key_exists('NAME', $params)) {
+			$args[] = new DbParam('contact.name', ':name', $params['NAME'], PDO::PARAM_STR);
+		} else {
+			throw new Exception("Missing required parameter name");
+		}
 
 		if (array_key_exists('USER_ID', $params)) {
 			$args[] = new DbParam('contact.user_id', ':user_id', $params['USER_ID'], PDO::PARAM_INT);
@@ -103,6 +110,10 @@ class ContactSource extends CommonSource implements Source {
 		$original = $this->read ($params);
 
 		$args = array();
+
+		if (array_key_exists('NAME', $params) && $original['name'] != $params['NAME']) {
+			$args[] = new DbParam('contact.name', ':name', $params['NAME'], PDO::PARAM_STR);
+		}
 
 		if (array_key_exists('USER_ID', $params) && $original['user_id'] != $params['USER_ID']) {
 			$args[] = new DbParam('contact.user_id', ':user_id', $params['USER_ID'], PDO::PARAM_INT);
@@ -152,6 +163,7 @@ class ContactSource extends CommonSource implements Source {
 
 		$sql = "SELECT DISTINCT
 					contact.id,
+					contact.name,
 					contact.user_id,
 					contact.email,
 					contact.date_submitted,
