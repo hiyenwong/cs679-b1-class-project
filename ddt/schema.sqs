@@ -109,11 +109,11 @@
         <schema><![CDATA[]]></schema>
         <location>
             <x>70.000000</x>
-            <y>147.000000</y>
+            <y>133.000000</y>
         </location>
         <size>
             <width>234.000000</width>
-            <height>120.000000</height>
+            <height>140.000000</height>
         </size>
         <SQLField>
             <name><![CDATA[id]]></name>
@@ -123,6 +123,14 @@
             <primaryKey>1</primaryKey>
             <didChangeNameDuringValidation><![CDATA[0]]></didChangeNameDuringValidation>
             <uid><![CDATA[ACF9B7D2-268F-4A32-8D78-8B557C024555]]></uid>
+        </SQLField>
+        <SQLField>
+            <name><![CDATA[name]]></name>
+            <type><![CDATA[VARCHAR(100)]]></type>
+            <notNull>1</notNull>
+            <didChangeNameDuringValidation><![CDATA[0]]></didChangeNameDuringValidation>
+            <indexed><![CDATA[0]]></indexed>
+            <uid><![CDATA[85DA19F7-CB1C-467E-9A88-795B204E283C]]></uid>
         </SQLField>
         <SQLField>
             <name><![CDATA[user_id]]></name>
@@ -832,10 +840,10 @@ U2l6ZT1mZn2hgWQCgRgDhoaG
         <pageBoundariesVisible><![CDATA[0]]></pageBoundariesVisible>
         <PageGridVisible><![CDATA[0]]></PageGridVisible>
         <snapToGrid><![CDATA[0]]></snapToGrid>
-        <SourceSplitViewState><![CDATA[2 361.317 1069.68]]></SourceSplitViewState>
+        <SourceSplitViewState><![CDATA[2 361.318 1069.68]]></SourceSplitViewState>
         <uid><![CDATA[F31A7126-ACAD-4454-BAEF-05377BC48C84]]></uid>
         <windowHeight><![CDATA[811.000000]]></windowHeight>
-        <windowLocationX><![CDATA[0.000000]]></windowLocationX>
+        <windowLocationX><![CDATA[1.000000]]></windowLocationX>
         <windowLocationY><![CDATA[67.000000]]></windowLocationY>
         <windowWidth><![CDATA[1440.000000]]></windowWidth>
     </SQLDocumentInfo>
