@@ -118,11 +118,10 @@ class Contact extends View implements Comparable {
 			throw new Exception ('Contact requires an email.');
 		}
 
-		if ($this->dateSubmitted) {
-			$params['DATE_SUBMITTED'] = $this->dateSubmitted;
-		} else {
-			throw new Exception ('Contact requires a submittion date.');
+		if (!$this->dateSubmitted) {
+			$this->dateSubmitted = new Date();
 		}
+		$params['DATE_SUBMITTED'] = $this->dateSubmitted->getTimestamp();
 
 		if ($this->content) {
 			$params['CONTENT'] = $this->content;
@@ -151,7 +150,7 @@ class Contact extends View implements Comparable {
 		}
 
 		if ($this->dateSubmitted) {
-			$params['DATE_SUBMITTED'] = $this->dateSubmitted;
+			$params['DATE_SUBMITTED'] = $this->dateSubmitted->getTimestamp();
 		}
 
 		if ($this->content) {

@@ -60,10 +60,11 @@ $(document).ready(function(){
 {/literal}
 
 <div id="page{if !$homepage}_secondary{/if}"><!-- start page content -->
-          
+    
 	<div id="main_content">
 		<div id="main_content_left_secondary">
        		<fieldset id="contact">
+       			<div id="status">{if $message}{$message}{/if}</div>
 	       		<legend>Please fill out the below form:</legend>
                 <form id='contactus' method="post" action="contact.php">
                 	<p class="error">&nbsp;{if $err_message}{$err_message}{/if}</p>
