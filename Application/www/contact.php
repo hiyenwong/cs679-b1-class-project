@@ -8,6 +8,8 @@
 	require_once 'transaction.inc';
 	require_once 'contact.inc';
 
+	$smarty = new MySmarty($SMARTY_CONFIG);
+	
 	if (isset($_POST['submit'])) {
 		$user = false;
 
@@ -39,7 +41,7 @@
 
 			$contact = Factory::createView(new ContactKey());
 			if ($user) {
-				$contact.setUser($user);
+				$contact->setUser($user);
 			}
 
 			$contact->setName($name);
@@ -48,14 +50,17 @@
 			$contact->setDateSubmitted(new Date());
 			$transaction->commit();
 
+			$smarty->assign('message', 'Message sent to iBudget successfully.');
 		} catch (Exception $e) {
 			if ($transaction && !$transaction->isComplete()) {
 				$transaction->rollBack();
 			}
-			echo "<PRE>A error had occured: " . $e->getMessage() . "\n" . $e->getTraceAsString() . "\n</PRE>";
+			$smarty->assign('message', 'An error had occurred, please try again in a few minutes.');
+			// echo "<PRE>A error had occured: " . $e->getMessage() . "\n" . $e->getTraceAsString() . "\n</PRE>";
 		}
-	} else {
-		$smarty->display('contact.tpl');
-		$smarty = new MySmarty($SMARTY_CONFIG);
 	}
+	
+	
+	$smarty->display('contact.tpl');
+	
 ?>
