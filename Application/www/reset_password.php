@@ -21,25 +21,18 @@ if (!empty($_POST)){
 	} 
 	
 	try {
-		$username = $_POST['username'];
-		$pid = $_POST['pid'];
+		$username = $_GET['username'];
+		$pid = $_GET['pid'];
 		$result = User::checkAuthentication($username, $pid, true);
-	
+
 		if ($result) {
 			$transaction = new Transaction(new MySqlDB());
   			$transaction->start();
   			
-			$results = User::getUserByUserName($username);
-			foreach ($results as $row) {
-  				// We know results has only one record so it is ok to foreach on this and break
-  				$user = Factory::getView(new UserKey($row['id']));
-  				break;
-  			}		
+			$user = User::getUserByUserName($username);		
 			$user->setPassword($_POST['new_password'], false);	
 			$transaction->commit();
-			session_start();
-			$_SESSION['username'] = $username;
-		 	header( 'Location: userpage.php' );
+		 	header( 'Location: dashboard.php' );
 			exit();
 		}
 		
@@ -51,12 +44,10 @@ if (!empty($_POST)){
 		echo "Exception: " . $e->getMessage ();
 	}
 	
-	//$smarty->display('reset_password.tpl');
 } else {
 	$username = $_GET['username'];
 	$pid = $_GET['pid'];
 		
-	$smarty->assign('username', $username);
 	$smarty->assign('pid', $pid);
 	$smarty->assign('form_action', $_SERVER['REQUEST_URI']);
 	$smarty->display('reset_password.tpl');	

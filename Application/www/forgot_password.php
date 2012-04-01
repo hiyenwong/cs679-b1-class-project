@@ -9,24 +9,18 @@ if (!empty($_POST)){
 	$email = htmlentities($_POST['email']);
 	
 	try {
-		$results = User::getUserByUserName($email);
-		
-		if (sizeof($results) > 1) {
+		$user = User::getUserByUserName($email);
+
+		if (sizeof($user) > 1) {
 			// This is an error where we have more than 1 user with the same email, should never happen
 			$err_message = 'Internal Error occurred, please email administrator for further assistance.';
-		} else if (sizeof($results) === 0) {
+		} else if (sizeof($user) === 0) {
 			// This is when we can't find the user
 			$err_message = 'User with username: ' . $email . ' was not found';
 		} else {
   			$transaction = new Transaction(new MySqlDB());
   			$transaction->start();
   					
-  			foreach ($results as $row) {
-  				// We know results has only one record so it is ok to foreach on this and break
-  				$user = Factory::getView(new UserKey($row['id']));
-  				break;
-  			}
-  			
   			$new_password_hash = $user->generateNewPassword();
   			$user->setPassword($new_password_hash, true);
   			$transaction->commit();
@@ -47,6 +41,7 @@ BODY;
 			//mail($to, $subject, $message);
 		}
 	} catch (Exception $e) {
+		print_r($e);
 		if ($transaction && !$transaction->isComplete()) {
 			$transaction->rollBack();
 		}

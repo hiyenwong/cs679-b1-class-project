@@ -5,14 +5,14 @@
    		<div id="navs_left"></div>
    		<div id="navs_center">
      		<ul>
-         		<li><a href="index.php">Home</a></li>
-    	    	<li><a href="about.php">About</a></li>
-    	    	<li><a href="contact.php">Contact</a></li>
+         		<li><a href="index.php" {if $homepage}class="current"{/if}>Home</a></li>
+    	    	<li><a href="about.php" {if $about}class="current"{/if}>About</a></li>
+    	    	<li><a href="contact.php" {if $contact}class="current"{/if}>Contact</a></li>
     	    	{if !$user}
-    	    	<li><a href="login.php">Log In</a></li>
-    	    	<li><a href="register.php">Register</a></li>
+    	    	<li><a href="login.php" {if $login}class="current"{/if}>Log In</a></li>
+    	    	<li><a href="register.php" {if $register}class="current"{/if}>Register</a></li>
     	    	{else}
-    	    	<li><a href="userpage.php">Dashboard</a></li>
+    	    	<li><a href="dashboard.php">Dashboard</a></li>
     	    	<li><a href="logout.php">Log Out</a></li>
     	    	{/if}
     	    	

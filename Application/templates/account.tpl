@@ -12,9 +12,15 @@
 	<div id="main_content">
 		{include file="leftnav.tpl" active='Accounts'}
 
-		<div id="main_content_left_secondary">   
-          	
-                    
+		<div id="main_content_left_secondary"> 
+          	<fieldset id="account">
+	       		<legend>Update Account Info</legend>
+	          	<form action="account.php" method="POST">
+		          	<p><label for="firstName">First Name: </label><input type="text" name="firstName" id="firstName" value="{$user->getFirstName()}"></p>
+		          	<p><label for="lastName">Last Name: </label><input type="text" name="lastName" id="lastName" value="{$user->getLastName()}"></p>
+	        		<p><input type="submit" value="Submit"></p>
+	        	</form>   
+	        </fieldset>         
 		</div><!-- end main content left  -->
       		<!-- end main content right  -->
     </div> <!-- end main content  -->

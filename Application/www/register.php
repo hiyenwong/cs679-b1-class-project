@@ -69,7 +69,7 @@
                 $access = new Access();
                 
                 if ($access->authenticate($username, $password)) {
-                    header ("Location: userpage.php");
+                    header ("Location: dashboard.php");
                     exit();
                 } else {
                     throw new Exception("Unable to login after creating account.");
@@ -88,6 +88,7 @@
  
 	}
 	
+	$smarty->assign('register', 'register');
 	$smarty->display('register.tpl');
 	
 ?>

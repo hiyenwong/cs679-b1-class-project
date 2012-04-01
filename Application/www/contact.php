@@ -60,7 +60,7 @@
 		}
 	}
 	
-	
+	$smarty->assign('contact', 'contact');
 	$smarty->display('contact.tpl');
 	
 ?>
