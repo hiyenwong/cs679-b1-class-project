@@ -1,23 +1,8 @@
 {include file='header.tpl'}
 <div id="header_wrap{if !$homepage}_secondary{/if}">
 	<div id="header{if $secondary}_secondary{/if}"><!-- begin header -->
-		<div id="header_upper">
-			<div id="header_logo"></div>
-				     
-	     	<div id="navs"><!-- begin navigations -->
-	       		<div id="navs_left"></div>
-	       		<div id="navs_center">
-	         		<ul>
-	             		<li><a href="index.php">Home</a></li>
-	        	    	<li><a href="about.php">About</a></li>
-	        	    	<li><a href="contact.php">Contact</a></li>
-	               	  	<li><a href="login.php" class="current">Log In</a></li>     
-	                	<li><a href="register.php">Register</a></li>     
-	       			</ul>
-	       		</div>
-	   			<div id="navs_right"> </div>
-	  		</div><!-- end navigations -->
-	 	</div><!-- end header upper -->
+		
+		{include file='upperheader.tpl' user=$user}
 	  
 	  	<div id="header_lower">	   
 		 	<div id="header_sub_secondary"> 

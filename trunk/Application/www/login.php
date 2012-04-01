@@ -2,7 +2,7 @@
 	require_once '../includes/config.inc';
 	require_once '../includes/access.inc';
 	
-	$requestedUrl = isset($_REQUEST['ref']) ? base64_decode(htmlentities($_REQUEST['ref'])) : $BASE_URL . '/userpage.php';
+	$requestedUrl = isset($_REQUEST['ref']) ? base64_decode(htmlentities($_REQUEST['ref'])) : $BASE_URL . '/dashboard.php';
     $submitted = isset($_REQUEST['submitted']);
     $username = isset($_REQUEST['username']) ? htmlentities($_REQUEST['username']) : false;
     $password = isset($_REQUEST['password']) ? htmlentities($_REQUEST['password']) : false;
@@ -28,6 +28,7 @@
         }
     }
     
+    $smarty->assign('login', 'login');
 	$smarty->display('login.tpl');
 	
 ?>
