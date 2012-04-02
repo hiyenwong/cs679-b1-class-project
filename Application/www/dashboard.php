@@ -11,7 +11,7 @@
 	
 		$smarty = new MySmarty($SMARTY_CONFIG);
 		$smarty->assign('user', $user);
-	
+		$smarty->assign('dashboard', 'dashboard');
 		$smarty->assign('left_menu', true);
 		$smarty->display('dashboard.tpl');
 		

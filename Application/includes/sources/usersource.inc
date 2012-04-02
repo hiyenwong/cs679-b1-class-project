@@ -325,14 +325,14 @@ class UserSource extends CommonSource implements Source {
 			$results = $this->db->execSql($sql, $args);
 			if (sizeof($results) === 0) {
 				// User failed login, Log the time, and increment failed login
-				$sql = "UPDATE user SET last_login_date = NOW(), number_of_attempts = " . ($numberOfAttempts+1) . " WHERE username = " . $params['USERNAME'];
+				$sql = "UPDATE user SET last_login_date = NOW(), number_of_attempts = " . ($numberOfAttempts+1) . " WHERE username = '" . $params['USERNAME'] . "'";
 				$this->db->execSql($sql, $args);
 				throw new AccessDeniedException('Username and password does not match');
 			} else if (sizeof($results) > 1) {
 				throw new Exception('Username and password provided yield inconsistent information, please contact site admin for help.');
 			} else {
 				// User failed login, Log the time, and clear failed login
-				$sql = "UPDATE user SET last_login_date = NOW(), number_of_attempts = 0 WHERE username = " . $params['USERNAME'];
+				$sql = "UPDATE user SET last_login_date = NOW(), number_of_attempts = 0 WHERE username = '" . $params['USERNAME'] . "'";
 				$this->db->execSql($sql, $args);
 				return true;
 			}

@@ -41,7 +41,6 @@ BODY;
 			//mail($to, $subject, $message);
 		}
 	} catch (Exception $e) {
-		print_r($e);
 		if ($transaction && !$transaction->isComplete()) {
 			$transaction->rollBack();
 		}
