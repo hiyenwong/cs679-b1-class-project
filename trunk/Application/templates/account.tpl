@@ -13,14 +13,20 @@
 		{include file="leftnav.tpl" active='Accounts'}
 
 		<div id="main_content_left_secondary"> 
-          	<fieldset id="account">
-	       		<legend>Update Account Info</legend>
-	          	<form action="account.php" method="POST">
-		          	<p><label for="firstName">First Name: </label><input type="text" name="firstName" id="firstName" value="{$user->getFirstName()}"></p>
-		          	<p><label for="lastName">Last Name: </label><input type="text" name="lastName" id="lastName" value="{$user->getLastName()}"></p>
-	        		<p><input type="submit" value="Submit"></p>
-	        	</form>   
-	        </fieldset>         
+          	
+          	<form action="account.php" method="POST">
+          		<p class="error">{if $e_message}{$err_message}{/if}</p>
+	          	<p><label for="firstName">First Name: </label><input type="text" name="firstName" id="firstName" value="{$user->getFirstName()}"></p>
+	          	<p><label for="lastName">Last Name: </label><input type="text" name="lastName" id="lastName" value="{$user->getLastName()}"></p>
+        		<p><input type="submit" value="Update Name" name="update_name"></p>
+        	</form>
+        	<form action="account.php" method="POST">
+          		<p class="error">{if $err_message}{$err_message}{/if}</p>
+        		<p><label for="new_password">Password: </label><input type="password" name="new_password" id="new_password"></input></p>
+        		<p><label for="verify_new_password">Repeat Password: </label><input type="password" name="verify_new_password" id="verify_new_password"></input></p>
+        		<p><input type="submit" value="Submit" name="update_password"></p>
+        	</form>   
+	        <p>Date registered: {$user->getCreatedDate()|date_format:"%A, %B %e, %Y at %I:%M:%S %p"}</p>
 		</div><!-- end main content left  -->
       		<!-- end main content right  -->
     </div> <!-- end main content  -->

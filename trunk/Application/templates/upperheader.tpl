@@ -12,7 +12,7 @@
     	    	<li><a href="login.php" {if $login}class="current"{/if}>Log In</a></li>
     	    	<li><a href="register.php" {if $register}class="current"{/if}>Register</a></li>
     	    	{else}
-    	    	<li><a href="dashboard.php">Dashboard</a></li>
+    	    	<li><a href="dashboard.php" {if $dashboard}class="current"{/if}>Dashboard</a></li>
     	    	<li><a href="logout.php">Log Out</a></li>
     	    	{/if}
     	    	

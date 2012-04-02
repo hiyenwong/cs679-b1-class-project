@@ -40,12 +40,13 @@ $(document).ready(function(){
 		<div id="main_content_left_secondary">
        		<fieldset id="contact">
        			<div id="status">{if $message}{$message}{/if}</div>
-	       		<legend>Please fill out the below form:</legend>
+	       		<legend>Please fill out the form below:</legend>
                 <form id='contactus' method="post" action="contact.php">
+                	<p class="error"></p>
                     <p><label for="name">Name: </label><input type="text" name="name" id="name" {if $user}value="{$user->getFirstName()} {$user->getLastName()}"{/if}></p>
-	        		<p><label for="email">Email: </label><input type="text" name="email" id="email" {if $user}value="{$user->getUsername()}"{/if}></p>
+	        		<p><label for="email">Email: </label><input type="email" name="email" id="email" {if $user}value="{$user->getUsername()}"{/if}></p>
 	        		<p><label for="message">Message: </label><textarea name = "message" id="message"></textarea></p>
-	        		<p><input type="submit" name="submit" value="SEND"></p>
+	        		<p><input type="submit" name="submit" value="Send"></p>
                 </form>
         	</fieldset>
 		</div><!-- end main content left  -->

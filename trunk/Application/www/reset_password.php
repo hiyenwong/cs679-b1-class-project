@@ -9,16 +9,15 @@ $smarty = new MySmarty($SMARTY_CONFIG);
 
 if (!empty($_POST)){
 	
+	if ($_POST['new_password'] != $_POST['verify_new_password']) {
+		$smarty->assign('err_message', 'The two passwords must match');
+		$smarty->display('reset_password.tpl');
+	} 
+	
 	if (!preg_match("/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9\s]).{8,})/", $_POST['new_password'])) {
 		$smarty->assign('err_message', 'Password Invalid! Must be at least 8 characters and have one lowercase, one uppercase, one number, and one special character.');
         $smarty->display('reset_password.tpl');
 	}
-	
-	if ($_POST['new_password'] != $_POST['verify_new_password']) {
-		$err_message = 'The two passwords must match';
-		$smarty->assign('err_message', $err_message);
-		$smarty->display('reset_password.tpl');
-	} 
 	
 	try {
 		$username = $_GET['username'];
