@@ -16,6 +16,7 @@
 		}
 		
 		$smarty->assign('homepage', 'homepage');
+		$smarty->assign('left_menu', true);
 		$smarty->display('index.tpl');
 		
 	} catch (AccessDeniedException $e) {
