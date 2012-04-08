@@ -1098,3 +1098,7 @@ table#guests td {
 	font-style: italic;
 	color: red;
 }
+
+#addBudgetRow {
+    display: none;
+}
