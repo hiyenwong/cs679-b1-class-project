@@ -1,24 +1,34 @@
 $(document).ready(function () {
 
-    //validate and show next set of fields (first, last names)
+    $("#addBudgetRow").dialog({autoOpen: false})
+
     $("#addBudget").click(function () {
-        $("#addBudgetRow").toggle();
+        $("#addBudgetRow").dialog("open");
     });
     
     $("#saveBudgetItem").click(function() {
-        var category = "", budgeted = 0;
-        categoryId = $("#addCategory").val();
-        budgetedAmount = $("#addBudgeted").val();
-        
         $.ajax({
             type: "POST",
             url: "budget.php",
-            data: {"categoryId" : categoryId, "budgetedAmount" : budgetedAmount},
-            success: function (msg) {
-                alert(msg);
-                $("#error").html(msg);
-            }
+            data: $("#addBudgetRow form").serialize()
         });
+        
+        $("#addBudgeted").val("");
+        $("#addBudgetRow").dialog("close");
+    });
+    
+    $("#cancelBudgetItem").click(function() {
+        $("#addBudgetRow").dialog("close");
     });
     
 });
+
+var removeBudgetItem = function(obj, key) {
+    $.ajax({
+        type: "POST",
+        url: "budget.php",
+        data: {"action" : "remove", "key" : key}
+    });
+
+    $(obj).parents("tr").remove();
+}

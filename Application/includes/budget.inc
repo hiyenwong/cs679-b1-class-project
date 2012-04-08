@@ -121,6 +121,8 @@ class Budget extends View implements Comparable {
 	protected function update () {
 		$params = array ();
 
+        $params['ID'] = $this->id;
+        
 		if ($this->user) {
 			$params['USER_ID'] = $this->user->getId();
 		}
@@ -133,9 +135,11 @@ class Budget extends View implements Comparable {
 			$params['AMOUNT'] = $this->amount;
 		}
 
-		if ($this->active) {
+		if (isset($this->active)) {
 			$params['ACTIVE'] = $this->active;
 		}
+
+        print_r($params);
 
 		$source = BudgetSource::getSource();
 		$source->update ($params);
