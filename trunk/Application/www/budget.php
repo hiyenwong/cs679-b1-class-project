@@ -16,27 +16,37 @@
 		$user = $access->getUser();
 		
 	    if (!empty($_POST)) {
-	       $categoryId = htmlentities($_POST['categoryId']);
-	       echo "Category = ";
-	       print_r($categoryId);
-	       //TODO: check amount is valid
-	       $budgetedAmount = htmlentities($_POST['budgetedAmount']);
-        	    
-        	    
-	       $transaction = new Transaction(new MySqlDB());
-           $transaction->start();
-                
-	       $budget = Factory::createView(new BudgetKey());
-	       $category = Factory::getView(new CategoryKey($categoryId));
+	       $action = htmlentities($_POST['action']);
 	       
-	       $budget->setUser($user);
-	       $budget->setActive(TRUE);
-	       $budget->setAmount($budgetedAmount);
-	       $budget->setCategory($category);
-	       
-	       $transaction->commit();
-	       
-	       echo "Success";
+	       if ($action === "add") {
+    	       $categoryId = htmlentities($_POST['categoryId']);
+    	       //TODO: check amount is valid
+    	       $budgetedAmount = htmlentities($_POST['budgetedAmount']);
+            	    
+            	    
+    	       $transaction = new Transaction(new MySqlDB());
+               $transaction->start();
+                    
+    	       $budget = Factory::createView(new BudgetKey());
+    	       $category = Factory::getView(new CategoryKey($categoryId));
+    	       
+    	       $budget->setUser($user);
+    	       $budget->setActive(TRUE);
+    	       $budget->setAmount($budgetedAmount);
+    	       $budget->setCategory($category);
+    	       
+    	       $transaction->commit();
+	       } elseif ($action === "remove") {
+	           $key = htmlentities($_POST['key']);
+	           
+	           $transaction = new Transaction(new MySqlDB());
+               $transaction->start();
+               
+	           $budgetItem = Factory::getView(new BudgetKey($key));
+	           $budgetItem->setActive(0);
+	           
+    	       $transaction->commit();
+	       }
 	          
 	    } else {            		
     		$smarty = new MySmarty($SMARTY_CONFIG);
@@ -44,7 +54,7 @@
     		$userCategories = Category::getOptions(array("USER_ID" => $user->getId()));
     		$allCategories = Category::getOptions();
     		
-    		$budgets = Budget::getOptions(array("USER_ID" => $user->getId()));
+    		$budgets = Budget::getOptions(array("USER_ID" => $user->getId(), "ACTIVE" => 1));
     		
     		$smarty->assign('budgets', $budgets);
     		$smarty->assign('allCategories', $allCategories);
