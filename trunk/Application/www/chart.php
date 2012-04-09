@@ -28,6 +28,7 @@
     	$smarty->display('chart.tpl');
 		
 	} catch (AccessDeniedException $e) {
+		print_r($e);
 		trigger_error('Access Denied');
 	} catch (Exception $e) {
 		//trigger_error('An error has occurred, please try again in a few minutes');
