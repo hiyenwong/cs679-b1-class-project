@@ -139,11 +139,8 @@ class Budget extends View implements Comparable {
 			$params['ACTIVE'] = $this->active;
 		}
 
-        print_r($params);
-
 		$source = BudgetSource::getSource();
 		$source->update ($params);
-
 	}
 
 	protected function delete () {
@@ -178,7 +175,8 @@ class Budget extends View implements Comparable {
 		$source = BudgetSource::getSource();
 		$options = array();
 		foreach ($source->getOptions($params) as $row) {
-			$options[$row['id']] = $row['name'] . ' - ' . $row['amount'];
+			//$options[$row['id']] = $row['name'] . ' - ' . $row['amount'];
+			$options[$row['id']] = array("name" => $row['name'], "amount" => $row['amount'], "category_id" => $row['category_id']);
 		}
 		return $options;
 	}

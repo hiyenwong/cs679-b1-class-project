@@ -210,6 +210,14 @@ class ActivitySource extends CommonSource implements Source {
 		if (array_key_exists('IMPORT_TIME', $params)) {
 			$args[] = new DbParam('activity.import_time', ':import_time', $params['IMPORT_TIME'], PDO::PARAM_STR);
 		}
+		
+		if (array_key_exists('TRANSACTION_DATE_START', $params)) {
+			$args[] = new DbParam('activity.transaction_date', ':transaction_date', $params['TRANSACTION_DATE'], PDO::PARAM_STR, '>=');
+		}
+		
+        if (array_key_exists('TRANSACTION_DATE_END', $params)) {
+			$args[] = new DbParam('activity.transaction_date', ':transaction_date', $params['TRANSACTION_DATE'], PDO::PARAM_STR, '<=');
+		}
 
 		$sql = "SELECT DISTINCT
 					activity.id,
