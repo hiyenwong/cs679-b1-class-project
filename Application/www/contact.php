@@ -59,7 +59,7 @@
 			// echo "<PRE>A error had occured: " . $e->getMessage() . "\n" . $e->getTraceAsString() . "\n</PRE>";
 		}
 	}
-	
+	$smarty->assign('left_menu', true);	
 	$smarty->assign('contact', 'contact');
 	$smarty->display('contact.tpl');
 	
