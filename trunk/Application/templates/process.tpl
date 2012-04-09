@@ -22,7 +22,7 @@
 	        				<td class="leftalign"><input type="file" name="csv_file" id="csv_file"></td>
 	        			</tr>
 	        			<tr>
-	        				<th nowrap="nowrap">Mapping Type</th>
+	        				<th>Mapping Type</th>
 	        				<td class="leftalign">{html_options name=mapping_type id=mapping_type options=$mappingTypes}</td>
 	        			</tr>
 	        			<tr>

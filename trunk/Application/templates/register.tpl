@@ -30,7 +30,7 @@
                 <form action="register.php" method="POST">
                     <input type="hidden" name="action" value="adduser" />
                     <div id="register_user_password" class="register_toggle">
-                        <p><label for="username">Email: </label><input type="text" name="username" id="username" class="user_password"><span class="Success"></span><span class="error"></span></p>
+                        <p><label for="username">Email: </label><input type="email" name="username" id="username" class="user_password"><span class="Success"></span><span class="error"></span></p>
                         <p><label for="password">Password: </label><input type="password" name="password" id="password" class="user_password"><span class="error"></span></p>
                         <p><label for="password_repeat">Confirm Password: </label><input type="password" name="password_repeat" id="password_repeat" class="user_password"><span class="error"></span></p>
                         <p><input type="button" name="next" id="next" value="Next"></p>

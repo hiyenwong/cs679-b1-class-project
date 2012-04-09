@@ -25,9 +25,9 @@
 	       		<legend>Log In to iBudget</legend>
 	        	<form action="login.php" method="POST">
                     <input type="hidden" name="submitted" value="true" />
-	        		<p><label for="username">Username: </label><input type="text" name="username" id="username"></p>
-	        		<p><label for="password">Password: </label><input type="password" name="password" id="password"></p>
-	        		{if isset($errorMessage)}<p><span class="error">{$errorMessage}</span></p>{/if}
+                    {if isset($errorMessage)}<p><span class="error">{$errorMessage}</span></p>{/if}
+	        		<p><label for="username">Username: </label><input type="email" name="username" id="username"></p>
+	        		<p><label for="password">Password: </label><input type="password" name="password" id="password"></p>    		
 	        		<a href="forgot_password.php" style="margin-left:180px">Forgot your password?</a>
 	        		<p><input type="submit" name="submit" value="Log In"></p>
 	        	</form>

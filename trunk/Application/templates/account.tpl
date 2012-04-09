@@ -12,7 +12,7 @@
 	<div id="main_content">
 		{include file="leftnav.tpl" active='Accounts'}
 
-		<div id="main_content_left_secondary"> 
+		<div id="main_content_left_secondary" class="account"> 
           	
           	<form action="account.php" method="POST">
           		<p class="error">{if $e_message}{$err_message}{/if}</p>
@@ -22,8 +22,8 @@
         	</form>
         	<form action="account.php" method="POST">
           		<p class="error">{if $err_message}{$err_message}{/if}</p>
-        		<p><label for="new_password">Password: </label><input type="password" name="new_password" id="new_password"></input></p>
-        		<p><label for="verify_new_password">Repeat Password: </label><input type="password" name="verify_new_password" id="verify_new_password"></input></p>
+        		<p><label for="new_password">Password: </label><input type="password" name="new_password" id="new_password"></p>
+        		<p><label for="verify_new_password">Repeat Password: </label><input type="password" name="verify_new_password" id="verify_new_password"></p>
         		<p><input type="submit" value="Submit" name="update_password"></p>
         	</form>   
 	        <p>Date registered: {$user->getCreatedDate()|date_format:"%A, %B %e, %Y at %I:%M:%S %p"}</p>

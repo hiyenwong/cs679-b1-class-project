@@ -124,6 +124,11 @@ fieldset#contact p{
 	padding-top: 3px;	
 }
 
+fieldset#contact p.error {
+	padding-left: 170px;	
+	text-align: left;
+}
+
 fieldset p.error {
 	padding-left: 30px;	
 }
@@ -882,6 +887,10 @@ input[type="submit"], #register input[type="button"] {
 	font-size: 13px;
 }
 
+#addBudgetRow input[type="button"], #addBudget {
+	font-size: 13px;	
+}
+
 input[type="submit"]:hover, input[type="button"]:hover {
 	cursor: pointer;	
 	border: 1px solid #D0D0D0;
@@ -1104,6 +1113,14 @@ table#guests td {
     display: none;
 }
 */
+
+div.account form input[type="submit"] {
+	margin-left: 250px;
+}
+
+div.account form:first-child input[type="submit"] {
+	margin-left: 210px;
+}
 
 #addBudgeted {
     width: 100px;
