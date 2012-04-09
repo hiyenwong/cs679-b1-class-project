@@ -1,7 +1,6 @@
 {include file='header.tpl'}
 
 <script type="text/javascript" src="{$js_url}/budget.js"></script>
-<script type="text/javascript" src="{$js_url}/jquery-ui-1.8.18.custom.min.js"></script>
 <link type="text/css" href="{$style_url}/ui-lightness/jquery-ui-1.8.18.custom.css" rel="Stylesheet" />
 
 <div id="header_wrap{if !$homepage}_secondary{/if}">
@@ -11,7 +10,7 @@
 	</div><!-- end header -->
 </div>
 
-<div id="page{if !$homepage}_secondary{/if}" id="budget"><!-- start page content -->
+<div id="page{if !$homepage}_secondary{/if}"><!-- start page content -->
 
 	<div id="main_content">
 		{include file="leftnav.tpl" active='Budget'}
