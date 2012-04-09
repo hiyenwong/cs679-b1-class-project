@@ -1104,3 +1104,7 @@ table#guests td {
     display: none;
 }
 */
+
+#addBudgeted {
+    width: 100px;
+}

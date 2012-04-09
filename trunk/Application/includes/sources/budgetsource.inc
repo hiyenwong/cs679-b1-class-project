@@ -157,6 +157,7 @@ class BudgetSource extends CommonSource implements Source {
 		$sql = "SELECT DISTINCT
 					user_budget.id,
 					category.name,
+					user_budget.category_id,
 					user_budget.amount
 				FROM user_budget
 				JOIN category ON category.id = user_budget.category_id

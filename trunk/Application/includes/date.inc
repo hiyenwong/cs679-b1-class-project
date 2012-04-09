@@ -133,6 +133,23 @@ class Date implements Comparable {
 
 		return strftime ($format, $timestamp);
 	}
+	
+    /**
+	 * Get the first of the month.
+	 */
+	public static function firstOfMonth ($date = false, $format = false) {
+	    if (!$date) {
+	       $date = time();
+	    }
+		list ($yr, $mo, $dy, $hr, $mn, $sc) = sscanf ($date, "%4d-%2d-%2d %2d:%2d:%2d");
+		$timestamp = mktime ($hr, $mn, $sc, $mo, 1, $yr);
+
+		// error making time, return what was passed
+		if ($timestamp < 0)
+			return $date;
+
+		return strftime (self::$DATE_TIME, $timestamp);
+	}
 
 	/**
 	 * Current timestamp in DB2 format (for prepared statements).
