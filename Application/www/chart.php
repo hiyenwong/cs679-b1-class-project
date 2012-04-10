@@ -12,7 +12,7 @@
 	try {
 		$access = new Access();
 		$access->authenticate();
-		$user = $access->getUser();          		
+		$user = $access->getUser(); 		
     	$smarty = new MySmarty($SMARTY_CONFIG);
     		
     	$userCategories = Category::getOptions(array("USER_ID" => $user->getId()));
@@ -28,7 +28,6 @@
     	$smarty->display('chart.tpl');
 		
 	} catch (AccessDeniedException $e) {
-		print_r($e);
 		trigger_error('Access Denied');
 	} catch (Exception $e) {
 		//trigger_error('An error has occurred, please try again in a few minutes');
