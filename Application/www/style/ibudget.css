@@ -3,18 +3,18 @@
 }
 
 html {
-	height:100%;
+	height: 100%;
 }
 
 body {
 	background-image: url(../images/head_bg.jpg);
-    background-position: center top;
-    background-repeat: repeat-x;
-    color: #666666;
-    font: 12px/1.231 Geneva, Arial, Helvetica, sans-serif;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+	background-position: center top;
+	background-repeat: repeat-x;
+	color: #666666;
+	font: 12px/1.231 Geneva, Arial, Helvetica, sans-serif;
+	height: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 p {
@@ -23,17 +23,17 @@ p {
 }
 
 form p {
-	padding-top: 10px;	
+	padding-top: 10px;
 }
 
-h1, legend {
+h1,legend {
 	font-size: 20px;
 	color: #0C356A;
 	margin: 0 0 10px 0;
 }
 
 legend {
-	padding: 0 10px;	
+	padding: 0 10px;
 }
 
 h2 {
@@ -46,7 +46,7 @@ h3 {
 	font-size: 12px;
 	color: #0C356A;
 	margin: 0;
-	font-weight:bold;
+	font-weight: bold;
 }
 
 h4 {
@@ -70,7 +70,7 @@ img {
 	border: none;
 }
 
-ol, ul  {
+ol,ul {
 	line-height: 22px;
 	margin-top: 0px;
 }
@@ -78,69 +78,69 @@ ol, ul  {
 label {
 	display: inline-block;
 	width: 100px;
-	font-size: 14px;	
+	font-size: 14px;
 }
 
 fieldset {
-	width: 350px;	
+	width: 350px;
 	text-align: center;
 	margin: 0 auto;
 	padding: 20px;
 }
 
 fieldset#register {
-	width: 400px;	
+	width: 400px;
 	margin: 0 auto;
 	padding: 20px;
 }
 
 fieldset#register label {
-	width: 150px;	
+	width: 150px;
 	text-align: left;
 }
 
 fieldset#contact {
-	width: 400px;	
+	width: 400px;
 	margin: 0 auto;
 	padding: 20px;
 }
 
 fieldset#contact label {
-	width: 150px;	
+	width: 150px;
 	text-align: left;
 	vertical-align: top;
 }
 
 fieldset#contact textarea {
 	resize: none;
-	background-image:url(../images/form_bg.jpg);
+	background-image: url(../images/form_bg.jpg);
 }
 
 fieldset#contact input[type="submit"] {
 	margin-left: 310px;
 }
 
-fieldset#contact p{
-	padding-top: 3px;	
+fieldset#contact p {
+	padding-top: 3px;
 }
 
 fieldset#contact p.error {
-	padding-left: 170px;	
+	padding-left: 170px;
 	text-align: left;
 }
 
 fieldset p.error {
-	padding-left: 30px;	
+	padding-left: 30px;
 }
 
 fieldset#forgot_password input[type="submit"] {
 	margin-left: 252px;
 }
 
-fieldset#forgot_password p{
-	padding-top: 3px;	
+fieldset#forgot_password p {
+	padding-top: 3px;
 }
-	
+
 .sub_box_text h2 {
 	font-size: 16px;
 	color: #0C356A;
@@ -163,9 +163,9 @@ fieldset#forgot_password p{
 	background: url(../images/bgr.png) no-repeat scroll -96px 0 transparent;
 	min-height: 350px;
 }
-	
-.footer, .push {
-     height: 61px;
+
+.footer,.push {
+	height: 61px;
 }
 
 #header_wrap {
@@ -209,7 +209,7 @@ fieldset#forgot_password p{
 #header_lower_alt {
 	width: 892px;
 	float: left;
-	padding-left:43px;
+	padding-left: 43px;
 }
 
 #header_sub {
@@ -281,7 +281,7 @@ fieldset#forgot_password p{
 #header_sub_button {
 	float: left;
 	padding-top: 20px;
-	width:50px;
+	width: 50px;
 }
 
 #header_secondary {
@@ -314,7 +314,7 @@ fieldset#forgot_password p{
 	float: left;
 	padding-top: 0;
 	width: 390px;
-	padding-left:35px;
+	padding-left: 35px;
 }
 
 #header_sub_secondary_right {
@@ -335,10 +335,10 @@ fieldset#forgot_password p{
 }
 
 #navs a {
-	text-decoration:none;
-	color:#FFF;
-	font-size:12px;
-	font-weight:bold;
+	text-decoration: none;
+	color: #FFF;
+	font-size: 12px;
+	font-weight: bold;
 	display: block;
 	float: left;
 	padding: 12px 20px;
@@ -373,7 +373,7 @@ fieldset#forgot_password p{
 	float: left;
 	background-repeat: repeat-x;
 	margin-right: 0;
-	width:auto;
+	width: auto;
 }
 
 #navs ul {
@@ -383,7 +383,7 @@ fieldset#forgot_password p{
 
 #navs li {
 	display: inline;
-	margin:0;
+	margin: 0;
 }
 
 #navs .current {
@@ -415,7 +415,7 @@ fieldset#forgot_password p{
 	background-image: url(../images/vert_separator.gif);
 	background-repeat: no-repeat;
 	background-position: right;
-	width:auto;
+	width: auto;
 }
 
 .sub_box {
@@ -440,7 +440,7 @@ fieldset#forgot_password p{
 	margin-right: 8px;
 	vertical-align: middle;
 	float: left;
-	width:auto;
+	width: auto;
 }
 
 #secondary {
@@ -450,7 +450,7 @@ fieldset#forgot_password p{
 
 #featured_wrap {
 	float: left;
-	width:auto;
+	width: auto;
 }
 
 #featured {
@@ -468,7 +468,7 @@ fieldset#forgot_password p{
 	border: solid 1px #cacaca;
 	min-width: 400px;
 	min-height: 190px;
-	width:auto;
+	width: auto;
 }
 
 #featured_text {
@@ -501,7 +501,7 @@ fieldset#forgot_password p{
 }
 
 .center {
-	text-align:center;	
+	text-align: center;
 }
 
 #main_content_right {
@@ -536,18 +536,18 @@ fieldset#forgot_password p{
 /** FOOTER **/
 /************/
 #footer_wrap {
-    background-image: url(../images/footer_bg.jpg);
-    background-repeat: repeat-x;
-    height: 61px;
+	background-image: url(../images/footer_bg.jpg);
+	background-repeat: repeat-x;
+	height: 61px;
 }
 
 #footer {
-    color: #FFF;
-    font-size: 11px;
-    height: 36px;
-    margin: 0 auto;
-    padding: 25px 0 0;
-    width: 960px;
+	color: #FFF;
+	font-size: 11px;
+	height: 36px;
+	margin: 0 auto;
+	padding: 25px 0 0;
+	width: 960px;
 }
 
 #footer a {
@@ -563,7 +563,7 @@ fieldset#forgot_password p{
 	width: 400px;
 }
 
-#footer_right  {
+#footer_right {
 	float: right;
 	width: 400px;
 	text-align: right;
@@ -571,28 +571,28 @@ fieldset#forgot_password p{
 
 a.button {
 	background: url(../images/button_bg.jpg) repeat-x;
-	padding:5px 10px;
+	padding: 5px 10px;
 	color: #FFF;
 	text-decoration: none;
-	border:1px solid #32312f;
-	font-size:10px;
-	line-height:25px;
+	border: 1px solid #32312f;
+	font-size: 10px;
+	line-height: 25px;
 	margin-left: 10px;
 	margin-right: 10px;
 }
 
 a.button:hover {
 	background: url(../images/button_o.jpg) repeat-x;
-	border:1px solid #32312f;
+	border: 1px solid #32312f;
 }
 
-.input, textarea {
-	background-image:url(../images/form_bg.jpg);
-	background-repeat:repeat-x;
-	border:1px solid #ccc;
-	font-size:11px;
-	margin-right:4px;
-	padding:5px;
+.input,textarea {
+	background-image: url(../images/form_bg.jpg);
+	background-repeat: repeat-x;
+	border: 1px solid #ccc;
+	font-size: 11px;
+	margin-right: 4px;
+	padding: 5px;
 	margin-top: 3px;
 	margin-bottom: 10px;
 }
@@ -651,7 +651,7 @@ a.button:hover {
 	margin-left: 0;
 	padding: 8px 0;
 	background: url(../images/nav_hover.png) repeat-y;
-	display:block;
+	display: block;
 }
 
 .active {
@@ -661,7 +661,7 @@ a.button:hover {
 	margin-left: 0;
 	padding: 8px 0;
 	background: url(../images/nav_hover.png) repeat-y;
-	display:block;
+	display: block;
 }
 
 .page_column {
@@ -675,11 +675,11 @@ a.button:hover {
 	margin-top: 15px;
 }
 
-.page_column .img  {
+.page_column .img {
 	float: left;
 	margin-right: 20px;
 	margin-top: 5px;
-	width:auto;
+	width: auto;
 }
 
 .page_column h4 {
@@ -712,7 +712,7 @@ a.button:hover {
 
 .slider-wrap {
 	float: right;
-	width:auto;
+	width: auto;
 }
 
 .slider-wrap-alt {
@@ -741,6 +741,7 @@ a.button:hover {
 	float: right;
 	margin-top: 18px;
 }
+
 .slider_nav_left {
 	float: left;
 	margin-top: 3px;
@@ -753,7 +754,7 @@ a.button:hover {
 	width: auto;
 }
 
-#myController span{
+#myController span {
 	float: left;
 	background: #eaeaea;
 	margin-right: 10px;
@@ -814,6 +815,7 @@ a.button:hover {
 	margin-top: 15px;
 	color: #FFF;
 }
+
 .slide_subheadline_text {
 	float: left;
 	padding-left: 30px;
@@ -838,7 +840,7 @@ a.button:hover {
 
 .slide_button {
 	float: left;
-	width:auto;
+	width: auto;
 }
 
 table {
@@ -854,18 +856,19 @@ th {
 	font-weight: bold;
 }
 
-th, td {
+th,td {
 	vertical-align: top;
 	color: #CDBB98;
 }
 
-input[type="text"], input[type="button"], input[type="submit"], input[type="password"], input[type="email"], textarea {
+input[type="text"],input[type="button"],input[type="submit"],input[type="password"],input[type="email"],textarea
+	{
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	padding: 4px 5px;	
+	padding: 4px 5px;
 }
 
-input[type="text"], input[type="password"], input[type="email"] {
+input[type="text"],input[type="password"],input[type="email"] {
 	width: 200px;
 	height: 20px;
 	font-size: 12px;
@@ -877,33 +880,34 @@ textarea {
 	font-size: 12px;
 }
 
-input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, textarea:focus {
+input[type="text"]:focus,input[type="password"]:focus,input[type="email"]:focus,textarea:focus
+	{
 	border: 1px solid #D0D0D0;
 	box-shadow: 0 1px 2px #D0D0D0 inset;
 }
 
-input[type="submit"], #register input[type="button"] {
+input[type="submit"],#register input[type="button"] {
 	margin-left: 266px;
 	font-size: 13px;
 }
 
-#addBudgetRow input[type="button"], #addBudget {
-	font-size: 13px;	
+#addBudgetRow input[type="button"],#addBudget {
+	font-size: 13px;
 }
 
-input[type="submit"]:hover, input[type="button"]:hover {
-	cursor: pointer;	
+input[type="submit"]:hover,input[type="button"]:hover {
+	cursor: pointer;
 	border: 1px solid #D0D0D0;
 	box-shadow: 0 1px 2px #D0D0D0 inset;
 }
 
-pre, code, kbd, samp, tt {
+pre,code,kbd,samp,tt {
 	font-family: monospace;
 	font-size: 108%;
 	line-height: 100%;
 }
 
-input, select, select.MB_focusable, textarea {
+input,select,select.MB_focusable,textarea {
 	background-color: #F9F9F9;
 	border: 1px solid #F2E0E2;
 }
@@ -912,11 +916,11 @@ a.sortheader {
 	text-decoration: none;
 }
 
-a:link, a.sortheader:link { 
+a:link,a.sortheader:link {
 	color: #006666;
 }
 
-a:visited, a.sortheader:visited {
+a:visited,a.sortheader:visited {
 	color: #669999;
 }
 
@@ -953,19 +957,19 @@ table.panel td {
 	vertical-align: top;
 }
 
-table.panel td.odd, td.odd {
+table.panel td.odd,td.odd {
 	background: #fafafa;
 }
 
-table.panel td.even, td.even {
+table.panel td.even,td.even {
 	background: #FFF;
 }
 
-table.panel tr.odd, tr.odd {
+table.panel tr.odd,tr.odd {
 	background: #fafafa;
 }
 
-table.panel tr.even, tr.even {
+table.panel tr.even,tr.even {
 	background: #ffffff;
 }
 
@@ -1005,7 +1009,7 @@ tr.exception {
 	cursor: pointer;
 }
 
-a.button, input.button, input.deleteButton {
+a.button,input.button,input.deleteButton {
 	padding: 2px 10px 3px 10px;
 	background-color: #005757;
 	color: #FFF;
@@ -1018,16 +1022,16 @@ a.button, input.button, input.deleteButton {
 }
 
 input:disabled {
-	opacity:0.6;
-	filter:alpha(opacity=60);
+	opacity: 0.6;
+	filter: alpha(opacity = 60);
 	color: #FFF;
 }
 
 input.disabledButton {
 	padding: 2px 10px 3px 10px;
 	background-color: #005757;
-	opacity:0.2;
-	filter:alpha(opacity=20);
+	opacity: 0.2;
+	filter: alpha(opacity = 20);
 	color: #FFF;
 	border-style: none;
 	font-weight: bold;
@@ -1049,26 +1053,26 @@ input.deleteButton {
 	width: 100px;
 }
 
-th.middlealign, td.middlealign {
+th.middlealign,td.middlealign {
 	vertical-align: middle;
 }
 
-th.centeralign, td.centeralign {
+th.centeralign,td.centeralign {
 	text-align: center;
 	padding: 0 5px;
 }
 
-th.leftalign, td.leftalign {
+th.leftalign,td.leftalign {
 	text-align: left;
 	padding-left: 5px;
 }
 
-th.rightalign, td.rightalign {
+th.rightalign,td.rightalign {
 	text-align: right;
 	padding-right: 5px;
 }
 
-th.topalign, td.topalign {
+th.topalign,td.topalign {
 	vertical-align: top;
 }
 
@@ -1098,8 +1102,8 @@ table#guests td {
 
 .jFlowSlideContainer {
 	position: relative;
-	width: 495px; 
-	height: 255px; 
+	width: 495px;
+	height: 255px;
 	float: left;
 }
 
@@ -1113,7 +1117,6 @@ table#guests td {
     display: none;
 }
 */
-
 div.account form input[type="submit"] {
 	margin-left: 250px;
 }
@@ -1123,5 +1126,29 @@ div.account form:first-child input[type="submit"] {
 }
 
 #addBudgeted {
-    width: 100px;
+	width: 100px;
+}
+
+.progress {
+	position: relative;
+	width: 300px;
+	border: 1px solid #ddd;
+	padding: 1px;
+	border-radius: 3px;
+	margin-left: 42px;
+	margin-bottom: 5px;
+}
+
+.bar {
+	background-color: #B4F5B4;
+	width: 0%;
+	height: 20px;
+	border-radius: 3px;
+}
+
+.percent {
+	position: absolute;
+	display: inline-block;
+	top: 3px;
+	left: 48%;
 }
