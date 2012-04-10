@@ -2,6 +2,7 @@
 
 <script type="text/javascript" src="{$js_url}/budget.js"></script>
 <link type="text/css" href="{$style_url}/ui-lightness/jquery-ui-1.8.18.custom.css" rel="Stylesheet" />
+<script type="text/javascript" src="{$js_url}/jquery-ui-1.8.18.custom.min.js"></script>
 
 <div id="header_wrap{if !$homepage}_secondary{/if}">
 	<div id="header{if $secondary}_secondary{/if}"><!-- begin header -->

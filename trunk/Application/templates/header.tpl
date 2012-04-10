@@ -10,7 +10,6 @@
 		@import url("{$style_url}/print.css");
 	</style>
 
-
 	<script type="text/javascript">
 		var base_url 	= "{$base_url}";
 		var image_url 	= "{$image_url}";
