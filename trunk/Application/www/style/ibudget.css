@@ -1152,3 +1152,15 @@ div.account form:first-child input[type="submit"] {
 	top: 3px;
 	left: 48%;
 }
+
+
+.startingRows {
+	vertical-align: middle;
+	font-size: medium;
+	font-weight: bold;
+}
+
+#headerRow td {
+	font-weight: bold;
+	font-size: medium;
+}
