@@ -222,7 +222,8 @@ class ActivitySource extends CommonSource implements Source {
 		$sql = "SELECT DISTINCT
 					activity.id,
 					IF (activity.custom_name IS NOT NULL, activity.custom_name, activity.name) AS name,
-					activity.transaction_date
+					activity.transaction_date,
+					activity.amount
 				FROM activity
 				WHERE " . MySqlDB::getSelectConditions($args, ' AND ') . "
 				ORDER BY activity.transaction_date DESC";

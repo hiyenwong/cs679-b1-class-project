@@ -27,6 +27,8 @@
 	        		</div>
 	        	</form>
 	        	
+	        	<div id="status" style="height:1em"></div>
+	        	
 	        	<div id="fileControllSection" style="display:none">
 	        		<div id="fileControllStatus" style="height:1em;"></div>
 	        		<table cellspacing="0" cellpadding="0">
@@ -39,12 +41,32 @@
 	        				<td><a class="pointer" onclick="updateStartRow(-1)"><img src="{$image_url}/bullet_down.png"/></a></td>
 	        			</tr>
 	        		</table>
+	        		<table cellspacing="0" cellpadding="0">
+	        			<tr>
+	        				<td colspan="3" class="rightalign middlealign">Mapping Name <input type="text" name="name" id="name" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td colspan="3" style="padding-top: 15px; padding-bottom: 5px">Please Enter the Column # into each field for mapping. Enter just the number.</td>
+	        			</tr>
+	        			<tr>
+	        				<td colspan="3" class="rightalign middlealign">Transaction Date <input type="text" name="transaction_date" id="transaction_date" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td colspan="3" class="rightalign middlealign">Description <input type="text" name="description" id="description" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td colspan="3" class="rightalign middlealign">Amount <input type="text" name="amount" id="amount" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td colspan="3" class="rightalign"><input type="button" value="Create Custom Mapping" onclick="createCustomMapping()" /></td>
+	        			</tr>
+	        		</table>
 	        	</div>
         	</fieldset>
             
             <fieldset style="width: 100% !important">
             	<legend>Preview</legend>
-            	<div id="status"></div>
+            	<div id="preview"></div>
             </fieldset>
             
 		</div><!-- end main content left  -->
@@ -63,11 +85,13 @@ var headerRow = null;
 function clearProgress() {
 	headerRow = null;
 	var percentVal = '0%';
-	$('#status').empty();
+	$('#preview').empty();
 	$('.bar').width(percentVal)
 	$('.percent').html(percentVal);
 	$('#fileControllSection').hide();
 	$('#beginRow').html("0");
+	
+	
 }
 
 function updateStartRow(change) {
@@ -101,12 +125,32 @@ function updateStartRow(change) {
 	}
 }
 
+function createCustomMapping() {
+	var startingRow = parseInt($('#beginRow').html()) + 1;
+	var name = $('#name').val();
+	var transactionDate = $('#transaction_date').val();
+	var description = $('#description').val();
+	var amount = $('#amount').val();
+	
+	$('#status').html('<img src="'+image_url+'/loading.gif"/> Please wait while we create your custom mapping');
+	jQuery.ajax({
+		url:base_url+'/custommapping.php?submitted=Save&startingRow='+startingRow+'&name='+name+'&transactionDate='+transactionDate+'&description='+description+'&amount='+amount
+	}).done(function(data) {
+		window.location.href = base_url+"/dashboard.php";
+	}).fail(function(data) {
+		$('#preview').html(data);
+	}).always(function(data) {
+		$('#status').html('');
+	});
+	
+}
+
 (function() {
 $('form').ajaxForm({
 	beforeSend: function() {
 		headerRow = null;
 		var percentVal = '0%';
-		$('#status').empty();
+		$('#preview').empty();
 		$('.bar').width(percentVal);
 		$('.percent').html(percentVal);
 	},
@@ -140,11 +184,11 @@ $('form').ajaxForm({
 					cell.appendChild((typeof results[i][j] != 'undefined' && results[i][j] != null) ? document.createTextNode(unescape(results[i][j].toString())) : document.createTextNode(""));
 				}
 			}
-			$('#status').empty(); $('#status').append(table);
+			$('#preview').empty(); $('#preview').append(table);
 			$('#previewTable').css('width', '100%');
 			$('#fileControllSection').show();
 		} else {
-			$('#status').html("Something went wrong, please try again later");
+			$('#preview').html("Something went wrong, please try again later");
 		}
 	}
 }); 
