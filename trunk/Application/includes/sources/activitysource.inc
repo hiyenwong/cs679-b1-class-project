@@ -104,7 +104,7 @@ class ActivitySource extends CommonSource implements Source {
 		}
 		
 		if (array_key_exists('IMPORT_NUMBER', $params)) {
-			$args[] = new DbParam('activity.import_number', ':import_number', $params['IMPORT_NUMBER'], PDO::PARAM_INT);
+			$args[] = new DbParam('activity.import_number', ':import_number', $params['IMPORT_NUMBER'], PDO::PARAM_STR);
 		} else {
 			throw new Exception("Mising required parameter import number");
 		}
@@ -204,7 +204,7 @@ class ActivitySource extends CommonSource implements Source {
 		}
 		
 		if (array_key_exists('IMPORT_NUMBER', $params)) {
-			$args[] = new DbParam('activity.import_number', ':import_number', $params['IMPORT_NUMBER'], PDO::PARAM_INT);
+			$args[] = new DbParam('activity.import_number', ':import_number', $params['IMPORT_NUMBER'], PDO::PARAM_STR);
 		}
 		
 		if (array_key_exists('IMPORT_TIME', $params)) {
