@@ -16,6 +16,8 @@
        		<fieldset>
 	       		<legend>Upload a CSV file</legend>
 	        	<form action="process.php" method="POST" enctype="multipart/form-data">
+	        		<div id="status" style="height:1em;">{$message}</div>
+	        	
 	        		<table style="margin: 0 auto;">
 	        			<tr>
 	        				<th>File</th>
@@ -26,7 +28,7 @@
 	        				<td class="leftalign">{html_options name=mapping_type id=mapping_type options=$mappingTypes}</td>
 	        			</tr>
 	        			<tr>
-	        				<td colspan="2" class="rightalign"><input type="submit" name="submit" value="Process File"></td>
+	        				<td colspan="2" class="rightalign"><input type="submit" name="submit" value="Process File" onclick="upload()"></td>
 	        			</tr>
 	        		</table>
 	        	</form>
@@ -39,5 +41,13 @@
           
 </div>
 <div class="push"></div>
+
+{literal}
+<script type="text/javascript">
+function upload() {
+	$('#status').html('<img src="'+image_url+'/loading.gif" />');
+}
+</script>
+{/literal}
 
 {include file='footer.tpl'}

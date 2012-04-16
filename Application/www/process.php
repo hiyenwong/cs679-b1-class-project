@@ -15,6 +15,9 @@ try {
 	$access->authenticate();
 	$user = $access->getUser();
 
+	$smarty = new MySmarty($SMARTY_CONFIG);
+	$smarty->assign('user', $user);
+	
 	$transaction = false;
 	
 	if (!empty($_POST)) {
@@ -72,15 +75,12 @@ try {
 		
 		$transaction->commit();
 		
-		echo "Finish";
-		
-	} else {
-		$smarty = new MySmarty($SMARTY_CONFIG);
-		$smarty->assign('user', $user);
-		$smarty->assign('left_menu', true);
-		$smarty->assign('mappingTypes', Mapping::getOptions());
-		$smarty->display('process.tpl');
+		$smarty->assign('message', "Imported CSV successfully");
 	}
+	
+	$smarty->assign('left_menu', true);
+	$smarty->assign('mappingTypes', Mapping::getOptions());
+	$smarty->display('process.tpl');
 	
 } catch (AccessDeniedException $e) {
 	header ('HTTP/1.1 401 Access Denied');
