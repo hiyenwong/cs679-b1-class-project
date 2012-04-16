@@ -28,7 +28,7 @@ id INT(11) NOT NULL AUTO_INCREMENT,
 username VARCHAR(30) NOT NULL UNIQUE,
 password VARCHAR(255) NOT NULL,
 active BOOLEAN NOT NULL DEFAULT 1,
-created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+created_date TIMESTAMP NOT NULL,
 last_login_date TIMESTAMP NOT NULL,
 number_of_attempts INT(11) NOT NULL DEFAULT 1,
 PRIMARY KEY (id)
@@ -90,9 +90,9 @@ preference_type_id INT(11) NOT NULL
 CREATE TABLE IF NOT EXISTS category
 (
 id INT(11) AUTO_INCREMENT,
-name INT(11) NOT NULL,
+name VARCHAR(255) NOT NULL,
 user_id INT(11),
-active INT(11),
+active TINYINT DEFAULT 1,
 PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
@@ -106,7 +106,7 @@ amount DECIMAL(10,2) NOT NULL DEFAULT 0,
 transaction_date DATETIME NOT NULL,
 category_id INT(11),
 comment VARCHAR(255),
-import_number INT(11) NOT NULL,
+import_number VARCHAR(15) NOT NULL,
 import_time TIMESTAMP NOT NULL,
 PRIMARY KEY (id)
 ) ENGINE=InnoDB;
