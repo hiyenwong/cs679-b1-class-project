@@ -14,19 +14,10 @@
 		$access->authenticate();
 		$user = $access->getUser(); 		
     	$smarty = new MySmarty($SMARTY_CONFIG);
-    		
-    	$userCategories = Category::getOptions(array("USER_ID" => $user->getId()));
-    	$allCategories = Category::getOptions();
-    		
-    	$budgets = Budget::getOptions(array("USER_ID" => $user->getId(), "ACTIVE" => 1));
-    		
-    	$smarty->assign('budget', $budgets);
-    	$smarty->assign('allCategories', $allCategories);
-    	$smarty->assign('userCategories', $userCategories);
     	$smarty->assign('user', $user);
     	$smarty->assign('left_menu', true);
     	$smarty->display('chart.tpl');
-		
+    	
 	} catch (AccessDeniedException $e) {
 		trigger_error('Access Denied');
 	} catch (Exception $e) {
