@@ -30,7 +30,7 @@
                     
 		</div><!-- end main content left  -->
 		<div id="chart_div" style="width:400; height:300; float:left;"></div>
-		<div id="barchart_div" style="width:400; height:300; float:right; margin-top: -300px"></div>
+		<div id="barchart_div" style="width:400; height:300; float:right; margin-top: -250px"></div>
 		<div style="clear: both;"></div>
       	<!-- end main content right  -->
     </div> <!-- end main content  -->       
