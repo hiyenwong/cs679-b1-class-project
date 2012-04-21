@@ -10,6 +10,8 @@
 		$user = $access->getUser();
 		
 		$smarty = new MySmarty($SMARTY_CONFIG);
+		$smarty->assign("res", $user->getActivities());
+		
 		$smarty->assign('user', $user);
 		$smarty->assign('left_menu', true);
 		$smarty->display('transactions.tpl');
