@@ -14,8 +14,12 @@
 		{include file="leftnav.tpl" active='Chart'}
 	
 		<div id="main_content_left_secondary">
-       		<span id="pie_chart_div" style="width:400px; height:300px"></span>
-       		<span id="bar_chart_div" style="width:400px; height:300px"></span>
+			<table>
+				<tr>
+					<td><span id="pie_chart_div" style="width:345px; height:300px"></span></td>
+					<td><span id="bar_chart_div" style="width:345px; height:300px"></span></td>
+				</tr>
+			</table>
 		</div><!-- end main content left  -->
       		<!-- end main content right  -->
     </div> <!-- end main content  -->
@@ -40,7 +44,7 @@
 		var options = {
           title: 'Past 6 Months Spending',
           allowHtml: true,
-          width: 400,
+          width: 345,
           height: 300
         };
 		chart.draw(data, options);
@@ -60,7 +64,7 @@
 		var options = {
           title: 'Past 6 Months Spending By Category',
           allowHtml: true,
-          width: 400,
+          width: 345,
           height: 300
         };
 		chart.draw(data, options);

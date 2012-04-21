@@ -66,12 +66,12 @@ try {
 		}
 		
 		$rows = array();
+		unset($month);
 		foreach ($activities as $month => $val) {
 			$c = array(array('v' => $month, 'f' => null));
-			
 			foreach ($categories as $category) {
 				if (array_key_exists($category, $val)) {
-					$c[] = array('v' => abs($val[$category]), 'f' => null);
+					$c[] = array('v' => $val[$category], 'f' => null);
 				} else {
 					$c[] = array('v' => 0, 'f' => null);
 				}
