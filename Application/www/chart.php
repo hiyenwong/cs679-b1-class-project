@@ -22,17 +22,14 @@ try {
 	if ($func && $chart && $func == 'getData' && $chart == 'pie') {
 		$today = new Date();
 		$firstDayOf6MonthsAgo = new Date($today->format("%Y") . ($today->format("%m") - 6) . '-01');
-	
+		
+		// Summing up the activities per month
 		$activities = array();
-		foreach (Activity::getOptions(array(
-					'USER_ID' => $user->getId(),
-					'TRANSACTION_DATE_START' => $firstDayOf6MonthsAgo->format(Date::$SIMPLE_YEAR_MONTH_DAY),
-					'TRANSACTION_DATE_END' => $today->format(Date::$SIMPLE_YEAR_MONTH_DAY))) AS $id => $value) {
-			$transactionDate = new Date($value['transaction_date']);
-			if (array_key_exists($transactionDate->format('%Y-%m'), $activities)) {
-				$activities[$transactionDate->format('%Y-%m')] += $value['amount'];
+		foreach ($user->getActivities() as $activity) {
+			if (array_key_exists($activity->getTransactionDate()->format('%Y-%m'), $activities)) {
+				$activities[$activity->getTransactionDate()->format('%Y-%m')] += $activity->getAmount();
 			} else {
-				$activities[$transactionDate->format('%Y-%m')] = $value['amount'];
+				$activities[$activity->getTransactionDate()->format('%Y-%m')] = $activity->getAmount();
 			}
 		}
 		
