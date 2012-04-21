@@ -27,7 +27,7 @@
 </head>
 
 <body {if !$homepage} id="secondary" {/if}>
-	<div class="wrap {if !$left_menu}no_left_menu{/if}">
+	<div class="wrap{if !$left_menu} no_left_menu{/if}">
 	
 	
 	

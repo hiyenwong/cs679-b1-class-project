@@ -3,12 +3,13 @@ require_once '../includes/config.inc';
 require_once 'user.inc';
 require_once 'factory.inc';
 require_once 'view.inc';
+require_once 'access.inc';
 require_once 'transaction.inc';
+require_once 'toomanyfailedloginexception.inc';
 
 $smarty = new MySmarty($SMARTY_CONFIG);
 
 if (!empty($_POST)){
-	
 	if ($_POST['new_password'] != $_POST['verify_new_password']) {
 		$smarty->assign('err_message', 'The two passwords must match');
 		$smarty->display('reset_password.tpl');
@@ -16,10 +17,11 @@ if (!empty($_POST)){
 	
 	if (!preg_match("/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9\s]).{8,})/", $_POST['new_password'])) {
 		$smarty->assign('err_message', 'Password Invalid! Must be at least 8 characters and have one lowercase, one uppercase, one number, and one special character.');
-        $smarty->display('reset_password.tpl');
+		$smarty->display('reset_password.tpl');
 	}
 	
 	try {
+		
 		$username = $_GET['username'];
 		$pid = $_GET['pid'];
 		$result = User::checkAuthentication($username, $pid, true);
@@ -31,8 +33,12 @@ if (!empty($_POST)){
 			$user = User::getUserByUserName($username);		
 			$user->setPassword($_POST['new_password'], false);	
 			$transaction->commit();
-		 	header( 'Location: dashboard.php' );
-			exit();
+		
+			$access = new Access();
+            if ($access->authenticate($username, $_POST['new_password'])) {
+                header ("Location: dashboard.php");
+                exit();
+            } 
 		}
 		
 	} catch (Exception $e) {
@@ -42,7 +48,6 @@ if (!empty($_POST)){
 		header ('HTTP/1.1 500 Internal Server Error');
 		echo "Exception: " . $e->getMessage ();
 	}
-	
 } else {
 	$username = $_GET['username'];
 	$pid = $_GET['pid'];

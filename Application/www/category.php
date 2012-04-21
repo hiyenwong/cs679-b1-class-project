@@ -24,7 +24,6 @@
 	       
 	       if ($action === "add") {
     	       $categoryName = htmlentities($_POST['categoryName']);
-            	    
     	       $transaction = new Transaction(new MySqlDB());
                $transaction->start();
               
