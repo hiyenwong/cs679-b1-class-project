@@ -72,8 +72,8 @@
 		$smarty->assign('budgets', $budgets);
 		
 		if ($fullPage) {
-            $userCategories = Category::getOptions(array("USER_ID" => $user->getId()));
-    		$allCategories = Category::getOptions();
+            $userCategories = Category::getOptions(array("USER_ID" => $user->getId(), "ACTIVE" => 1));
+            $allCategories = Category::getOptions(array("ACTIVE" => 1));
     		
     		$smarty->assign('allCategories', $allCategories);
     		$smarty->assign('userCategories', $userCategories);
