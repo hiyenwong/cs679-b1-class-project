@@ -20,9 +20,6 @@ try {
 	$user = $access->getUser();
 		
 	if ($func && $chart && $func == 'getData' && $chart == 'pie') {
-		$today = new Date();
-		$firstDayOf6MonthsAgo = new Date($today->format("%Y") . ($today->format("%m") - 6) . '-01');
-		
 		// Summing up the activities per month
 		$activities = array();
 		foreach ($user->getActivities() as $activity) {
@@ -33,17 +30,59 @@ try {
 			}
 		}
 		
-		$results = array();
+		$rows = array();
 		foreach ($activities as $date => $amount) {
-			$results[] = array('c' => array(array('v' => $date), array('v' => abs($amount))));
+			$rows[] = array('c' => array(array('v' => $date), array('v' => abs($amount))));
 		}
 		
-		echo json_encode(array('cols' => array(
-									array('id'=>'transaction_date', 'label'=>'Transaction Date', 'type'=>'string'),
-									array('id'=>'amount', 'Label'=>'Amount', 'type'=>'number')),
-						'rows' => $results));
-	} else {
+		echo json_encode(array(
+			'cols' => array(
+				array('id'=>'transaction_date', 'label'=>'Transaction Month', 'type'=>'string'),
+				array('id'=>'amount', 'Label'=>'Amount', 'type'=>'number')),
+			'rows' => $rows));
+	} else if ($func && $chart && $func == 'getData' && $chart == 'bar') {
+		// Summing up the activities per month
+		$activities = array();
+		$categories = array();
+		foreach ($user->getActivities() as $activity) {
+			$categories[$activity->getCategory()] = $activity->getCategory();
+			
+			if (array_key_exists($activity->getTransactionDate()->format('%Y-%m'), $activities)) {
+				$month = &$activities[$activity->getTransactionDate()->format('%Y-%m')];
+				if (array_key_exists($activity->getCategory(), $month)) {
+					$month[$activity->getCategory()] += $activity->getAmount();
+				} else {
+					$month[$activity->getCategory()] = $activity->getAmount();
+				}
+				
+			} else {
+				$activities[$activity->getTransactionDate()->format('%Y-%m')][$activity->getCategory()] = $activity->getAmount();
+			}
+		}
 		
+		$cols = array(array('id'=>'', 'label'=>'Transaction Month', 'type'=>'string'));
+		foreach ($categories as $category) {
+			$cols[] = array('id'=>'', 'label'=>$category, 'type'=>'number');
+		}
+		
+		$rows = array();
+		foreach ($activities as $month => $val) {
+			$c = array(array('v' => $month, 'f' => null));
+			
+			foreach ($categories as $category) {
+				if (array_key_exists($category, $val)) {
+					$c[] = array('v' => abs($val[$category]), 'f' => null);
+				} else {
+					$c[] = array('v' => 0, 'f' => null);
+				}
+			}			
+			$rows[] = array('c' => $c);
+		}
+		
+		
+		echo json_encode(array('cols' => $cols, 'rows' => $rows));
+		
+	} else {
 		$smarty = new MySmarty($SMARTY_CONFIG);
 		$smarty->assign('user', $user);
 		

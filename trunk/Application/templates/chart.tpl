@@ -14,7 +14,8 @@
 		{include file="leftnav.tpl" active='Chart'}
 	
 		<div id="main_content_left_secondary">
-       		<div id="pie_chart_div" style="width:400px; height:300px"></div>
+       		<span id="pie_chart_div" style="width:400px; height:300px"></span>
+       		<span id="bar_chart_div" style="width:400px; height:300px"></span>
 		</div><!-- end main content left  -->
       		<!-- end main content right  -->
     </div> <!-- end main content  -->
@@ -26,8 +27,8 @@
 {literal}
 <script type="text/javascript">
 	google.load("visualization", "1", {packages:["corechart"]});
-	google.setOnLoadCallback(drawChart);
-	function drawChart() {
+	google.setOnLoadCallback(drawPieChart);
+	function drawPieChart() {
 		var jsonData = $.ajax({
 			url: base_url + "/chart.php?func=getData&chart=pie",
 			dataType:"json",
@@ -38,6 +39,26 @@
 		formatter.format(data, 1);
 		var options = {
           title: 'Past 6 Months Spending',
+          allowHtml: true,
+          width: 400,
+          height: 300
+        };
+		chart.draw(data, options);
+	}
+	
+	google.load("visualization", "1", {packages:["corechart"]});
+	google.setOnLoadCallback(drawBarChart);
+	function drawBarChart() {
+		var jsonData = $.ajax({
+			url: base_url + "/chart.php?func=getData&chart=bar",
+			dataType:"json",
+			async: false}).responseText;
+		var data = new google.visualization.DataTable(jsonData);
+		var chart = new google.visualization.BarChart(document.getElementById('bar_chart_div'));
+		// var formatter = new google.visualization.NumberFormat({prefix: '$', negativeColor: 'red', negativeParens: true});
+		// formatter.format(data, 1);
+		var options = {
+          title: 'Past 6 Months Spending By Category',
           allowHtml: true,
           width: 400,
           height: 300
