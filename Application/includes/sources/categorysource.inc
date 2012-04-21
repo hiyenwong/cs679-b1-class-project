@@ -92,7 +92,7 @@ class CategorySource extends CommonSource implements Source {
 		}
 
 		$original = $this->read ($params);
-
+        
 		$args = array();
 
 		if (array_key_exists('NAME', $params) && $original['name'] != $params['NAME']) {
@@ -106,13 +106,13 @@ class CategorySource extends CommonSource implements Source {
 		if (array_key_exists('ACTIVE', $params) && $original['active'] != $params['ACTIVE']) {
 			$args[] = new DbParam('category.active', ':active', $params['ACTIVE'], PDO::PARAM_BOOL);
 		}
-
+        
 		if (sizeof($args)) {
 			$sql = "UPDATE category
 					SET " . MySqlDB::getSelectConditions($args, ', ') . "
 					WHERE category.id = :id";
 			$args[] = new DbParam('category.id', ':id', $params['ID'], PDO::PARAM_INT);
-
+            
 			$this->db->execSql($sql, $args);
 		}
 	}
@@ -135,6 +135,10 @@ class CategorySource extends CommonSource implements Source {
 
 		if (array_key_exists('USER_ID', $params)) {
 			$args[] = new DbParam('category.user_id', ':user_id', $params['USER_ID'], PDO::PARAM_INT);
+		}
+		
+		if (array_key_exists('ACTIVE', $params)) {
+			$args[] = new DbParam('category.active', ':active', $params['ACTIVE'], PDO::PARAM_BOOL);
 		}
 
 		$sql = "SELECT DISTINCT
