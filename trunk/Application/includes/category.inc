@@ -91,7 +91,7 @@ class Category extends View implements Comparable {
 			$params['USER_ID'] = $this->user->getId();
 		}
 
-		if ($this->active) {
+		if (isset($this->active)) {
 			$params['ACTIVE'] = $this->active;
 		}
 
@@ -102,6 +102,8 @@ class Category extends View implements Comparable {
 
 	protected function update () {
 		$params = array ();
+		
+        $params['ID'] = $this->id;
 
 		if ($this->name) {
 			$params ['NAME'] = $this->name;
@@ -111,7 +113,7 @@ class Category extends View implements Comparable {
 			$params['USER_ID'] = $this->user->getId();
 		}
 
-		if ($this->active) {
+		if (isset($this->active)) {
 			$params['ACTIVE'] = $this->active;
 		}
 
