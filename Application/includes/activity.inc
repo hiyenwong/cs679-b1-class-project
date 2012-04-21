@@ -263,7 +263,7 @@ class Activity extends View implements Comparable {
 		$source = ActivitySource::getSource();
 		$options = array();
 		foreach ($source->getOptions($params) as $row) {
-			$options[$row['id']] = array("name" => $row['name'], "amount" => $row['amount']);
+			$options[$row['id']] = array('name' => $row['name'], 'amount' => $row['amount'], 'transaction_date' => $row['transaction_date']);
 		}
 		return $options;
 	}

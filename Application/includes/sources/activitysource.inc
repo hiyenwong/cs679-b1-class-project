@@ -212,11 +212,11 @@ class ActivitySource extends CommonSource implements Source {
 		}
 		
 		if (array_key_exists('TRANSACTION_DATE_START', $params)) {
-			$args[] = new DbParam('activity.transaction_date', ':transaction_date', $params['TRANSACTION_DATE'], PDO::PARAM_STR, '>=');
+			$args[] = new DbParam('activity.transaction_date', ':transaction_date_start', $params['TRANSACTION_DATE_START'], PDO::PARAM_STR, '>=');
 		}
 		
         if (array_key_exists('TRANSACTION_DATE_END', $params)) {
-			$args[] = new DbParam('activity.transaction_date', ':transaction_date', $params['TRANSACTION_DATE'], PDO::PARAM_STR, '<=');
+			$args[] = new DbParam('activity.transaction_date', ':transaction_date_end', $params['TRANSACTION_DATE_END'], PDO::PARAM_STR, '<=');
 		}
 
 		$sql = "SELECT DISTINCT

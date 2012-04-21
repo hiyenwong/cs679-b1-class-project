@@ -1,16 +1,27 @@
 {include file='header.tpl'}
 
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript" src="{$js_url}/chart.js"></script>
-<link type="text/css" href="{$style_url}/ui-lightness/jquery-ui-1.8.18.custom.css" rel="Stylesheet" />
-<script type="text/javascript" src="{$js_url}/jquery-ui-1.8.18.custom.min.js"></script>
-
 {literal}
-<script>
-	$(function() {
-		$( "#tabs" ).tabs();
-	});
-	</script>
+<script type="text/javascript">
+	google.load("visualization", "1", {packages:["corechart"]});
+	google.setOnLoadCallback(drawChart);
+	function drawChart() {
+		var jsonData = $.ajax({
+			url: base_url + "/chart.php?func=getData&chart=pie",
+			dataType:"json",
+			async: false}).responseText;
+		var data = new google.visualization.DataTable(jsonData);
+		var chart = new google.visualization.PieChart(document.getElementById('pie_chart_div'));
+		var formatter = new google.visualization.NumberFormat({prefix: '$', negativeColor: 'red', negativeParens: true});
+		formatter.format(data, 1);
+		var options = {
+          title: 'Past 6 Months Spending',
+          allowHtml: true,
+          width: 400,
+          height: 300
+        };
+		chart.draw(data, options);
+	}
+</script>
 {/literal}
 
 <div id="header_wrap{if !$homepage}_secondary{/if}">
@@ -26,14 +37,12 @@
 	<div id="main_content">
 		{include file="leftnav.tpl" active='Chart'}
 		
-		<div id="main_content_left_secondary">   
-                    
-		</div><!-- end main content left  -->
-		<div id="chart_div" style="width:400; height:300; float:left;"></div>
-		<div id="barchart_div" style="width:400; height:300; float:right; margin-top: -250px"></div>
+		<div id="main_content_left_secondary"></div><!-- end main content left  -->
+		
+		<div id="pie_chart_div"></div>
 		<div style="clear: both;"></div>
       	<!-- end main content right  -->
-    </div> <!-- end main content  -->       
+    </div><!-- end main content  -->       
           
 </div>
 <div class="push"></div>
