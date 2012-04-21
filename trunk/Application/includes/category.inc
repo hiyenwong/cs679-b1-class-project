@@ -48,8 +48,6 @@ class Category extends View implements Comparable {
 		return $this->active;
 	}
 
-
-
 	public function setName($name) {
 		$this->markModified();
 		$this->name = $name;
@@ -64,9 +62,6 @@ class Category extends View implements Comparable {
 		$this->markModified();
 		$this->active = $active;
 	}
-
-
-
 
 	public function read () {
 		$source = CategorySource::getSource();
@@ -162,7 +157,6 @@ class Category extends View implements Comparable {
 	public function __toString () {
 		return $this->name;
 	}
-
 }
 
 ?>
