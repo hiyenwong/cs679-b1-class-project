@@ -64,40 +64,42 @@
           
 	<div id="main_content">
 		{include file="leftnav.tpl" active='Transaction'}
-
+         
 		<div id="main_content_left_secondary">   
           	{if sizeof($user->getActivities())}
+			             
+			<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Trans. Name</th>
+						<th>Category</th>
+						<th>Trans. Date</th>
+						<th>Amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					{foreach from=$res item=i}
+				  	<tr align="left">
+					  	<td>{$i->getId()}</td>
+					  	<td>{$i->getName()}</td>
+					  	<td>{$i->getCategory()}</td>
+					  	<td>{$i->getTransactionDate()}</td>
+					  	<td>{$i->getAmount()}</td>
+				  	</tr>
+					{/foreach}
+				</tbody>
+			</table>        
 
-<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
-<thead>
-	<tr>
-		<th>ID</th>
-		<th>Trans. Name</th>
-		<th>Category</th>
-		<th>Trans. Date</th>
-		<th>Amount</th>
-	</tr>
-</thead>
-<tbody>
-	{foreach from=$res item=i}
-  	<tr align="left">
-	  	<td>{$i->getId()}</td>
-	  	<td>{$i->getName()}</td>
-	  	<td>{$i->getCategory()}</td>
-	  	<td>{$i->getTransactionDate()}</td>
-	  	<td>{$i->getAmount()}</td>
-  	</tr>
-	{/foreach}
-</tbody>
-</table>        
-
-{literal}
+                   
+		{literal}
 		<script type="text/javascript" charset="utf-8" id="init-code">
 		var editor; // use a global for the submit and return data rendering in the examples
 		 
 		$(document).ready(function() {
+			console.log('{/literal}{$BASE_URL}{literal}');
 		    editor = new $.fn.dataTable.Editor( {
-		        "ajaxUrl": "/transactions.php",
+		        "ajaxUrl": "{/literal}{$BASE_URL}{literal}/transactions.php",
 		        "domTable": "#example",
 		        "events": {
 		            "onCreate": function (json, data) {
@@ -123,13 +125,7 @@
 		                "label": "Category:",
 		                "name": "category",
 		                "type": "select",
-		                "ipOpts": [
-		                    { "label": "Entertaintment", "value": "1" },
-		                    { "label": "Gas",           "value": "2" },
-		                    { "label": "Food",           "value": "3" },
-		                    { "label": "Travel",           "value": "4" },
-		                    { "label": "Other",  "value": "5" }
-		                ],
+		                "ipOpts": [ {/literal}{$allCategories}{literal} ],
 	                	"dataProp": 2	                
 		            }, {
 		                "label": "Trans. Date:",
@@ -161,7 +157,7 @@
 
 {/literal}
 
-            {else}<p>{$user->getFirstName()} has no activities.<p>{/if}
+            {else}<p>{$user->getFirstName()} has no activities.</p>{/if}
 		</div><!-- end main content left  -->
     </div> <!-- end main content  -->
 	<div class="clear">&nbsp;</div>       
