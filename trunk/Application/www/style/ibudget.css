@@ -1164,3 +1164,7 @@ div.account form:first-child input[type="submit"] {
 	font-weight: bold;
 	font-size: medium;
 }
+
+#chart {
+	min-height: 400px;
+}
