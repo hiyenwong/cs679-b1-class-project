@@ -407,7 +407,12 @@ class User extends View implements Comparable {
 			$this->phones[] = new Phone($this, $row['number'], $row['text_able'], $row['is_primary']);
 		}
 
-		foreach (Activity::getOptions(array('USER_ID' => $this->id)) AS $id=>$name) {
+		$today = new Date();
+		$firstDayOf6MonthsAgo = new Date($today->format("%Y") . ($today->format("%m") - 6) . '-01');
+		foreach (Activity::getOptions(array(
+									'USER_ID' => $this->id,
+									'TRANSACTION_DATE_START' => $firstDayOf6MonthsAgo->format(Date::$SIMPLE_YEAR_MONTH_DAY),
+									'TRANSACTION_DATE_END' => $today->format(Date::$SIMPLE_YEAR_MONTH_DAY))) AS $id => $value) {
 			$this->activities[] = Factory::getView(new ActivityKey($id));
 		}
 
