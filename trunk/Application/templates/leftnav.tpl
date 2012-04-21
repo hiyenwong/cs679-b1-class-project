@@ -1,6 +1,6 @@
 <div id="left_navigation">
 	<ul id="nav">
-		<li {if $active == 'Overview'}class="active"{/if}><a href="dashboard.php">Overview {$active}</a></li>    	
+		<li {if $active == 'Overview'}class="active"{/if}><a href="dashboard.php">Overview</a></li>    	
 	    <li {if $active == 'Transaction'}class="active"{/if}><a href="transactions.php">Transactions</a></li>
 	    <li {if $active == 'Category'}class="active"{/if}><a href="category.php">Categories</a></li>
   	 	<li {if $active == 'Accounts'}class="active"{/if}><a href="account.php">Account</a></li>
