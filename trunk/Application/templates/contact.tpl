@@ -48,15 +48,9 @@ $(document).ready(function(){
 
 <div id="page{if !$homepage}_secondary{/if}"><!-- start page content -->
     
-	<div id="main_content"">
+	<div id="main_content">
 		<div id="left_navigation">
     		<ul id="nav">
-        		<!-- <li class="active"><img style="vertical-align:middle" alt="profile" src="images/Profile.png"><a href="#">Active Page</a>
-            		<h2>Sub message can go here if you have one </h2>
-            	</li>    	
-        	    <li><img style="vertical-align:middle" alt="Pie Chart" src="images/Pie Chart.png"><a href="#">Sub Page 2</a>
-            		<h2>Sub message can go here if you have one </h2>
-            	</li> -->
           	 	<li><img style="vertical-align:middle" alt="Pie Chart" src="images/Modify.png"><span style="text-decoration: none; color: #347BA2; margin-left: 10px;">Write to us</span><br> <h2>679 Boston St, Boston MA</h2></li>
            	 	<li><img style="vertical-align:middle" alt="Pie Chart" src="images/Email.png"><span style="text-decoration: none; color: #347BA2; margin-left: 10px;">Send us an email</span><br> <h2>cs679@email.com</h2></li>
       		</ul>
@@ -76,7 +70,8 @@ $(document).ready(function(){
         	</fieldset>
 		</div><!-- end main content left  -->
     </div> <!-- end main content  -->
-	<div style="clear: both;">&nbsp;</div>                
+	<div class="clear">&nbsp;</div>                
 </div>
+<div class="push"></div>
 
 {include file='footer.tpl'}

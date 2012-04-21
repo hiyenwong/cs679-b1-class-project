@@ -303,8 +303,8 @@ class UserSource extends CommonSource implements Source {
 			$numberOfAttempts = 0;
 			foreach ($results as $row) {
 				$numberOfAttempts = $row['number_of_attempts'];
-				$lastLogin = new Date($row['last_login_date']);
-				$tenMinsAgo = new Date(date('Y-m-d h:i:s', strtotime('-10 minutes')));
+				$lastLogin = ($row['last_login_date']);
+				$tenMinsAgo = date('Y-m-d H:i:s', strtotime('-10 minutes'));
 
 				if ($lastLogin > $tenMinsAgo && $numberOfAttempts > 5) {
 					throw new TooManyFailedLoginException("User had attempted too many failed login within last 10 minutes. Please come back in 10 minutes");

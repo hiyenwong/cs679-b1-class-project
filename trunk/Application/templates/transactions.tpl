@@ -163,9 +163,8 @@
 
             {else}<p>{$user->getFirstName()} has no activities.<p>{/if}
 		</div><!-- end main content left  -->
-      		<!-- end main content right  -->
     </div> <!-- end main content  -->
-	<div style="clear: both;">&nbsp;</div>       
+	<div class="clear">&nbsp;</div>       
           
 </div>
 <div class="push"></div>
