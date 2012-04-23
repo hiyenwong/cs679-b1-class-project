@@ -97,7 +97,6 @@
 		var editor; // use a global for the submit and return data rendering in the examples
 		 
 		$(document).ready(function() {
-			console.log('{/literal}{$BASE_URL}{literal}');
 		    editor = new $.fn.dataTable.Editor( {
 		        "ajaxUrl": "{/literal}{$BASE_URL}{literal}/transactions.php",
 		        "domTable": "#example",
@@ -131,7 +130,7 @@
 		                "label": "Trans. Date:",
 		                "name": "transdate",
 		                "type": "date",
-		                "dateFormat": $.datepicker.ISO_8601,
+		                "dateFormat": "yy-m-d", // $.datepicker.ISO_8601,
 		                "dataProp": 3
 		            }, {
 		                "label": "Amount:",

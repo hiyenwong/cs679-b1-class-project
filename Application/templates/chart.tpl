@@ -21,9 +21,8 @@
 				</tr>
 			</table>
 		</div><!-- end main content left  -->
-      		<!-- end main content right  -->
     </div> <!-- end main content  -->
-	<div style="clear: both;">&nbsp;</div>       
+	<div class="clear">&nbsp;</div>       
           
 </div>
 <div class="push"></div>

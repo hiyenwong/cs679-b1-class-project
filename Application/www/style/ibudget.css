@@ -1153,7 +1153,6 @@ div.account form:first-child input[type="submit"] {
 	left: 48%;
 }
 
-
 .startingRows {
 	vertical-align: middle;
 	font-size: medium;
@@ -1167,4 +1166,18 @@ div.account form:first-child input[type="submit"] {
 
 #chart {
 	min-height: 400px;
+}
+
+#balance {
+	width: 280px;	
+}
+
+#balance td {
+	color: #666;
+	border-bottom: 1px dashed #DFDFDF;	
+	padding: 10px;
+}
+
+#balance tr td:last-child {
+	text-align: right;
 }
