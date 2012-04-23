@@ -1,13 +1,13 @@
 {include file='header.tpl'}
 
-		<style type="text/css">
-			@import "http://editor.datatables.net/release/DataTables/media/css/demo_page.css";
-			@import "http://editor.datatables.net/release/DataTables/media/css/jquery.dataTables.css";
-			@import "http://editor.datatables.net/release/DataTables/extras/TableTools/media/css/TableTools.css";
-			@import "http://editor.datatables.net/release/DataTables/extras/Editor/media/css/dataTables.editor.css";
-			@import "http://editor.datatables.net/release/DataTables/media/css/jquery.dataTables_themeroller.css";
-			@import "http://editor.datatables.net/release/DataTables/extras/TableTools/media/css/TableTools_JUI.css";
-			
+<style type="text/css">
+	@import "{$style_url}/datatable/demo_page.css";
+	@import "{$style_url}/datatable/jquery.dataTables.css";
+	@import "{$style_url}/datatable/TableTools.css";
+	@import "{$style_url}/datatable/dataTables.editor.css";
+	@import "{$style_url}/datatable/jquery.dataTables_themeroller.css";
+	@import "{$style_url}/datatable/TableTools_JUI.css";
+	@import "{$style_url}/datatable/site.css";
 		
   	#container {
   		padding-top: 60px !important;
@@ -44,13 +44,12 @@
 		color: #111;
 	}
   </style>
-
-  <link rel="stylesheet" type="text/css" href="http://editor.datatables.net/media/css/site.css">
-		<script type="text/javascript" charset="utf-8" src="http://editor.datatables.net/release/DataTables/media/js/jquery.js"></script>
-		<script type="text/javascript" charset="utf-8" src="http://editor.datatables.net/release/DataTables/media/js/jquery.dataTables.js"></script>
-		<script type="text/javascript" charset="utf-8" src="http://editor.datatables.net/release/DataTables/extras/TableTools/media/js/TableTools.js"></script>
-		<script type="text/javascript" charset="utf-8" src="http://editor.datatables.net/release/DataTables/extras/Editor/media/js/dataTables.editor.js"></script>
-		<script type="text/javascript" charset="utf-8" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.17/jquery-ui.min.js"></script>
+  
+  <script type="text/javascript" charset="utf-8" src="{$js_url}/jquery-1.7.2.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="{$js_url}/datatable/jquery.dataTables.js"></script>
+  <script type="text/javascript" charset="utf-8" src="{$js_url}/datatable/TableTools.js"></script>
+  <script type="text/javascript" charset="utf-8" src="{$js_url}/datatable/dataTables.editor.js"></script>
+  <script type="text/javascript" charset="utf-8" src="{$js_url}/jquery-ui-1.8.19.custom.min.js"></script>
 		<script type="text/javascript" charset="utf-8" src="http://datatables.net/release-datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>
 		
 
@@ -111,7 +110,7 @@
 		 
 		$(document).ready(function() {
 		    editor = new $.fn.dataTable.Editor( {
-		        "ajaxUrl": "{/literal}{$BASE_URL}{literal}/transactions.php",
+		        "ajaxUrl": base_url+"/transactions.php",
 		        "domTable": "#example",
 		        "events": {
 		            "onCreate": function (json, data) {
@@ -143,7 +142,7 @@
 		                "label": "Trans. Date:",
 		                "name": "transdate",
 		                "type": "date",
-		                "dateFormat": "mm-dd-yy", // $.datepicker.ISO_8601,
+		                "dateFormat": "M d, yy", // $.datepicker.ISO_8601,
 		                "dataProp": 3
 		            }, {
 		                "label": "Amount:",

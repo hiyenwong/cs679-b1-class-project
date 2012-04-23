@@ -10,6 +10,7 @@
 		@import url("{$style_url}/print.css");
 	</style>
 	<link type="text/css" href="{$style_url}/redmond/jquery-ui-1.8.19.custom.css" rel="Stylesheet" />
+	<link type="text/css" href="{$style_url}/dataTables.editor.css" rel="Stylesheet" />
 
 	<script type="text/javascript">
 		var base_url 	= "{$base_url}";
@@ -23,6 +24,7 @@
 	<script type="text/javascript" src="{$js_url}/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="{$js_url}/jquery.form.js"></script>
 	<script type="text/javascript" src="{$js_url}/jquery-ui-1.8.19.custom.min.js"></script>
+	<script type="text/javascript" src="{$js_url}/dataTables.editor.js"></script>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </head>
 
