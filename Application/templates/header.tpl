@@ -9,7 +9,7 @@
 	<style type="text/css" media="print">
 		@import url("{$style_url}/print.css");
 	</style>
-	<link type="text/css" href="{$style_url}/ui-lightness/jquery-ui-1.8.18.custom.css" rel="Stylesheet" />
+	<link type="text/css" href="{$style_url}/redmond/jquery-ui-1.8.19.custom.css" rel="Stylesheet" />
 
 	<script type="text/javascript">
 		var base_url 	= "{$base_url}";
@@ -20,9 +20,9 @@
 
 	<link rel="shortcut icon" href="{$image_url}/favicon.png">
 
-	<script type="text/javascript" src="{$js_url}/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="{$js_url}/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="{$js_url}/jquery.form.js"></script>
-	<script type="text/javascript" src="{$js_url}/jquery-ui-1.8.18.custom.min.js"></script>
+	<script type="text/javascript" src="{$js_url}/jquery-ui-1.8.19.custom.min.js"></script>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </head>
 
