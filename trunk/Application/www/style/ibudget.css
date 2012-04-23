@@ -1181,3 +1181,7 @@ div.account form:first-child input[type="submit"] {
 #balance tr td:last-child {
 	text-align: right;
 }
+
+#example_filter {
+	padding-right: 110px !important;
+}
