@@ -51,6 +51,10 @@
 		<script type="text/javascript" charset="utf-8" src="http://editor.datatables.net/release/DataTables/extras/TableTools/media/js/TableTools.js"></script>
 		<script type="text/javascript" charset="utf-8" src="http://editor.datatables.net/release/DataTables/extras/Editor/media/js/dataTables.editor.js"></script>
 		<script type="text/javascript" charset="utf-8" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.17/jquery-ui.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="http://datatables.net/release-datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>
+		
+
+
 		
 <div id="header_wrap{if !$homepage}_secondary{/if}">
 	<div id="header{if $secondary}_secondary{/if}"><!-- begin header -->
@@ -89,6 +93,15 @@
 				  	</tr>
 					{/foreach}
 				</tbody>
+				<tfoot>
+					<tr>
+						<th>ID</th>
+						<th>Trans. Name</th>
+						<th>Category</th>
+						<th>Trans. Date</th>
+						<th>Amount</th>
+					</tr>
+				</tfoot>
 			</table>        
 
                    
@@ -124,13 +137,13 @@
 		                "label": "Category:",
 		                "name": "category",
 		                "type": "select",
-		                "ipOpts": [ {/literal}{$allCategories}{literal} ],
+		                "ipOpts": [{/literal}{$allCategories}{literal}],
 	                	"dataProp": 2	                
 		            }, {
 		                "label": "Trans. Date:",
 		                "name": "transdate",
 		                "type": "date",
-		                "dateFormat": "yy-m-d", // $.datepicker.ISO_8601,
+		                "dateFormat": "mm-dd-yy", // $.datepicker.ISO_8601,
 		                "dataProp": 3
 		            }, {
 		                "label": "Amount:",
@@ -139,15 +152,20 @@
 		            }
 		        ]
 		    } );
-		 
+
+
 		    $('#example').dataTable( {
-		        "sDom": "lTfrtip",
+	    		"bJQueryUI": true,
+	    		"sPaginationType": "full_numbers",
+	    		"sDom": '<"H"Tlfr>t<"F"ip>',
 		        "oTableTools": {
 		            "sRowSelect": "single",
+		            "sSwfPath": "http://datatables.net/release-datatables/extras/TableTools/media/swf/copy_csv_xls_pdf.swf",
 		            "aButtons": [
 		                { "sExtends": "editor_create", "editor": editor },
 		                { "sExtends": "editor_edit",   "editor": editor },
-		                { "sExtends": "editor_remove", "editor": editor }
+		                { "sExtends": "editor_remove", "editor": editor },
+		                "copy", "csv", "xls", "pdf"
 		            ]
 		        }
 		    } );
