@@ -257,6 +257,20 @@ class User extends View implements Comparable {
 	public function getActivities() {
 		return $this->activities;
 	}
+	
+	public function getActivitiesAmount() {
+		$debit = 0;
+		$credits = 0;
+		foreach ($this->activities as $index=>$activity) {
+			$amount = $activity->getAmount();
+			if ($activity->getAmount() > 0) {
+				$debit += $amount;
+			} else {
+				$credit += $amount;
+			}
+		}
+		return array('debit'=>$debit, 'credit'=>$credit);
+	}
 
 	public function purgeActivities() {
 		$this->markModified();

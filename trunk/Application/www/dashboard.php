@@ -8,8 +8,16 @@
 		$access = new Access();
 		$access->authenticate();
 		$user = $access->getUser();
-	
+
+		$activities_amount = $user->getActivitiesAmount();
+		//print_r($activities_amount); exit;
+		
+		
 		$smarty = new MySmarty($SMARTY_CONFIG);
+		
+		$smarty->assign('debit', $activities_amount['debit']);
+		$smarty->assign('credit', $activities_amount['credit']);
+		
 		$smarty->assign('user', $user);
 		$smarty->assign('dashboard', 'dashboard');
 		$smarty->assign('left_menu', true);

@@ -148,7 +148,9 @@ class Activity extends View implements Comparable {
 	protected function insert () {
 		$params = array();
 		
+		//var_dump($this->user); exit;
 		if ($this->user) {
+			//print_r($this->user); exit;
 			$params['USER_ID'] = $this->user->getId();
 		} else {
 			throw new Exception ('Missing required parameter user id.');
@@ -171,7 +173,7 @@ class Activity extends View implements Comparable {
 		$params ['AMOUNT'] = $this->amount ? $this->amount : 0;
 
 		if ($this->transactionDate) {
-			$params ['TRANSACTION_DATE'] = $this->transactionDate->getTimestamp();
+			$params ['TRANSACTION_DATE'] = $this->getTransactionDate(); //$this->transactionDate->getTimestamp();
 		} else {
 			throw new Exception("Missing required parameter transaction date");
 		}
@@ -187,7 +189,7 @@ class Activity extends View implements Comparable {
 		}
 		
 		if ($this->importTime) {
-			$params['IMPORT_TIME'] = $this->importTime->getTimestamp();
+			$params['IMPORT_TIME'] = $this->importTime;
 		} else {
 			throw new Exception("Missing required parameter import time.");
 		}
@@ -200,12 +202,16 @@ class Activity extends View implements Comparable {
 	protected function update () {
 		$params = array();
 
+		if ($this->id) {
+			$params['ID'] = $this->getId();
+		}
+
 		if ($this->user) {
 			$params['USER_ID'] = $this->user->getId();
 		}
 
 		if ($this->category) {
-			$params['CATEGORY_ID'] = $this->category->getId();
+			$params['CATEGORY_ID'] = $this->getCategory();
 		}
 
 		if ($this->name) {
@@ -219,7 +225,7 @@ class Activity extends View implements Comparable {
 		$params ['AMOUNT'] = $this->amount ? $this->amount : 0;
 
 		if ($this->transactionDate) {
-			$params ['TRANSACTION_DATE'] = $this->transactionDate->getTimestamp();
+			$params ['TRANSACTION_DATE'] = $this->getTransactionDate(); 	//->getTimestamp();
 		}
 
 		if ($this->comment) {
@@ -238,10 +244,10 @@ class Activity extends View implements Comparable {
 
 	public function preWrite () {
 		if (!$this->deleteRequested()) {
-			$this->user->write();
+			//$this->user->write();
 
 			if ($this->category) {
-				$this->category->write();
+				//$this->category->write();
 			}
 		}
 	}
