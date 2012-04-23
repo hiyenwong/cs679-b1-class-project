@@ -79,7 +79,7 @@ try {
 	}
 	
 	$smarty->assign('left_menu', true);
-	$smarty->assign('mappingTypes', Mapping::getOptions());
+	$smarty->assign('mappingTypes', array_merge(Mapping::getOptions(array('USER_ID' => $user->getId())), Mapping::getOptions()));
 	$smarty->display('process.tpl');
 	
 } catch (AccessDeniedException $e) {
