@@ -82,9 +82,4 @@
 	} catch (Exception $e) {
 		
 	}
-	
-	
-	
-	
-	
 ?>
