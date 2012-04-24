@@ -36,15 +36,15 @@ try {
 				$transaction->commit();
 				break;
 			case 'remove':
-				if (!array_key_exists('id', $data) || !trim($data['id'])) {
+				if (!array_key_exists('id', $_REQUEST) || !trim($_REQUEST['id'])) {
 					throw new Exception("Missing required parameter transaction id");
 				}
 				
 				$transaction = new Transaction(new MySqlDB());
 				$transaction->start();
 				
-				$activity = Factory::getView(new ActivityKey($data['id']));
-				$activity->delete();
+				$activity = Factory::getView(new ActivityKey($_REQUEST['id']));
+				$activity->requestDelete();
 				$transaction->commit();
 				break;
 			case 'create':
