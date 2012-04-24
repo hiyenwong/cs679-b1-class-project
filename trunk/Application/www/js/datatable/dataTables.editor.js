@@ -1730,6 +1730,14 @@ DataTable.Editor.prototype.open = function ()
 DataTable.Editor.prototype.remove = function ( rows, title, buttons, show )
 {
 	var that = this;
+	
+	this.s.id = "";
+	for (var i = 0; i < rows[0].children.length; i++) {
+		if (rows[0].children[i].id == 'myId') {
+			this.s.id = rows[0].children[i].innerHTML;
+			break;
+		}
+	}
 
 	// Allow a single row node to be passed in to remove
 	if ( !$.isArray( rows ) ) {
@@ -1737,7 +1745,6 @@ DataTable.Editor.prototype.remove = function ( rows, title, buttons, show )
 		return;
 	}
 
-	this.s.id = "";
 	this.s.action = "remove";
 	this.s.removeRows = rows;
 	this.dom.form.style.display = 'none';

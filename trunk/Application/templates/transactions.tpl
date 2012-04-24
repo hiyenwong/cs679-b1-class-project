@@ -50,7 +50,7 @@
   <script type="text/javascript" charset="utf-8" src="{$js_url}/datatable/TableTools.js"></script>
   <script type="text/javascript" charset="utf-8" src="{$js_url}/datatable/dataTables.editor.js"></script>
   <script type="text/javascript" charset="utf-8" src="{$js_url}/jquery-ui-1.8.19.custom.min.js"></script>
-		<script type="text/javascript" charset="utf-8" src="http://datatables.net/release-datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>
+  <script type="text/javascript" charset="utf-8" src="{$js_url}/datatable/ZeroClipboard.js"></script>
 		
 
 
@@ -84,7 +84,7 @@
 				<tbody>
 					{foreach from=$res item=i}
 				  	<tr align="left">
-					  	<td>{$i->getId()}</td>
+					  	<td id="myId">{$i->getId()}</td>
 					  	<td>{$i->getName()}</td>
 					  	<td>{$i->getCategory()}</td>
 					  	<td>{$i->getTransactionDate()}</td>
@@ -142,7 +142,7 @@
 		                "label": "Trans. Date:",
 		                "name": "transdate",
 		                "type": "date",
-		                "dateFormat": "M d, yy", // $.datepicker.ISO_8601,
+		                "dateFormat": "M d, yy",
 		                "dataProp": 3
 		            }, {
 		                "label": "Amount:",

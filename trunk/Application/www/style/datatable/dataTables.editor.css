@@ -10,7 +10,7 @@ div.DTE_Processing_Indicator {
 	right: 13px;
 	height: 32px;
 	width: 32px;
-	background: url('../images/ajax-loader.gif') no-repeat top left;
+	background: url('../../images/ajax-loader.gif') no-repeat top left;
 	display: none;
 	z-index: 20;
 }
@@ -263,7 +263,7 @@ div.DTED_Lightbox_Close {
 	right: -15px;
 	width: 30px;
 	height: 30px;
-	background: url('../images/close.png') no-repeat top left;
+	background: url('../../images/close.png') no-repeat top left;
 	cursor: pointer;
 	*cursor: hand;
 	z-index: 12;
