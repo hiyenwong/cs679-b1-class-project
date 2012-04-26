@@ -1,7 +1,10 @@
 <table>
     <thead>
+    	<tr>
+    		<td colspan="2"><div id="status" style="height:2em;"></div></td>
+    	</tr>
         <tr>
-            <th>Category</th>
+            <th style="font-size: large; font-weight: bold">Category</th>
             <th>&nbsp;</th>
         </tr>
     </thead>
