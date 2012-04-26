@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $("#addBudgetRow").dialog({autoOpen: false, title: "Add Budget Item"})
+    $("#addBudgetRow").dialog({autoOpen: false, title: "Add Budget Item"});
 
     $("#addBudget").click(function () {
         $("#addBudgetRow").dialog("open");
@@ -46,4 +46,4 @@ var removeBudgetItem = function(obj, key) {
     });
 
     //$(obj).parents("tr").remove();
-}
+};

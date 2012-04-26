@@ -1,17 +1,13 @@
 $(document).ready(function () {
 
-    $("#addCategoryDialog").dialog({autoOpen: false, title: "Add Category"})
+    $("#addCategoryDialog").dialog({autoOpen: false, title: "Add Category"});
 
     $("#addCategory").click(function () {
         $("#addCategoryDialog").dialog("open");
     });
     
     $("#saveCategoryItem").click(function() {
-    
-        /*if (!$("#addBudgeted").val().match(/^\d+(\.\d{2})?$/)) {
-            $("#addBudgetError").html("Please enter a valid number in the form of either <b>5</b> or <b>5.20</b>.");
-            return;
-        }*/
+    	$("#status").html('<img src="'+image_url+'/loading.gif" /> Creating category');
         $("#addCategoryError").html("");
     
         $.ajax({
@@ -20,6 +16,7 @@ $(document).ready(function () {
             data: $("#addCategoryDialog form").serialize(),
             success: function(data) {
                 $("#categoryList").html(data);
+                $("#status").html("");
             }
         });
         
@@ -36,12 +33,14 @@ $(document).ready(function () {
 });
 
 var removeCategory = function(obj, key) {
+	$("#status").html('<img src="'+image_url+'/loading.gif" /> Removing category');
     $.ajax({
         type: "POST",
         url: "category.php",
         data: {"action" : "remove", "key" : key},
         success: function(data) {
             $("#categoryList").html(data);
+            $("#status").html("");
         }
     });
-}
+};
