@@ -49,9 +49,14 @@
 	if (isset($_POST['update_name'])) {
 		$transaction = new Transaction(new MySqlDB());
   		$transaction->start();
-  					
-		$user->setFirstName($_POST['firstName']);
-		$user->setLastName($_POST['lastName']);
+  		if (empty($_POST['firstName']))
+  			$smarty->assign('err_message', 'Firstname cannot be empty.');
+  		else
+			$user->setFirstName($_POST['firstName']);
+		if (empty($_POST['lastName']))
+			$smarty->assign('err_message', 'Lastname cannot be empty.');
+		else
+			$user->setLastName($_POST['lastName']);
 		$transaction->commit();
 	}
 	
