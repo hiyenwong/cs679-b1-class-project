@@ -33,7 +33,7 @@
 								<h4>Please take that enthusiasm with you to the projects page!</h4>
 							</div>
 							<div id="header_sub_button">
-								<a href="projects.html"><img width="50" height="50" class="go_button" alt="Go To Project" src="{$image_url}/go-button.jpg"></a>
+								<a href="http://code.google.com/p/cs679-b1-class-project/"><img width="50" height="50" class="go_button" alt="Go To Project" src="{$image_url}/go-button.jpg"></a>
 							</div>
 						</div><!-- header sub port -->
 					</div><!--end header sub-->
