@@ -14,6 +14,8 @@ $user = $access->getUser();
 $action = isset($_REQUEST['action']) ? htmlentities($_REQUEST['action']) : false;
 $data = isset($_REQUEST['data']) ? $_REQUEST['data'] : false;
 
+// var_dump($action);
+
 try {
 	if ($action) {
 		if ($data === false) {
@@ -25,13 +27,14 @@ try {
 				$transaction = new Transaction(new MySqlDB());
 				$transaction->start();
 				
-				$activity = Factory::getView(new ActivityKey($data['id']));
+				$activity = Factory::getView(new ActivityKey($_POST['data']['id']));
 				$activity->setName($data['name']);
 				
 				if ($data['category'] != null && trim($data['category']) && $data['category'] != 'null') {
 					$activity->setCategory(Factory::getView(new CategoryKey(trim($data['category']))));
 				}
-				$activity->setTransactionDate(new Date($data['transdatr']));
+				$activity->setTransactionDate((date('Y-m-d H:i:s', strtotime($_POST['data']['transdate']))));
+
 				$activity->setAmount($data['amount']);
 				$transaction->commit();
 				break;
@@ -51,16 +54,14 @@ try {
 				$transaction = new Transaction(new MySqlDB());
 				$transaction->start();
 				
-				$date = new Date();
-				
 				$activity = Factory::createView(new ActivityKey());
 				$activity->setUser($user);
 				$activity->setImportNumber(-1);
-				$activity->setImportTime($date);
+				$activity->setImportTime(date('Y-m-d H:i:s'));
 				$activity->setName($data['name']);
-				$activity->setTransactionDate($date);
-				$activity->setAmount($_POST['data']['amount']);
-				
+				$activity->setTransactionDate((date('Y-m-d H:i:s', strtotime($_POST['data']['transdate']))));
+				$activity->setAmount($data['amount']);
+
 				if ($data['category'] != null && trim($data['category']) && $data['category'] != 'null') {
 					$activity->setCategory(Factory::getView(new CategoryKey(trim($data['category']))));
 				}
