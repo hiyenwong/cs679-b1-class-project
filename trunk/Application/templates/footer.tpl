@@ -19,6 +19,9 @@
 	</div>
 	<script type="text/javascript" src="{$js_url}/jquery.flow.1.0.js"></script>
 	<script type="text/javascript" src="{$js_url}/ibudget.js"></script>
-	<script type="text/javascript" src="{$js_url}/Base64.js"></script>
+	<script type="text/javascript" src="{$js_url}/Base64.min.js"></script>
+	
+	<script type="text/javascript" src="{$js_url}/jquery-ui-1.8.19.custom.min.js"></script>
+
 </body>
 </html>

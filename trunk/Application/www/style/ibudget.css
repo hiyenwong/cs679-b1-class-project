@@ -1,5 +1,9 @@
+/************************/
+/** General CSS rules **/
+/**********************/
+
 * {
-	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font: 12px/1.231 Geneva, Arial, Helvetica, sans-serif;
 }
 
 html {
@@ -11,7 +15,6 @@ body {
 	background-position: center top;
 	background-repeat: repeat-x;
 	color: #666666;
-	font: 12px/1.231 Geneva, Arial, Helvetica, sans-serif;
 	height: 100%;
 	margin: 0;
 	padding: 0;
@@ -88,41 +91,64 @@ fieldset {
 	padding: 20px;
 }
 
-fieldset#register {
+/********************/
+/** Register Page **/
+/******************/
+ 
+#register {
 	width: 400px;
 	margin: 0 auto;
 	padding: 20px;
 }
 
-fieldset#register label {
+#register label {
 	width: 150px;
 	text-align: left;
 }
 
-fieldset#contact {
+#register #next {
+	margin-left: 310px; 	
+}
+
+#register .error,
+#register .success {
+	display: inline-block;
+	margin-left: 150px;	
+	width: 210px;
+	text-align: left;
+}
+
+#register_name input[type='submit'] {
+	margin-left: 290px;	
+}
+
+/*******************/
+/** Contact Page **/
+/*****************/
+
+#contact {
 	width: 400px;
 }
 
-fieldset#contact label {
+#contact label {
 	width: 150px;
 	text-align: left;
 	vertical-align: top;
 }
 
-fieldset#contact textarea {
+#contact textarea {
 	resize: none;
-	background-image: url(../images/form_bg.jpg);
 }
 
-fieldset#contact input[type="submit"] {
+#contact input[type="submit"] {
 	margin-left: 310px;
 }
 
-fieldset#contact p {
+#contact p {
 	padding-top: 3px;
 }
 
-fieldset#contact p.error {
+#contact p.error {
 	padding-left: 170px;
 	text-align: left;
 }
@@ -130,12 +156,16 @@ fieldset#contact p.error {
 fieldset p.error {
 	padding-left: 30px;
 }
+ 
+/***************************/
+/** Forgot Password Page **/
+/*************************/
 
-fieldset#forgot_password input[type="submit"] {
+#forgot_password input[type="submit"] {
 	margin-left: 252px;
 }
 
-fieldset#forgot_password p {
+#forgot_password p {
 	padding-top: 3px;
 }
 
@@ -162,7 +192,8 @@ fieldset#forgot_password p {
 	min-height: 350px;
 }
 
-.footer,.push {
+.footer,
+.push {
 	height: 61px;
 }
 
@@ -585,8 +616,7 @@ a.button:hover {
 	border: 1px solid #32312f;
 }
 
-.input,textarea {
-	background-image: url(../images/form_bg.jpg);
+.input, textarea {
 	background-repeat: repeat-x;
 	border: 1px solid #ccc;
 	font-size: 11px;
@@ -935,45 +965,45 @@ a:visited,a.sortheader:visited {
 }
 
 /******** MAIN CONTENT ********/
-table.panel {
+.panel {
 	width: 95%;
 	border-collapse: collapse;
 }
 
-table.panel td.none {
+.panel td.none {
 	padding-left: 1em;
 	color: #b22222;
 }
 
-table.panel th {
+.panel th {
 	padding-right: 1em;
 	text-align: left;
 	font-weight: bold;
 	border-bottom: 1px dashed #ACB6BF;
 }
 
-table.panel td {
+.panel td {
 	padding-right: 0.5em;
 	vertical-align: top;
 }
 
-table.panel td.odd,td.odd {
+.panel td.odd, td.odd {
 	background: #fafafa;
 }
 
-table.panel td.even,td.even {
+.panel td.even,td.even {
 	background: #FFF;
 }
 
-table.panel tr.odd,tr.odd {
+.panel tr.odd,tr.odd {
 	background: #fafafa;
 }
 
-table.panel tr.even,tr.even {
-	background: #ffffff;
+.panel tr.even,tr.even {
+	background: #FFF;
 }
 
-table.panel td.total {
+.panel td.total {
 	vertical-align: top;
 	background: #FFF;
 	border-top: 1px dashed #ACB6BF;
@@ -984,11 +1014,11 @@ table.panel td.total {
 	text-decoration: none;
 }
 
-table.form th {
+.form th {
 	text-align: right;
 }
 
-.Success {
+.success {
 	color: green;
 }
 
@@ -1049,10 +1079,6 @@ input.deleteButton {
 	width: 200px;
 }
 
-.inputhalfwidth {
-	width: 100px;
-}
-
 th.middlealign,td.middlealign {
 	vertical-align: middle;
 }
@@ -1072,32 +1098,8 @@ th.rightalign,td.rightalign {
 	padding-right: 5px;
 }
 
-th.topalign,td.topalign {
-	vertical-align: top;
-}
-
-div.floatleft {
-	float: left;
-}
-
-div.floatright {
-	float: right;
-}
-
 .clear {
 	clear: both;
-}
-
-#rsvp_section {
-	width: 490px;
-}
-
-table#guests {
-	width: 480px;
-}
-
-table#guests td {
-	width: 50%;
 }
 
 .jFlowSlideContainer {
@@ -1112,16 +1114,11 @@ table#guests td {
 	color: red;
 }
 
-/*
-#addBudgetRow {
-    display: none;
-}
-*/
-div.account form input[type="submit"] {
+.account input[type="submit"] {
 	margin-left: 250px;
 }
 
-div.account form:first-child input[type="submit"] {
+.account form:first-child input[type="submit"] {
 	margin-left: 210px;
 }
 
@@ -1178,10 +1175,11 @@ div.account form:first-child input[type="submit"] {
 	padding: 10px;
 }
 
-#balance tr td:last-child {
+#balance td:last-child {
 	text-align: right;
 }
-
+/*
 #example_filter {
 	padding-right: 112px !important;
 }
+*/
