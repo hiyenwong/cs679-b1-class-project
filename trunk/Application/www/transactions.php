@@ -86,7 +86,7 @@ try {
 			
 		$smarty->assign('user', $user);
 		$smarty->assign('left_menu', true);
-		$smarty->assign('BASE_URL', $BASE_URL);
+		//$smarty->assign('BASE_URL', $BASE_URL);
 		$smarty->display('transactions.tpl');
 	}
 	
