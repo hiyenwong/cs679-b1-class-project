@@ -21,8 +21,7 @@
 	<link rel="shortcut icon" href="{$image_url}/favicon.png">
 
 	<script type="text/javascript" src="{$js_url}/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="{$js_url}/jquery.form.js"></script>
-	<script type="text/javascript" src="{$js_url}/jquery-ui-1.8.19.custom.min.js"></script>
+	<script type="text/javascript" src="{$js_url}/jquery.form.min.js"></script>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </head>
 

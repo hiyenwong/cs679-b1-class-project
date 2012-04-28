@@ -45,11 +45,9 @@
 	}
   </style>
   
-  <script type="text/javascript" charset="utf-8" src="{$js_url}/jquery-1.7.2.min.js"></script>
   <script type="text/javascript" charset="utf-8" src="{$js_url}/datatable/jquery.dataTables.js"></script>
   <script type="text/javascript" charset="utf-8" src="{$js_url}/datatable/TableTools.js"></script>
   <script type="text/javascript" charset="utf-8" src="{$js_url}/datatable/dataTables.editor.js"></script>
-  <script type="text/javascript" charset="utf-8" src="{$js_url}/jquery-ui-1.8.19.custom.min.js"></script>
   <script type="text/javascript" charset="utf-8" src="{$js_url}/datatable/ZeroClipboard.js"></script>
 		
 
