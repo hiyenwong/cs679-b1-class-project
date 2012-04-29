@@ -173,7 +173,7 @@ class Activity extends View implements Comparable {
 		$params ['AMOUNT'] = $this->amount ? $this->amount : 0;
 
 		if ($this->transactionDate) {
-			$params ['TRANSACTION_DATE'] = $this->getTransactionDate(); //$this->transactionDate->getTimestamp();
+			$params ['TRANSACTION_DATE'] = $this->transactionDate->getTimestamp();
 		} else {
 			throw new Exception("Missing required parameter transaction date");
 		}
@@ -189,7 +189,7 @@ class Activity extends View implements Comparable {
 		}
 		
 		if ($this->importTime) {
-			$params['IMPORT_TIME'] = $this->importTime;
+			$params['IMPORT_TIME'] = $this->importTime->getTimestamp();
 		} else {
 			throw new Exception("Missing required parameter import time.");
 		}
@@ -225,7 +225,7 @@ class Activity extends View implements Comparable {
 		$params ['AMOUNT'] = $this->amount ? $this->amount : 0;
 
 		if ($this->transactionDate) {
-			$params ['TRANSACTION_DATE'] = $this->getTransactionDate(); 	//->getTimestamp();
+			$params ['TRANSACTION_DATE'] = $this->getTransactionDate->getTimestamp();
 		}
 
 		if ($this->comment) {
