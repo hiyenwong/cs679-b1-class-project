@@ -1,7 +1,7 @@
 {include file='header.tpl'}
 
 <script type="text/javascript" src="{$js_url}/category.js"></script>
-<link type="text/css" href="{$style_url}/ui-lightness/jquery-ui-1.8.18.custom.css" rel="Stylesheet" />
+<link type="text/css" href="{$style_url}/redmond/jquery-ui-1.8.19.custom.css" rel="Stylesheet" />
 <script type="text/javascript" src="{$js_url}/jquery-ui-1.8.19.custom.min.js"></script>
 
 <div id="header_wrap{if !$homepage}_secondary{/if}">
