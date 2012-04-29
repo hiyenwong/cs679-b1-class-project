@@ -1,6 +1,9 @@
 <table>
     <thead>
         <tr>
+            <td colspan="5"><div id="status" style="height:2em;"></div></td>
+        </tr>
+        <tr>
             <th>Category</th>
             <th>Budgeted</th>
             <th>Spent</th>

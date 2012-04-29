@@ -14,12 +14,15 @@ $(document).ready(function () {
         }
         $("#addBudgetError").html("");
     
+        $("#status").html('<img src="'+image_url+'/loading.gif" /> Creating budget item');
+        
         $.ajax({
             type: "POST",
             url: "budget.php",
             data: $("#addBudgetRow form").serialize(),
             success: function(data) {
                 $("#budgetTable").html(data);
+                $("#status").html("");
             }
         });
         
@@ -36,12 +39,14 @@ $(document).ready(function () {
 });
 
 var removeBudgetItem = function(obj, key) {
+    $("#status").html('<img src="'+image_url+'/loading.gif" /> Removing budget item');
     $.ajax({
         type: "POST",
         url: "budget.php",
         data: {"action" : "remove", "key" : key},
         success: function(data) {
             $("#budgetTable").html(data);
+            $("#status").html("");
         }
     });
 
