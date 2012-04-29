@@ -52,9 +52,8 @@
           	<input type="button" value="Add Budget Item" id="addBudget" />
                     
 		</div><!-- end main content left  -->
-      		<!-- end main content right  -->
     </div> <!-- end main content  -->
-	<div style="clear: both;">&nbsp;</div>       
+	<div class="clear">&nbsp;</div>       
           
 </div>
 <div class="push"></div>

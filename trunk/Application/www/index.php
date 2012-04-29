@@ -2,7 +2,7 @@
 	require_once '../includes/config.inc';
 	require_once 'access.inc';
 	require_once 'accessdeniedexception.inc';
-	
+
 	try {
 		$smarty = new MySmarty($SMARTY_CONFIG);
 		
