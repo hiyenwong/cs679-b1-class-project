@@ -225,7 +225,7 @@ class Activity extends View implements Comparable {
 		$params ['AMOUNT'] = $this->amount ? $this->amount : 0;
 
 		if ($this->transactionDate) {
-			$params ['TRANSACTION_DATE'] = $this->getTransactionDate->getTimestamp();
+			$params ['TRANSACTION_DATE'] = $this->transactionDate->getTimestamp();
 		}
 
 		if ($this->comment) {
