@@ -198,6 +198,10 @@ class ActivitySource extends CommonSource implements Source {
 		if (array_key_exists('CUSTOM_NAME', $params)) {
 			$args[] = new DbParam('activity.custom_name', ':custom_name', $params['CUSTOM_NAME'], PDO::PARAM_STR);
 		}
+		
+        if (array_key_exists('CATEGORY_ID', $params)) {
+			$args[] = new DbParam('activity.category_id', ':category_id', $params['CATEGORY_ID'], PDO::PARAM_STR);
+		}
 
 		if (array_key_exists('TRANSACTION_DATE', $params)) {
 			$args[] = new DbParam('activity.transaction_date', ':transaction_date', $params['TRANSACTION_DATE'], PDO::PARAM_STR);
