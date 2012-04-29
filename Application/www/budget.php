@@ -56,6 +56,7 @@
 		
 		$budgets = Budget::getOptions(array("USER_ID" => $user->getId(), "ACTIVE" => 1));
 		$spent = array();
+		$budgetLeft = array();
 		
 		foreach ($budgets as $key => $item) {
             $activities = Activity::getOptions(array("USER_ID" => $user->getId(), "CATEGORY_ID" => $item['category_id'], "TRANSACTION_DATE_START" => Date::firstOfMonth()));
@@ -65,11 +66,13 @@
                 $value += $activityItem['amount'];
             }
             
-            $spent[$key] = $value;
+            $spent[$key] = 0 - $value;
+            $budgetLeft[$key] = $item['amount'] + $value;
 		}
 		
 		$smarty->assign('spent', $spent);
 		$smarty->assign('budgets', $budgets);
+		$smarty->assign('budgetLeft', $budgetLeft);
 		
 		if ($fullPage) {
             $userCategories = Category::getOptions(array("USER_ID" => $user->getId(), "ACTIVE" => 1));
