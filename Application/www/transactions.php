@@ -14,8 +14,6 @@ $user = $access->getUser();
 $action = isset($_REQUEST['action']) ? htmlentities($_REQUEST['action']) : false;
 $data = isset($_REQUEST['data']) ? $_REQUEST['data'] : false;
 
-// var_dump($action);
-
 try {
 	if ($action) {
 		if ($data === false) {
@@ -31,7 +29,7 @@ try {
 				$activity->setName($data['name']);
 				
 				if ($data['category'] != null && trim($data['category']) && $data['category'] != 'null') {
-					$activity->setCategory(Factory::getView(new CategoryKey(trim($data['category']))));
+					$activity->setCategory($data['category']);
 				}
 				$activity->setTransactionDate(new Date($_POST['data']['transdate']));
 
