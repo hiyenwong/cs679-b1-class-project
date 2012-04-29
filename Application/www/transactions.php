@@ -33,7 +33,7 @@ try {
 				if ($data['category'] != null && trim($data['category']) && $data['category'] != 'null') {
 					$activity->setCategory(Factory::getView(new CategoryKey(trim($data['category']))));
 				}
-				$activity->setTransactionDate((date('Y-m-d H:i:s', strtotime($_POST['data']['transdate']))));
+				$activity->setTransactionDate(new Date($_POST['data']['transdate']));
 
 				$activity->setAmount($data['amount']);
 				$transaction->commit();
@@ -57,9 +57,9 @@ try {
 				$activity = Factory::createView(new ActivityKey());
 				$activity->setUser($user);
 				$activity->setImportNumber(-1);
-				$activity->setImportTime(date('Y-m-d H:i:s'));
+				$activity->setImportTime(new Date());
 				$activity->setName($data['name']);
-				$activity->setTransactionDate((date('Y-m-d H:i:s', strtotime($_POST['data']['transdate']))));
+				$activity->setTransactionDate(new Date($_POST['data']['transdate']));
 				$activity->setAmount($data['amount']);
 
 				if ($data['category'] != null && trim($data['category']) && $data['category'] != 'null') {
