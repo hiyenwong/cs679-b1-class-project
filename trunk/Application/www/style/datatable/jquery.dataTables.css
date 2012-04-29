@@ -63,11 +63,10 @@ table.dataTable tr.even td.sorting_3 { background-color: #F9F9FF; }
 /*
  * Filter
  */
-.dataTables_filter {
-	float: right;
-	text-align: right;
-}
 
+.dataTables_filter input {
+	float: right;
+}
 
 /*
  * Table information
