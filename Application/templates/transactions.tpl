@@ -32,7 +32,7 @@
 		<div id="main_content_left_secondary">   
           	{if sizeof($user->getActivities())}
 			
-			<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+			<table cellpadding="0" cellspacing="0" border="0" class="display" id="dataTables">
 				<thead>
 					<tr>
 						<th>ID</th>
@@ -73,7 +73,7 @@
 		$(document).ready(function() {
 		    editor = new $.fn.dataTable.Editor( {
 		        "ajaxUrl": base_url+"/transactions.php",
-		        "domTable": "#example",
+		        "domTable": "#dataTables",
 		        "events": {
 		            "onCreate": function (json, data) {
 		            	document.location.reload();
@@ -115,7 +115,7 @@
 		        ]
 		    } );
 		    
-		    $('#example').dataTable( {
+		    $('#dataTables').dataTable( {
 	    		"bJQueryUI": true,
 	    		"sPaginationType": "full_numbers",
 	    		"sDom": '<"H"Tlfr>t<"F"ip>',
