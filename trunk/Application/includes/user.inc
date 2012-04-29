@@ -424,9 +424,11 @@ class User extends View implements Comparable {
 		$today = new Date();
 		$firstDayOf6MonthsAgo = new Date(date('Y-m-d', strtotime("-5 months -" . ($today->format("%d") - 1) . " days")));
 		foreach (Activity::getOptions(array(
-									'USER_ID' => $this->id,
-									'TRANSACTION_DATE_START' => $firstDayOf6MonthsAgo->format(Date::$SIMPLE_YEAR_MONTH_DAY),
-									'TRANSACTION_DATE_END' => $today->format(Date::$SIMPLE_YEAR_MONTH_DAY))) AS $id => $value) {
+									'USER_ID' => $this->id))
+									//'TRANSACTION_DATE_START' => $firstDayOf6MonthsAgo->format(Date::$SIMPLE_YEAR_MONTH_DAY),
+									//'TRANSACTION_DATE_END' => $today->format(Date::$SIMPLE_YEAR_MONTH_DAY))) 
+									AS $id => $value) {
+			//echo $id .' '. $value;
 			$this->activities[] = Factory::getView(new ActivityKey($id));
 		}
 

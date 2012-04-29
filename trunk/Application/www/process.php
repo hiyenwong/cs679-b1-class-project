@@ -33,7 +33,7 @@ try {
 
 		$transaction = new Transaction(new MySqlDB());
 		$transaction->start();
-		
+
 		$mapping = Factory::getView(new MappingKey($mapping_key));
 		
 		$importNumber = rand(10000000000, 99999999999);
@@ -51,7 +51,7 @@ try {
 
 				$activity = Factory::createView(new ActivityKey());
 				$activity->setImportNumber($importNumber);
-				$activity->setImportTime($importTime);
+				$activity->setImportTime(new Date());
 				$activity->setUser($user);
 				foreach ($mapping->getMappingDetails() as $map) {
 					switch ($map->getColumnName()) {

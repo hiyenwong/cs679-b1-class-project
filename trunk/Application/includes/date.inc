@@ -32,8 +32,7 @@ class Date implements Comparable {
 	public function __construct ($time = false) {
 
 		if (!$time) {													 // current time
-			$this->time = time ();
-
+			$this->time = time();
 		} else if (is_a ($time, __CLASS__)) {	 // clone another Date
 			$this->time = $time->getTime ();
 

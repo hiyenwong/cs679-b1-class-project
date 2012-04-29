@@ -5,13 +5,13 @@
 
 	$DBHOST					= "localhost";
 	$DBNAME					= "ibudget";
-	$DBUSER					= "ibudget";
-	$DBPASSWD				= "ibudget";
+	$DBUSER					= "root";
+	$DBPASSWD				= "";
 
 	$VERSION = 				"TEST";
 	$DISABLE_EMAIL = 		true;
 
-	$INSTALL_DIR = 			"/Users/churkleung/Documents/workspace/iBudget/Application";
+	$INSTALL_DIR = 			"/Applications/XAMPP/htdocs/cs673/cs679-b1-class-project/Application";
 	$ATTACHMENT_ROOT = 		$INSTALL_DIR . "/attachment";
 	$INCLUDE_PATH = 		$INSTALL_DIR . "/includes";
 	$TEMPLATE_DIR = 		$INSTALL_DIR . "/templates";
@@ -19,16 +19,16 @@
 	$CACHE_DIR = 			$INSTALL_DIR . "/cache";
 	$SMARTY_DIR = 			$INSTALL_DIR . "/smarty";
 
-	$BASE_URL = 			"/iBudget";
+	$BASE_URL = 			"http://localhost/cs673/cs679-b1-class-project/application/www/";
 	$IMAGE_URL = 			$BASE_URL . "/images";
 	$STYLE_URL = 			$BASE_URL . "/style";
 	$JS_URL	= 				$BASE_URL . "/js";
 	$LOGIN_URL = 			$BASE_URL . '/login.php';
 	$LOGOUT_URL = 			$BASE_URL . '/logout.php';
-	$CHANGE_PASSWORD_URL = 	$BASE_URL . '/admin/changepw.php';
-	$RESET_PASSWORD_URL	= 	$BASE_URL . '/admin/resetpw.php';
-	$ACCESS_DENIED_URL = 	$BASE_URL . '/admin/denied.php';
-	$REDIRECT_URL = 		$BASE_URL . '/admin/redirect.php';
+	$CHANGE_PASSWORD_URL = 	$BASE_URL . '/changepw.php';
+	$RESET_PASSWORD_URL	= 	$BASE_URL . '/resetpw.php';
+	$ACCESS_DENIED_URL = 	$BASE_URL . '/denied.php';
+	$REDIRECT_URL = 		$BASE_URL . '/redirect.php';
 	$SYSTEM_URL = 			(isset($_SERVER ["HTTPS"]) ? "https://" : "http://") . $_SERVER ["SERVER_NAME"];
 
 	/* include path */
