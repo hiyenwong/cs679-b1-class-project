@@ -4,7 +4,7 @@
 	<div id="header{if $secondary}_secondary{/if}"><!-- begin header -->
 		{include file='upperheader.tpl' user=$user}
 	  
-	  	{include file='lowerheader.tpl' title='Charts' message='Vizualise your data'}
+	  	{include file='lowerheader.tpl' title='Charts' message='Visualize your data'}
 	</div><!-- end header -->
 </div>
 
