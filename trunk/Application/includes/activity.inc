@@ -203,7 +203,7 @@ class Activity extends View implements Comparable {
 		$params = array();
 
 		if ($this->id) {
-			$params['ID'] = $this->getId();
+			$params['ID'] = $this->id;
 		}
 
 		if ($this->user) {
@@ -211,7 +211,7 @@ class Activity extends View implements Comparable {
 		}
 
 		if ($this->category) {
-			$params['CATEGORY_ID'] = $this->getCategory();
+			$params['CATEGORY_ID'] = $this->category->getId();
 		}
 
 		if ($this->name) {
