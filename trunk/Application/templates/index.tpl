@@ -25,7 +25,7 @@
 					<div id="header_sub">
 						<div id="header_sub_headline">
 							<h1>Welcome to iBudget</h1>
-							<h2>A new way to manage your expences and keep track of where your money goes.</h2>
+							<h2>A new way to manage your expenses and keep track of where your money goes.</h2>
 						</div>
 						<div id="header_sub_port">
 							<div id="header_sub_text">
@@ -90,13 +90,12 @@
 				<div id="main_content_left">
 					<h1>A bit about the iBudget project</h1>
 					<p>The iBudget project started out as a group project for a software engineering class. After we completed it and showed it to some of our friends we realized the big potential it has and the
-					bumerous benefits it provides to users. We decided to launch the project... </p>
+					numerous benefits it provides to users. We decided to launch the project... </p>
 					
 					<blockquote>
 						<p>"If you need motivation to achieve financial discipline, consider iBudget. It has all the features I need and is very intuitive and easy to use."</p>
 						<p><i> -- Tom Smith</i></p>
-					</blockquote>
-					<p>Some more text over here </p>
+					</blockquote>					
 				</div><!-- end main content left  -->
 
 				<div id="main_content_right">
