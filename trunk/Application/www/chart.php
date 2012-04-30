@@ -45,18 +45,19 @@ try {
 		$activities = array();
 		$categories = array();
 		foreach ($user->getActivities() as $activity) {
-			$categories[$activity->getCategory()->getName()] = $activity->getCategory()->getName();
+			$categoryName = $activity->getCategory() ? $activity->getCategory()->getName() : "Uncategory";
+			$categories[$categoryName] = $categoryName;
 			
 			if (array_key_exists($activity->getTransactionDate()->format('%Y-%m'), $activities)) {
 				$month = &$activities[$activity->getTransactionDate()->format('%Y-%m')];
-				if (array_key_exists($activity->getCategory()->getName(), $month)) {
-					$month[$activity->getCategory()->getName()] += $activity->getAmount();
+				if (array_key_exists($activity->getCategory(), $month)) {
+					$month[$categoryName] += $activity->getAmount();
 				} else {
-					$month[$activity->getCategory()->getName()] = $activity->getAmount();
+					$month[$categoryName] = $activity->getAmount();
 				}
 				
 			} else {
-				$activities[$activity->getTransactionDate()->format('%Y-%m')][$activity->getCategory()] = $activity->getAmount();
+				$activities[$activity->getTransactionDate()->format('%Y-%m')][$categoryName] = $activity->getAmount();
 			}
 		}
 		
