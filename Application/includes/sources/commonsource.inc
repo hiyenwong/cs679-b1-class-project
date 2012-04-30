@@ -38,7 +38,7 @@ class CommonSource {
 		$args = array(new DbParam($table.($id_column ? '.'.$id_column : '.id'), ($id_column ? ':'.$id_column : ':id'), $id, PDO::PARAM_INT));
 
 		if ($this->selectCountStatement == null) {
-			$sql = "SELECT COUNT(*) AS count FROM ' . $table . ' WHERE " . MySqlDB::getSelectConditions($args, ' AND ');
+			$sql = 'SELECT COUNT(*) AS count FROM ' . $table . ' WHERE ' . MySqlDB::getSelectConditions($args, ' AND ');
 			$this->selectCountStatement = $this->db->getStatement($sql);
 		}
 
