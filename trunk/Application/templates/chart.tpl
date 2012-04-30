@@ -56,6 +56,10 @@
 			url: base_url + "/chart.php?func=getData&chart=bar",
 			dataType:"json",
 			async: false}).responseText;
+			
+		// Need to to search and replace all number that is encapsulated with "-123.12" => -123.12
+		jsonData.replace(new RegExp("\"([-]*[0-9]+[.][0-9]{2})\"","g"), "$1")
+		
 		var data = new google.visualization.DataTable(jsonData);
 		var chart = new google.visualization.BarChart(document.getElementById('bar_chart_div'));
 		// var formatter = new google.visualization.NumberFormat({prefix: '$', negativeColor: 'red', negativeParens: true});
