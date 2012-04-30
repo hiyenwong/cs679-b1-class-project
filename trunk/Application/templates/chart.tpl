@@ -44,7 +44,8 @@
           title: 'Past 6 Months Spending',
           allowHtml: true,
           width: 345,
-          height: 400
+          height: 400,
+          legend: {position: 'bottom'}
         };
 		chart.draw(data, options);
 	}
