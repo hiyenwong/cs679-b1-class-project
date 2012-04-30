@@ -39,6 +39,8 @@ if (!empty($_POST)){
                 header ("Location: dashboard.php");
                 exit();
             } 
+		}else {
+			echo 'fff'; 
 		}
 		
 	} catch (Exception $e) {
@@ -53,7 +55,7 @@ if (!empty($_POST)){
 	$pid = $_GET['pid'];
 		
 	$smarty->assign('pid', $pid);
-	$smarty->assign('form_action', $_SERVER['REQUEST_URI']);
+	$smarty->assign('form_action', $BASE_URL . $_SERVER['REQUEST_URI']);
 	$smarty->display('reset_password.tpl');	
 }
 
