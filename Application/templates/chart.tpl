@@ -44,7 +44,7 @@
           title: 'Past 6 Months Spending',
           allowHtml: true,
           width: 345,
-          height: 300
+          height: 400
         };
 		chart.draw(data, options);
 	}
@@ -68,7 +68,8 @@
           title: 'Past 6 Months Spending By Category',
           allowHtml: true,
           width: 345,
-          height: 300
+          height: 400,
+          legend: {position: 'bottom'}
         };
 		chart.draw(data, options);
 	}
