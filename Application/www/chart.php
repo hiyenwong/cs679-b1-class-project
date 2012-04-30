@@ -45,14 +45,14 @@ try {
 		$activities = array();
 		$categories = array();
 		foreach ($user->getActivities() as $activity) {
-			$categories[$activity->getCategory()] = $activity->getCategory();
+			$categories[$activity->getCategory()->getName()] = $activity->getCategory()->getName();
 			
 			if (array_key_exists($activity->getTransactionDate()->format('%Y-%m'), $activities)) {
 				$month = &$activities[$activity->getTransactionDate()->format('%Y-%m')];
-				if (array_key_exists($activity->getCategory(), $month)) {
-					$month[$activity->getCategory()] += $activity->getAmount();
+				if (array_key_exists($activity->getCategory()->getName(), $month)) {
+					$month[$activity->getCategory()->getName()] += $activity->getAmount();
 				} else {
-					$month[$activity->getCategory()] = $activity->getAmount();
+					$month[$activity->getCategory()->getName()] = $activity->getAmount();
 				}
 				
 			} else {
