@@ -45,7 +45,7 @@ try {
 		$activities = array();
 		$categories = array();
 		foreach ($user->getActivities() as $activity) {
-			$categoryName = $activity->getCategory() ? $activity->getCategory()->getName() : "Uncategorize";
+			$categoryName = $activity->getCategory() ? $activity->getCategory()->getName() : "Uncategorized";
 			$categories[$categoryName] = $categoryName;
 			
 			if (array_key_exists($activity->getTransactionDate()->format('%Y-%m'), $activities)) {
