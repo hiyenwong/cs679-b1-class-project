@@ -29,7 +29,7 @@ try {
 				$activity->setName($data['name']);
 				
 				if ($data['category'] != null && trim($data['category']) && $data['category'] != 'null') {
-					$activity->setCategory($data['category']);
+					$activity->setCategory(Factory::getView(new CategoryKey($data['category'])));
 				}
 				$activity->setTransactionDate(new Date($_POST['data']['transdate']));
 
