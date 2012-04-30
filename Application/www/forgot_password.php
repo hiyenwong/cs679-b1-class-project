@@ -32,11 +32,11 @@ if (!empty($_POST)){
 
 Use the following link within the next 24 hours to reset your password:
 
-<a href={$BASE_URL}/reset_password.php?username={$to}&pid={$new_password_hash}>{$BASE_URL}/reset_password.php?username={$to}&pid={$new_password_hash}</a>
+<a href={$BASE_URL}/reset_password.php?username={$to}&pid={$new_password_hash}>click here to reset your password.</a>
 
 Thanks,
 The iBudget Team";
-			//echo $message; exit;
+			// echo $message; exit;
 			mail($to, $subject, $message);
 		}
 	} catch (Exception $e) {
