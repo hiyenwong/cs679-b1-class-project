@@ -27,16 +27,15 @@ if (!empty($_POST)){
   			
   			$to = $user->getUsername();
   			$subject = '.:iBudget:. Please reset your password';
-  			$message = <<<BODY
-Hey, we heard you forgot your iBudget password. 
+  			$message = 
+"Hey, we heard you forgot your iBudget password. 
 
 Use the following link within the next 24 hours to reset your password:
 
-<a href="{$BASE_URL}reset_password.php?username={$to}&pid={$new_password_hash}">http://localhost/cs673/cs679-b1-class-project/application/www/reset_password.php?username={$to}&pid={$new_password_hash}</a>
+<a href={$BASE_URL}reset_password.php?username={$to}&pid={$new_password_hash}>{$BASE_URL}reset_password.php?username={$to}&pid={$new_password_hash}</a>
 
 Thanks,
-The iBudget Team
-BODY;
+The iBudget Team";
 			//echo $message; exit;
 			mail($to, $subject, $message);
 		}
