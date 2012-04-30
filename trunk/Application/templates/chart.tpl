@@ -58,7 +58,7 @@
 			async: false}).responseText;
 			
 		// Need to to search and replace all number that is encapsulated with "-123.12" => -123.12
-		jsonData.replace(new RegExp("\"([-]*[0-9]+[.][0-9]{2})\"","g"), "$1")
+		jsonData = jsonData.replace(new RegExp("\"([-]*[0-9]+[.][0-9]{2})\"","g"), "$1");
 		
 		var data = new google.visualization.DataTable(jsonData);
 		var chart = new google.visualization.BarChart(document.getElementById('bar_chart_div'));
