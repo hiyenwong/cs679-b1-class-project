@@ -36,7 +36,7 @@ Use the following link within the next 24 hours to reset your password:
 
 Thanks,
 The iBudget Team";
-			echo $message; exit;
+			//echo $message; exit;
 			mail($to, $subject, $message);
 		}
 	} catch (Exception $e) {
